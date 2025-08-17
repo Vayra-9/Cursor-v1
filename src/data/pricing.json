@@ -1,0 +1,208 @@
+{
+  "plans": {
+    "free": {
+      "name": "Free",
+      "price": 0,
+      "billingCycle": "monthly",
+      "currency": "USD",
+      "features": {
+        "debtCalculator": true,
+        "paymentTracker": true,
+        "basicAnalytics": true,
+        "dtiCalculator": true,
+        "aiCopilot": {
+          "enabled": true,
+          "promptLimit": 2
+        },
+        "pdfExports": false,
+        "advancedAnalytics": false,
+        "payoffPlanner": false,
+        "debtBreakdown": false,
+        "leaveReview": false,
+        "prioritySupport": false
+      },
+      "limits": {
+        "maxDebts": 3,
+        "maxPayments": 10,
+        "maxMonthsHistory": 3,
+        "storageLimit": "10MB"
+      },
+      "description": "Perfect for getting started with debt management",
+      "cta": "Get Started Free",
+      "popular": false
+    },
+    "starter": {
+      "name": "Starter",
+      "price": 9.99,
+      "billingCycle": "monthly",
+      "currency": "USD",
+      "features": {
+        "debtCalculator": true,
+        "paymentTracker": true,
+        "basicAnalytics": true,
+        "dtiCalculator": true,
+        "aiCopilot": {
+          "enabled": true,
+          "promptLimit": 5
+        },
+        "pdfExports": true,
+        "advancedAnalytics": false,
+        "payoffPlanner": false,
+        "debtBreakdown": false,
+        "leaveReview": false,
+        "prioritySupport": false
+      },
+      "limits": {
+        "maxDebts": 10,
+        "maxPayments": 50,
+        "maxMonthsHistory": 12,
+        "storageLimit": "100MB"
+      },
+      "description": "Essential tools for serious debt management",
+      "cta": "Start Free Trial",
+      "popular": false
+    },
+    "pro": {
+      "name": "Pro",
+      "price": 19.99,
+      "billingCycle": "monthly",
+      "currency": "USD",
+      "features": {
+        "debtCalculator": true,
+        "paymentTracker": true,
+        "basicAnalytics": true,
+        "dtiCalculator": true,
+        "aiCopilot": {
+          "enabled": true,
+          "promptLimit": -1
+        },
+        "pdfExports": true,
+        "advancedAnalytics": true,
+        "payoffPlanner": true,
+        "debtBreakdown": true,
+        "leaveReview": true,
+        "prioritySupport": false
+      },
+      "limits": {
+        "maxDebts": -1,
+        "maxPayments": -1,
+        "maxMonthsHistory": -1,
+        "storageLimit": "1GB"
+      },
+      "description": "Complete debt management with AI assistance",
+      "cta": "Start Free Trial",
+      "popular": true
+    },
+    "premium": {
+      "name": "Premium",
+      "price": 39.99,
+      "billingCycle": "monthly",
+      "currency": "USD",
+      "features": {
+        "debtCalculator": true,
+        "paymentTracker": true,
+        "basicAnalytics": true,
+        "dtiCalculator": true,
+        "aiCopilot": {
+          "enabled": true,
+          "promptLimit": -1
+        },
+        "pdfExports": true,
+        "advancedAnalytics": true,
+        "payoffPlanner": true,
+        "debtBreakdown": true,
+        "leaveReview": true,
+        "prioritySupport": true
+      },
+      "limits": {
+        "maxDebts": -1,
+        "maxPayments": -1,
+        "maxMonthsHistory": -1,
+        "storageLimit": "10GB"
+      },
+      "description": "Enterprise-grade debt management with priority support",
+      "cta": "Start Free Trial",
+      "popular": false
+    }
+  },
+  "grandfatheredPlans": {
+    "legacy_free": {
+      "name": "Free (Legacy)",
+      "originalPrice": 0,
+      "currentPrice": 0,
+      "badge": "Grandfathered",
+      "description": "Original free plan pricing"
+    },
+    "legacy_starter": {
+      "name": "Starter (Legacy)",
+      "originalPrice": 7.99,
+      "currentPrice": 7.99,
+      "badge": "Grandfathered",
+      "description": "Original starter plan pricing"
+    },
+    "legacy_pro": {
+      "name": "Pro (Legacy)",
+      "originalPrice": 14.99,
+      "currentPrice": 14.99,
+      "badge": "Grandfathered",
+      "description": "Original pro plan pricing"
+    }
+  },
+  "features": {
+    "debtCalculator": {
+      "name": "Debt Calculator",
+      "description": "Calculate disposable income and payoff estimates",
+      "icon": "Calculator"
+    },
+    "paymentTracker": {
+      "name": "Payment Tracker",
+      "description": "Track and manage debt payments",
+      "icon": "CreditCard"
+    },
+    "basicAnalytics": {
+      "name": "Basic Analytics",
+      "description": "DTI ratio and basic financial insights",
+      "icon": "BarChart3"
+    },
+    "dtiCalculator": {
+      "name": "DTI Calculator",
+      "description": "Calculate debt-to-income ratios",
+      "icon": "Percent"
+    },
+    "aiCopilot": {
+      "name": "AI Money Coach",
+      "description": "AI-powered financial advice and guidance",
+      "icon": "Bot"
+    },
+    "pdfExports": {
+      "name": "PDF Reports",
+      "description": "Export detailed financial reports",
+      "icon": "FileText"
+    },
+    "advancedAnalytics": {
+      "name": "Advanced Analytics",
+      "description": "Detailed charts and financial projections",
+      "icon": "TrendingUp"
+    },
+    "payoffPlanner": {
+      "name": "Payoff Planner",
+      "description": "Strategic debt payoff planning",
+      "icon": "Target"
+    },
+    "debtBreakdown": {
+      "name": "Debt Breakdown",
+      "description": "Visual debt analysis and categorization",
+      "icon": "PieChart"
+    },
+    "leaveReview": {
+      "name": "Leave Reviews",
+      "description": "Share your experience and feedback",
+      "icon": "Star"
+    },
+    "prioritySupport": {
+      "name": "Priority Support",
+      "description": "24/7 priority customer support",
+      "icon": "Headphones"
+    }
+  }
+}

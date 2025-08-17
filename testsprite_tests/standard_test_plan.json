@@ -1,0 +1,64 @@
+{
+  "id": "vayra-frontend-tests",
+  "title": "VAYRA Frontend Comprehensive Tests",
+  "description": "End-to-end testing for VAYRA SaaS platform with authentication and core features",
+  "baseUrl": "http://localhost:5174",
+  "timeout": 30000,
+  "retries": 2,
+  "steps": [
+    {
+      "id": "homepage-load",
+      "title": "Load Homepage",
+      "description": "Verify homepage loads successfully",
+      "action": "navigate",
+      "url": "/",
+      "expects": {
+        "statusCode": 200
+      }
+    },
+    {
+      "id": "pricing-page",
+      "title": "Pricing Page Test",
+      "description": "Verify pricing page displays all plan tiers",
+      "action": "navigate",
+      "url": "/pricing",
+      "expects": {
+        "statusCode": 200,
+        "texts": ["Free", "Starter", "Pro", "Premium"]
+      }
+    },
+    {
+      "id": "auth-page",
+      "title": "Authentication Page Test",
+      "description": "Verify authentication page is accessible",
+      "action": "navigate",
+      "url": "/auth",
+      "expects": {
+        "statusCode": 200
+      }
+    },
+    {
+      "id": "login-test",
+      "title": "Login Functionality Test",
+      "description": "Test login with test credentials",
+      "action": "login",
+      "credentials": {
+        "email": "testsprite+local@vayra.app",
+        "password": "VayraTest!123"
+      },
+      "expects": {
+        "success": true
+      }
+    },
+    {
+      "id": "dashboard-test",
+      "title": "Dashboard Access Test",
+      "description": "Verify dashboard loads after login",
+      "action": "navigate",
+      "url": "/dashboard",
+      "expects": {
+        "statusCode": 200
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "tests": [
+    {
+      "name": "Auth & Firestore Access",
+      "path": "src/lib/firebase.ts",
+      "assert": [
+        "should initialize Firebase app",
+        "should restrict users to their own /users/{uid} data"
+      ]
+    },
+    {
+      "name": "Plan Gating",
+      "path": "src/contexts/PlanContext.tsx",
+      "assert": [
+        "should return null for unauthenticated users",
+        "should fetch access doc for signed-in users",
+        "plan must be one of ['free','starter','pro','premium']",
+        "must include grandfathered flag"
+      ]
+    },
+    {
+      "name": "PWA Install",
+      "path": "vite.config.ts",
+      "assert": [
+        "vite-plugin-pwa is configured",
+        "manifest.json exists with correct icons"
+      ]
+    },
+    {
+      "name": "Dashboard Components",
+      "path": "src/pages/dashboard/DashboardPage.tsx",
+      "assert": [
+        "should render all 28 core modules",
+        "should show plan-based feature gating",
+        "should display upgrade banner for free users"
+      ]
+    },
+    {
+      "name": "Pricing Matrix",
+      "path": "src/data/pricing.ts",
+      "assert": [
+        "should export pricing matrix with 4 tiers",
+        "should include helper functions getPlanPriceUSD and planIncludes",
+        "should use types from @/types/db"
+      ]
+    },
+    {
+      "name": "AI Integration",
+      "path": "src/services/ai.ts",
+      "assert": [
+        "should export askAI function",
+        "should export askAIPro function",
+        "should use environment variables for API keys"
+      ]
+    },
+    {
+      "name": "Database Schema",
+      "path": "src/types/db.ts",
+      "assert": [
+        "should define PlanTier type",
+        "should define UserProfile interface",
+        "should define DebtDoc interface",
+        "should define PricingPlanMatrix type"
+      ]
+    }
+  ],
+  "project": {
+    "name": "VAYRA SaaS",
+    "type": "frontend",
+    "framework": "react",
+    "buildTool": "vite"
+  },
+  "settings": {
+          "port": 5174,
+    "baseUrl": "http://localhost:5174",
+    "timeout": 30000,
+    "retries": 2
+  }
+}

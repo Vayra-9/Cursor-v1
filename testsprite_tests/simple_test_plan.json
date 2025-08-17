@@ -1,0 +1,33 @@
+{
+  "name": "VAYRA Simple Smoke Tests",
+  "description": "Basic smoke tests for VAYRA SaaS platform",
+  "baseUrl": "http://localhost:5174",
+  "timeout": 30000,
+  "retries": 2,
+  "tests": [
+    {
+      "name": "homepage_loads",
+      "description": "Verify homepage loads successfully",
+      "path": "/",
+      "expects": {
+        "statusCode": 200
+      }
+    },
+    {
+      "name": "pricing_page_exists",
+      "description": "Verify pricing page is accessible",
+      "path": "/pricing",
+      "expects": {
+        "statusCode": 200
+      }
+    },
+    {
+      "name": "auth_page_exists",
+      "description": "Verify auth page is accessible",
+      "path": "/auth",
+      "expects": {
+        "statusCode": 200
+      }
+    }
+  ]
+}

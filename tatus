@@ -1,0 +1,11 @@
+[33mcommit 3bf465c5a4158325cdad4e1d05c2ac83c9de3dd2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Vayra-9 <nihar.goud09@gmail.com>
+Date:   Sun Aug 17 22:48:54 2025 +0530
+
+    Security: Remove hardcoded secrets and update .gitignore
+
+[33mcommit 9617864f106e92fe699f48a9ae5cd8c85fd783c7[m
+Author: Vayra-9 <nihar.goud09@gmail.com>
+Date:   Sun Aug 17 22:33:41 2025 +0530
+
+    Initial Cursor-v1 MVP commit

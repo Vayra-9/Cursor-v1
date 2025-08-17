@@ -1,0 +1,150 @@
+{
+  "projectName": "VAYRA SaaS Platform",
+  "baseUrl": "http://localhost:4173",
+  "type": "frontend",
+  "scope": "codebase",
+  "credentials": {
+    "email": "testsprite+local@vayra.app",
+    "password": "VayraTest!123"
+  },
+  "prdPath": "./testsprite_tests/standard_prd.json",
+  "reportsDir": "./testsprite_tests/reports",
+  "artifactsDir": "./testsprite_tests/artifacts",
+  "testConfig": {
+    "timeout": 30000,
+    "retries": 2,
+    "screenshotOnFailure": true,
+    "videoOnFailure": true,
+    "parallel": 2
+  },
+  "environments": {
+    "local": {
+      "baseUrl": "http://localhost:5174",
+      "credentials": {
+        "email": "testsprite+local@vayra.app",
+        "password": "VayraTest!123"
+      }
+    },
+    "staging": {
+      "baseUrl": "https://staging.vayra.app",
+      "credentials": {
+        "email": "testsprite+staging@vayra.app",
+        "password": "VayraTest!123"
+      }
+    },
+    "production": {
+      "baseUrl": "https://vayra.app",
+      "credentials": {
+        "email": "testsprite+prod@vayra.app",
+        "password": "VayraTest!123"
+      }
+    }
+  },
+  "testSuites": {
+    "smoke": {
+      "description": "Critical path tests",
+      "tests": [
+        "app-loads",
+        "navigation-works",
+        "auth-flow",
+        "dashboard-access"
+      ]
+    },
+    "regression": {
+      "description": "Full regression test suite",
+      "tests": [
+        "all-phase-tests"
+      ]
+    },
+    "performance": {
+      "description": "Performance and load tests",
+      "tests": [
+        "lighthouse-scores",
+        "load-times",
+        "memory-usage"
+      ]
+    },
+    "accessibility": {
+      "description": "Accessibility compliance tests",
+      "tests": [
+        "wcag-compliance",
+        "screen-reader",
+        "keyboard-navigation"
+      ]
+    }
+  },
+  "qualityGates": {
+    "testPassRate": 95,
+    "performanceScore": 90,
+    "accessibilityScore": 90,
+    "seoScore": 90,
+    "bestPracticesScore": 90
+  },
+  "notifications": {
+    "slack": {
+      "webhook": "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK",
+      "channel": "#vayra-ci"
+    },
+    "email": {
+      "recipients": ["team@vayra.app"],
+      "onFailure": true,
+      "onSuccess": false
+    }
+  },
+  "artifacts": {
+    "screenshots": {
+      "enabled": true,
+      "format": "png",
+      "quality": 90
+    },
+    "videos": {
+      "enabled": true,
+      "format": "mp4",
+      "quality": "medium"
+    },
+    "reports": {
+      "html": true,
+      "json": true,
+      "junit": true
+    }
+  },
+  "customCommands": {
+    "login": {
+      "description": "Login to VAYRA",
+      "steps": [
+        "navigate to /signin",
+        "fill email field with ${credentials.email}",
+        "fill password field with ${credentials.password}",
+        "click login button",
+        "wait for navigation to /dashboard"
+      ]
+    },
+    "createTestData": {
+      "description": "Create test data for testing",
+      "steps": [
+        "navigate to /dev-seed",
+        "click create sample data button",
+        "wait for success message"
+      ]
+    },
+    "cleanupTestData": {
+      "description": "Clean up test data",
+      "steps": [
+        "navigate to /dev-seed",
+        "click clear data button",
+        "wait for success message"
+      ]
+    }
+  },
+  "hooks": {
+    "beforeAll": [
+      "createTestData"
+    ],
+    "afterAll": [
+      "cleanupTestData"
+    ],
+    "beforeEach": [
+      "login"
+    ]
+  }
+}
