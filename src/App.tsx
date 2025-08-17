@@ -79,7 +79,7 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   }
 
   if (user) {
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="/app/dashboard" replace />;
   }
 
   return <>{children}</>;
@@ -119,7 +119,6 @@ const App: React.FC = () => {
         
         {/* Favicon */}
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         
         {/* Theme */}
         <meta name="theme-color" content="#0ea5e9" />
@@ -167,7 +166,7 @@ const App: React.FC = () => {
           } />
 
           {/* Protected Routes with Layout */}
-          <Route path="/" element={
+          <Route path="/app" element={
             <ProtectedRoute>
               <Layout />
             </ProtectedRoute>
