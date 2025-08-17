@@ -47,7 +47,7 @@ const UserMenu: React.FC = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-3 p-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-        title="User menu"
+        aria-label="User menu"
       >
         <div className="relative">
           <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">

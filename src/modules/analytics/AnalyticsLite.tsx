@@ -196,7 +196,7 @@ const AnalyticsLite: React.FC = () => {
                       <button
                         onClick={() => removeDebt(index)}
                         className="text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
-                        title="Remove debt"
+                        aria-label="Remove debt"
                         aria-label="Remove debt"
                       >
                         ×

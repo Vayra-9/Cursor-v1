@@ -30,9 +30,9 @@ const UpgradeBanner: React.FC = () => {
         </div>
         <button
           className="text-blue-100 hover:text-white transition-colors duration-200"
-          title="Dismiss upgrade banner"
+          aria-label="Dismiss upgrade banner"
         >
-          <X className="w-4 h-4" />
+          <span aria-label="Dismiss upgrade banner"><X className="w-4 h-4" /></span>
         </button>
       </div>
     </motion.div>

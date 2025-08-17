@@ -306,18 +306,16 @@ const PaymentTracker: React.FC = () => {
                   <button
                     onClick={() => handleEdit(payment)}
                     className="p-1 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded"
-                    title="Edit payment"
                     aria-label={`Edit payment for ${payment.debtName}`}
                   >
-                    <Edit className="w-4 h-4" />
+                    <span aria-label="Edit payment"><Edit className="w-4 h-4" /></span>
                   </button>
                   <button
                     onClick={() => handleDelete(payment.id)}
                     className="p-1 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded"
-                    title="Delete payment"
                     aria-label={`Delete payment for ${payment.debtName}`}
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <span aria-label="Delete payment"><Trash2 className="w-4 h-4" /></span>
                   </button>
                 </div>
                         </td>

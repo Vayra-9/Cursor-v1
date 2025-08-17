@@ -161,10 +161,9 @@ const CalculatorLite: React.FC = () => {
                     <button
                       onClick={() => removeDebt(debt.id)}
                       className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md"
-                      title="Remove debt"
                       aria-label="Remove debt"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <span aria-label="Remove debt"><Trash2 className="w-4 h-4" /></span>
                     </button>
                   </div>
 

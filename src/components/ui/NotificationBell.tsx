@@ -64,9 +64,9 @@ const NotificationBell: React.FC = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="relative p-2 rounded-full text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-        title="Notifications"
+        aria-label="Notifications"
       >
-        <Bell className="w-5 h-5" />
+        <span aria-label="Notifications"><Bell className="w-5 h-5" /></span>
         {unreadCount > 0 && (
           <span className="absolute top-1 right-1 block h-2 w-2 rounded-full bg-red-400 animate-pulse" />
         )}

@@ -301,8 +301,14 @@ class OfflineSyncManager {
   async triggerBackgroundSync(): Promise<void> {
     if ('serviceWorker' in navigator && 'sync' in window.ServiceWorkerRegistration.prototype) {
       const registration = await navigator.serviceWorker.ready;
-      await registration.sync.register('background-sync');
-      console.log('Background sync registered');
+      const syncMgr = (registration as any).sync;
+      if (syncMgr && typeof syncMgr.register === 'function') {
+        await syncMgr.register('background-sync');
+        console.log('Background sync registered');
+      } else {
+        console.log('Background sync not supported, processing immediately');
+        await this.processQueuedActions();
+      }
     } else {
       console.log('Background sync not supported, processing immediately');
       await this.processQueuedActions();

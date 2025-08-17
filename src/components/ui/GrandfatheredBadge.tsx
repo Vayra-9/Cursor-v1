@@ -36,7 +36,7 @@ const GrandfatheredBadge: React.FC<GrandfatheredBadgeProps> = ({
         ${sizeClasses[size]}
         ${className}
       `}
-      title="Grandfathered pricing - locked to original rate"
+      aria-label="Grandfathered pricing - locked to original rate"
     >
       <Crown size={iconSizes[size]} className="text-amber-200" />
       <span>Grandfathered</span>

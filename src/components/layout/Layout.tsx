@@ -171,10 +171,9 @@ const Layout: React.FC = () => {
           <button
             onClick={() => setMobileMenuOpen(false)}
             className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
-            title="Close menu"
             aria-label="Close menu"
           >
-            <X className="w-5 h-5" />
+            <span aria-label="Close menu"><X className="w-5 h-5" /></span>
           </button>
         </div>
 
@@ -231,10 +230,9 @@ const Layout: React.FC = () => {
               <button
                 onClick={() => setMobileMenuOpen(true)}
                 className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
-                title="Open menu"
                 aria-label="Open menu"
               >
-                <Menu className="w-5 h-5" />
+                <span aria-label="Open menu"><Menu className="w-5 h-5" /></span>
               </button>
               
               <div className="ml-4 lg:ml-0">

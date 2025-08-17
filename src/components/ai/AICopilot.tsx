@@ -90,9 +90,9 @@ const AICopilot: React.FC = () => {
           </div>
           <div className="flex items-center space-x-2">
             {tier === 'pro' || tier === 'premium' ? (
-              <Crown className="w-4 h-4 text-yellow-500" title="Pro User" />
+              <span aria-label="Pro User"><Crown className="w-4 h-4 text-yellow-500" /></span>
             ) : (
-              <Sparkles className="w-4 h-4 text-blue-500" title="Free User" />
+              <span aria-label="Free User"><Sparkles className="w-4 h-4 text-blue-500" /></span>
             )}
             <button
               onClick={toggleCopilot}

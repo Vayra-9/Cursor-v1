@@ -14,9 +14,9 @@ const CurrencySwitcher: React.FC = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
-        title="Change currency"
+        aria-label="Change currency"
       >
-        <Globe className="w-4 h-4" />
+        <span aria-label="Change currency"><Globe className="w-4 h-4" /></span>
         <span>{currentCurrency?.symbol || '$'}</span>
         <span className="hidden sm:inline">{currentCurrency?.code || 'USD'}</span>
         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
