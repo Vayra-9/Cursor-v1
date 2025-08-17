@@ -171,6 +171,9 @@ export default defineConfig({
   resolve: {
     alias: { '@': path.resolve(__dirname, 'src') }
   },
+  optimizeDeps: {
+    include: ['firebase/app', 'firebase/auth', 'firebase/firestore', 'firebase/analytics', 'firebase/storage']
+  },
   server: {
     port: 5174,
     strictPort: true,
@@ -190,7 +193,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          firebase: ['firebase'],
           charts: ['chart.js', 'react-chartjs-2'],
           ui: ['framer-motion', 'lucide-react'],
           utils: ['date-fns', 'clsx', 'tailwind-merge']

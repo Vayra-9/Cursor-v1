@@ -56,7 +56,7 @@ const PayoffPlanner: React.FC<PayoffPlannerProps> = ({ debts = [], monthlyIncome
 
   // Calculate payoff timeline
   const calculatePayoffTimeline = () => {
-    const timeline = [];
+    const timeline: Array<{ month: string; totalPaid: number; remainingBalance: number; debtsRemaining: number }> = [];
     let remainingDebts = [...sortedDebts];
     let totalPaid = 0;
     let month = 0;
@@ -64,7 +64,12 @@ const PayoffPlanner: React.FC<PayoffPlannerProps> = ({ debts = [], monthlyIncome
     while (remainingDebts.length > 0 && month < 120) { // Max 10 years
       month++;
       let monthlyPayment = remainingDebts.reduce((sum, debt) => sum + debt.minPayment, 0) + extraPayment;
-      let monthData: any = { month: `Month ${month}`, totalPaid: 0, remainingBalance: 0 };
+      let monthData: { month: string; totalPaid: number; remainingBalance: number; debtsRemaining: number } = { 
+        month: `Month ${month}`, 
+        totalPaid: 0, 
+        remainingBalance: 0,
+        debtsRemaining: 0
+      };
 
       // Pay off debts in order
       for (let i = 0; i < remainingDebts.length; i++) {
