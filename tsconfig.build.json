@@ -1,0 +1,6 @@
+﻿{
+  "extends": "./tsconfig.json",
+  "include": ["src"],
+  "exclude": ["src/**/*.test.*", "**/__tests__/**", "testsprite_tests/**"],
+  "compilerOptions": { "noUnusedLocals": false, "noUnusedParameters": false }
+}
