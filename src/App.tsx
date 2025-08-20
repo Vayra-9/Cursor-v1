@@ -98,6 +98,11 @@ const App: React.FC = () => {
 
   return (
     <>
+      {/* Skip to content link for accessibility */}
+      <a href="#main-content" className="skip-to-content">
+        Skip to content
+      </a>
+
       <Helmet>
         <title>VAYRA - Debt Management & Income Platform</title>
         <meta name="description" content="Transform your financial life with AI-powered debt management and income generation strategies." />

@@ -1,0 +1,403 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Markdown Preview</title>
+      <style>
+        body {
+          font-family: sans-serif;
+          padding: 40px;
+          line-height: 1.6;
+          background: #fdfdfd;
+          color: #333;
+        }
+        pre {
+          background: #f4f4f4;
+          padding: 10px;
+          border-radius: 5px;
+          overflow-x: auto;
+        }
+        code {
+          font-family: monospace;
+          background: #eee;
+          padding: 2px 4px;
+        }
+        table {
+          border-collapse: collapse;
+          width: 100%;
+          margin-top: 20px;
+        }
+        th, td {
+          border: 1px solid #ccc;
+          padding: 8px 12px;
+          text-align: left;
+        }
+        th {
+          background-color: #f2f2f2;
+          font-weight: bold;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>TestSprite AI Testing Report(MCP)</h1>
+<hr>
+<h2>1️⃣ Document Metadata</h2>
+<ul>
+<li><strong>Project Name:</strong> Vayra-v2</li>
+<li><strong>Version:</strong> 0.1.0</li>
+<li><strong>Date:</strong> 2025-08-21</li>
+<li><strong>Prepared by:</strong> TestSprite AI Team</li>
+</ul>
+<hr>
+<h2>2️⃣ Requirement Validation Summary</h2>
+<h3>Requirement: App Shell and Routing</h3>
+<ul>
+<li><strong>Description:</strong> Core application shell with proper routing, header, footer, and 404 handling.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC001</li>
+<li><strong>Test Name:</strong> App Shell and Routing Initialization</li>
+<li><strong>Test Code:</strong> <a href="./TC001_App_Shell_and_Routing_Initialization.py">code_file</a></li>
+<li><strong>Test Error:</strong> N/A</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/e6f8c485-5aeb-411e-9ec1-7d93a42ca536</li>
+<li><strong>Status:</strong> ✅ Passed</li>
+<li><strong>Severity:</strong> LOW</li>
+<li><strong>Analysis / Findings:</strong> App shell loads correctly with proper routing, including header, footer, and 404 handling, confirming expected navigation and layout behaviors function as intended.</li>
+</ul>
+<hr>
+<h3>Requirement: Authentication and Login</h3>
+<ul>
+<li><strong>Description:</strong> Login page UI rendering and plan-based feature locking functionality.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC002</li>
+<li><strong>Test Name:</strong> Login Page UI and Plan-Based Feature Locking</li>
+<li><strong>Test Code:</strong> <a href="./TC002_Login_Page_UI_and_Plan_Based_Feature_Locking.py">code_file</a></li>
+<li><strong>Test Error:</strong> Missing Firebase environment variables causing backend initialization failures. WebSocket connection errors and React warnings about invalid DOM props contributed to UI instability.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/ea06ba10-170d-4782-8636-374470fe3aaf</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Test failed due to missing Firebase environment variables causing backend initialization failures impacting login functionality. Additionally, WebSocket connection errors and React warnings about invalid DOM props contributed to UI instability preventing proper login page rendering and plan-based feature locking.</li>
+</ul>
+<hr>
+<h3>Requirement: Debt Calculator Functionality</h3>
+<ul>
+<li><strong>Description:</strong> Debt calculator inputs validation and outputs calculation with local state persistence.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC003</li>
+<li><strong>Test Name:</strong> Debt Calculator Inputs and Outputs Validation</li>
+<li><strong>Test Code:</strong> <a href="./TC003_Debt_Calculator_Inputs_and_Outputs_Validation.py">code_file</a></li>
+<li><strong>Test Error:</strong> Login form inputs were inaccessible, blocking authentication and subsequent access.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/f83ef871-9857-431e-9a20-8d92c1cc2d79</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Debt Calculator inputs test could not proceed because login form inputs were inaccessible, blocking authentication and subsequent access. Similar environment and loading errors as TC002 prevent front-end interactions required for validation.</li>
+</ul>
+<hr>
+<h3>Requirement: Payment Tracker Functionality</h3>
+<ul>
+<li><strong>Description:</strong> Payment tracking with add, edit, delete operations and monthly sum calculations.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC004</li>
+<li><strong>Test Name:</strong> Payment Tracker Add, Edit, Delete, and Summary</li>
+<li><strong>Test Code:</strong> <a href="./TC004_Payment_Tracker_Add_Edit_Delete_and_Summary.py">code_file</a></li>
+<li><strong>Test Error:</strong> Login inputs and submit button were not detected as interactive, preventing user authentication.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/cbd0397f-f8bd-4a79-a5d5-638c3e9a6fe7</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Payment Tracker test could not continue as login inputs and submit button were not detected as interactive, preventing user authentication and access to payment features. Underlying causes include missing Firebase environment variables and WebSocket failures.</li>
+</ul>
+<hr>
+<h3>Requirement: Analytics and DTI Calculation</h3>
+<ul>
+<li><strong>Description:</strong> DTI calculation view with plan-based access and chart rendering.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC005</li>
+<li><strong>Test Name:</strong> Analytics and DTI Calculation View with Plan-Based Access</li>
+<li><strong>Test Code:</strong> <a href="./TC005_Analytics_and_DTI_Calculation_View_with_Plan_Based_Access.py">code_file</a></li>
+<li><strong>Test Error:</strong> Login page returns 404 error, blocking all navigation and testing.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/4428ab8a-477b-408a-aea1-8fe45391df73</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> The login page returns a 404 error, blocking all navigation and testing of analytics, DTI calculation, and chart rendering features. This points to routing or deployment misconfiguration preventing access to core frontend routes.</li>
+</ul>
+<hr>
+<h3>Requirement: PWA and Accessibility Compliance</h3>
+<ul>
+<li><strong>Description:</strong> PWA manifest validation and accessibility compliance including Lighthouse checks.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC006</li>
+<li><strong>Test Name:</strong> PWA Manifest and Accessibility Compliance</li>
+<li><strong>Test Code:</strong> <a href="./TC006_PWA_Manifest_and_Accessibility_Compliance.py">code_file</a></li>
+<li><strong>Test Error:</strong> N/A</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/73bfcf21-22ae-48d3-8ac7-4c06572153db</li>
+<li><strong>Status:</strong> ✅ Passed</li>
+<li><strong>Severity:</strong> LOW</li>
+<li><strong>Analysis / Findings:</strong> PWA manifest and accessibility features are correctly implemented, including proper icon references, labels, alt texts, and ARIA roles resulting in a passing Lighthouse accessibility score.</li>
+</ul>
+<hr>
+<h3>Requirement: UI/UX Branding and Visual Enhancements</h3>
+<ul>
+<li><strong>Description:</strong> VAYRA branding consistency, visual elements, animations, and accessibility across the app.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC007</li>
+<li><strong>Test Name:</strong> UI/UX Branding and Visual Enhancements</li>
+<li><strong>Test Code:</strong> <a href="./TC007_UIUX_Branding_and_Visual_Enhancements.py">code_file</a></li>
+<li><strong>Test Error:</strong> Dashboard page is inaccessible with 404 error and homepage lacks visible branding elements.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/2fe7763f-4fae-43a4-a696-64c46fe77cb2</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> The dashboard page is inaccessible with a 404 error and the homepage lacks visible branding elements, blocking validation of branding consistency, visual elements, animations, and accessibility. Missing Firebase variables and resource load failures exacerbate the issue.</li>
+</ul>
+<hr>
+<h3>Requirement: Pro Modules Functionality</h3>
+<ul>
+<li><strong>Description:</strong> Pro modules with enhanced visuals, advanced analytics, and gated content functionality.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC008</li>
+<li><strong>Test Name:</strong> Pro Modules Functionality and Advanced Visuals</li>
+<li><strong>Test Code:</strong> <a href="./TC008_Pro_Modules_Functionality_and_Advanced_Visuals.py">code_file</a></li>
+<li><strong>Test Error:</strong> All key modules and pages returning 404 Page Not Found errors.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/3e23568a-b5ad-4a7d-a9ec-a7c20a8bde00</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Access to all Pro module pages is denied due to 404 errors, preventing verification of debt breakdown visuals, advanced analytics, gated sections, and premium content. Backend connectivity and routing problems cause these failures.</li>
+</ul>
+<hr>
+<h3>Requirement: AI Copilot and Assistant Functionality</h3>
+<ul>
+<li><strong>Description:</strong> AI sidebar functionality with multilingual support and plan-based restrictions.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC009</li>
+<li><strong>Test Name:</strong> AI Copilot and Assistant Functionality with Multilingual Support</li>
+<li><strong>Test Code:</strong> <a href="./TC009_AI_Copilot_and_Assistant_Functionality_with_Multilingual_Support.py">code_file</a></li>
+<li><strong>Test Error:</strong> Failed resource loads indicate backend or hosting instability.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/0dafec17-3455-4536-b12d-578ae18b0a13</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> MEDIUM</li>
+<li><strong>Analysis / Findings:</strong> Failed resource loads indicate backend or hosting instability, specifically impacting NotificationBell component. This disruption prevents complete testing of AI Copilot visibility, prompts, plan gating, multilingual support, and response generation.</li>
+</ul>
+<hr>
+<h3>Requirement: Pricing Matrix and Upgrade Functionality</h3>
+<ul>
+<li><strong>Description:</strong> Pricing data integration, plan gating, grandfathered user pricing, and upgrade CTAs.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC010</li>
+<li><strong>Test Name:</strong> Pricing Matrix, Grandfathered Users, and Upgrade CTA Verification</li>
+<li><strong>Test Code:</strong> <a href="./TC010_Pricing_Matrix_Grandfathered_Users_and_Upgrade_CTA_Verification.py">code_file</a></li>
+<li><strong>Test Error:</strong> Pricing page and related components fail to load due to failed WebSocket connection.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/32722a17-cd4f-4a48-9b33-7fd0787cbc34</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Pricing page and related components fail to load due to failed WebSocket connection and resource load errors, hindering validation of pricing data sourcing, plan gating, grandfathered user pricing display, and upgrade CTAs.</li>
+</ul>
+<hr>
+<h3>Requirement: Offline Mode and Sync Functionality</h3>
+<ul>
+<li><strong>Description:</strong> Service worker caching, offline mode banner, queueing, and sync behavior.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC011</li>
+<li><strong>Test Name:</strong> Offline Mode and Sync Functionality</li>
+<li><strong>Test Code:</strong> <a href="./TC011_Offline_Mode_and_Sync_Functionality.py">code_file</a></li>
+<li><strong>Test Error:</strong> Inability to interact with login form inputs and absence of offline mode banner.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/5177b2a7-5154-4bcb-8291-c81cc4f02891</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Test was halted due to inability to interact with login form inputs and absence of the offline mode banner. Firebase environment issues and network resource failures blocked checking service worker registration, offline capabilities, queuing, sync behavior, and PWA install flows.</li>
+</ul>
+<hr>
+<h3>Requirement: CI/CD Pipeline Validation</h3>
+<ul>
+<li><strong>Description:</strong> GitHub Actions workflow execution with build, tests, and deployment validation.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC012</li>
+<li><strong>Test Name:</strong> CI/CD Pipeline and Pre-Deploy QA Validation</li>
+<li><strong>Test Code:</strong> <a href="./TC012_CICD_Pipeline_and_Pre_Deploy_QA_Validation.py">code_file</a></li>
+<li><strong>Test Error:</strong> Login to GitHub failed due to incorrect credentials preventing workflow triggering.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/ef41a329-4524-4ba7-b4cd-7650f6e07a8f</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Login to GitHub failed due to incorrect credentials preventing triggering of the GitHub Actions workflow. This blocks build, unit tests, E2E tests, linting, type checks, production build validation, and critical path testing within the CI/CD pipeline.</li>
+</ul>
+<hr>
+<h2>3️⃣ Coverage &amp; Matching Metrics</h2>
+<ul>
+<li><strong>17% of product requirements tested</strong></li>
+<li><strong>17% of tests passed</strong></li>
+<li><strong>Key gaps / risks:</strong></li>
+</ul>
+<blockquote>
+<p>17% of product requirements had at least one test generated.<br>
+17% of tests passed fully.<br>
+Risks: Missing Firebase environment variables; routing/deployment issues; WebSocket connection failures; React DOM prop warnings; CI/CD authentication issues.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Total Tests</th>
+<th>✅ Passed</th>
+<th>⚠️ Partial</th>
+<th>❌ Failed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App Shell and Routing</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Authentication and Login</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Debt Calculator Functionality</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Payment Tracker Functionality</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Analytics and DTI Calculation</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>PWA and Accessibility</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>UI/UX Branding</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Pro Modules Functionality</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>AI Copilot Functionality</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Pricing Matrix</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Offline Mode</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>CI/CD Pipeline</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>4️⃣ Critical Issues Summary</h2>
+<h3>🔴 <strong>High Priority Issues:</strong></h3>
+<ol>
+<li><strong>Missing Firebase Environment Variables</strong> - All authentication and backend functionality blocked</li>
+<li><strong>404 Routing Errors</strong> - Multiple pages inaccessible including login, dashboard, and pro modules</li>
+<li><strong>WebSocket Connection Failures</strong> - Real-time features and development server issues</li>
+<li><strong>React DOM Prop Warnings</strong> - Invalid <code>fetchPriority</code> prop causing console errors</li>
+<li><strong>CI/CD Authentication Issues</strong> - GitHub Actions workflow blocked</li>
+</ol>
+<h3>🟡 <strong>Medium Priority Issues:</strong></h3>
+<ol>
+<li><strong>Resource Loading Failures</strong> - Multiple component files failing to load</li>
+<li><strong>Login Form Accessibility</strong> - Input fields not detected as interactive elements</li>
+</ol>
+<h3>🟢 <strong>Low Priority Issues:</strong></h3>
+<ol>
+<li><strong>React Router Future Flag Warnings</strong> - Deprecation warnings for v7 compatibility</li>
+</ol>
+<hr>
+<h2>5️⃣ Recommendations</h2>
+<h3><strong>Immediate Actions Required:</strong></h3>
+<ol>
+<li><strong>Set Firebase Environment Variables</strong> in Vercel deployment settings</li>
+<li><strong>Fix Routing Configuration</strong> to resolve 404 errors</li>
+<li><strong>Resolve WebSocket Issues</strong> for development server stability</li>
+<li><strong>Fix React DOM Props</strong> by removing invalid <code>fetchPriority</code> attribute</li>
+<li><strong>Configure CI/CD Authentication</strong> for GitHub Actions</li>
+</ol>
+<h3><strong>Secondary Improvements:</strong></h3>
+<ol>
+<li><strong>Optimize SVG Logo</strong> (currently 2.9MB, target &lt;150KB)</li>
+<li><strong>Add Missing Form Labels</strong> for better accessibility</li>
+<li><strong>Implement Error Boundaries</strong> for graceful error handling</li>
+<li><strong>Add Loading States</strong> for better UX during resource loading</li>
+</ol>
+<hr>
+<h2>6️⃣ Test Results Summary</h2>
+<ul>
+<li><strong>Total Tests:</strong> 12</li>
+<li><strong>Passed:</strong> 2 (17%)</li>
+<li><strong>Failed:</strong> 10 (83%)</li>
+<li><strong>Success Rate:</strong> 17%</li>
+</ul>
+<p><strong>Critical blocking issues prevent comprehensive testing of core functionality. Resolution of Firebase configuration and routing issues is required before meaningful feature validation can proceed.</strong></p>
+
+    </body>
+    </html>
+  

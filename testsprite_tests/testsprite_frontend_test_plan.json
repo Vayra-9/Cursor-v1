@@ -1,59 +1,466 @@
-{
-  "name": "VAYRA Frontend Smoke Tests",
-  "description": "Critical smoke tests for VAYRA SaaS platform",
-  "baseUrl": "http://localhost:5173",
-  "timeout": 30000,
-  "retries": 2,
-  "tests": [
-    {
-      "name": "pricing_page",
-      "description": "Verify pricing page displays all plan tiers",
-      "path": "/pricing",
-      "expects": {
-        "texts": ["Free", "Starter", "Pro", "Premium"]
+[
+  {
+    "id": "TC001",
+    "title": "App Shell and Routing Initialization",
+    "description": "Verify that the app shell loads correctly with proper routing and layout including header and footer, and 404 page displays for unknown routes.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to http://localhost:5174"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the app shell loads without errors and displays header and footer"
+      },
+      {
+        "type": "action",
+        "description": "Click on Top navigation links: Home, Dashboard, Pricing, Login, one by one"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify each route loads the corresponding page"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to a non-existing route (e.g., /nonexistentpage)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the 404 page is displayed"
       }
-    },
-    {
-      "name": "pwa_manifest",
-      "description": "Verify PWA manifest is accessible",
-      "asset": "/manifest.webmanifest",
-      "expectStatusBelow": 400
-    },
-    {
-      "name": "auth_login_to_dashboard",
-      "description": "Test authentication flow from login to dashboard",
-      "path": "/auth",
-      "fallbackPath": "/login",
-      "steps": [
-        {
-          "action": "fill",
-          "selector": "input[type='email'], input[name='email']",
-          "value": "testsprite+local@vayra.app"
-        },
-        {
-          "action": "fill",
-          "selector": "input[type='password'], input[name='password']",
-          "value": "VayraTest!123"
-        },
-        {
-          "action": "click",
-          "selector": "button[type='submit'], button:contains('Sign In'), button:contains('Log In')",
-          "regex": "/sign in|log in/i"
-        },
-        {
-          "action": "expect",
-          "urlContains": "/dashboard",
-          "timeout": 15000
-        }
-      ]
-    },
-    {
-      "name": "dashboard_gating_free",
-      "description": "Verify dashboard shows upgrade prompts for free users",
-      "path": "/dashboard",
-      "expects": {
-        "oneOfText": ["Upgrade", "Get Premium", "Unlock Pro", "Upgrade Plan"]
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Login Page UI and Plan-Based Feature Locking",
+    "description": "Verify login page UI renders with email and password fields and submit button and dashboard correctly shows locked states for features not available on current plan.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Login page"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that email and password input fields and submit button are present"
+      },
+      {
+        "type": "action",
+        "description": "Mock login with different plan contexts: Free, Starter, Pro, Premium"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to Dashboard page with each mocked plan"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that features not included in the plan show locked states or locked UI"
       }
-    }
-  ]
-}
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Debt Calculator Inputs and Outputs Validation",
+    "description": "Check debt calculator Lite inputs accept income, expenses, debts array and outputs correct disposable income and naive payoff estimate with validation and local state persistence.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Debt Calculator Lite page"
+      },
+      {
+        "type": "action",
+        "description": "Input valid values for income, expenses, and a debts array with principal, interest rate, and minimum payment"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify disposable income and naive payoff estimates are calculated and displayed"
+      },
+      {
+        "type": "action",
+        "description": "Input invalid or missing values for fields"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation error messages appear and calculation does not proceed"
+      },
+      {
+        "type": "action",
+        "description": "Reload the page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify inputs retain last state from local persistence"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Payment Tracker Add, Edit, Delete, and Summary",
+    "description": "Verify payments can be added, edited, deleted in-memory and monthly sum summary updates accordingly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Payment Tracker page"
+      },
+      {
+        "type": "action",
+        "description": "Add new payments with valid data"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify new payments appear in list and monthly summary updates with correct sum"
+      },
+      {
+        "type": "action",
+        "description": "Edit an existing payment with updated data"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify list and monthly summary reflect the edited payment changes"
+      },
+      {
+        "type": "action",
+        "description": "Delete a payment"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify payment is removed from the list and monthly summary updates accordingly"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Analytics and DTI Calculation View with Plan-Based Access",
+    "description": "Verify DTI calculation and basic charts render properly with sample data and free plan limits data shown whereas higher plans show full data.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Analytics and DTI calculation page"
+      },
+      {
+        "type": "action",
+        "description": "Load sample data sets"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that DTI calculation view is displayed and 1-2 charts render without error"
+      },
+      {
+        "type": "action",
+        "description": "Switch plan context to Free"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify charts only show limited data"
+      },
+      {
+        "type": "action",
+        "description": "Switch plan context to Starter or higher"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify charts show full dataset"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "PWA Manifest and Accessibility Compliance",
+    "description": "Verify presence and correct referencing of manifest.webmanifest and icons, and that accessibility issues reported by TestSprite are resolved including labels, alt texts and roles, passing Lighthouse accessibility checks.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Check that public/manifest.webmanifest file exists and linked in index.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify basic icons are referenced properly in manifest and HTML"
+      },
+      {
+        "type": "action",
+        "description": "Run TestSprite accessibility audit"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all label, alt text, and roles accessibility issues are fixed"
+      },
+      {
+        "type": "action",
+        "description": "Run Lighthouse accessibility audit"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify accessibility score is at least 90"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "UI/UX Branding and Visual Enhancements",
+    "description": "Verify that VAYRA branding (logo, favicon, slogan) is consistent across the app, branded color palette and typography applied, hero section displays catchy headline and CTAs, blurred previews for locked features appear, testimonials auto-rotate, smooth animations run on transitions, and accessibility passes including visible inputs and aria-labels.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the homepage and dashboard pages"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the logo, favicon, and slogan appear correctly"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify color palette is used as per brand guidelines (soft pastel + premium accent)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify typography matches premium fonts specified"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify hero section displays headline and call-to-action buttons"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify blurred preview cards are shown for locked Pro features in dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify testimonials auto-rotate with realistic global names"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify smooth animations on page/component transitions"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify accessibility attributes on inputs, aria-labels, and alt texts"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Pro Modules Functionality and Advanced Visuals",
+    "description": "Validate Debt Breakdown with enhanced visuals, Advanced Analytics with minimum payments and estimated debt-free times, Premium Payoff Strategy graphs, review section gated for Pro users, and enhanced chart features including tooltips and animations.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Set plan context to Pro or Premium"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to Debt Breakdown, Advanced Analytics, and Payoff Planner modules"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Debt Breakdown displays enhanced visuals correctly"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Advanced Analytics shows minimum payments and estimated debt-free time calculations"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Premium Payoff Strategy graphs render as waterfall/line hybrid with gradients, tooltips, and animations"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to Leave a Review section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Leave a Review is visible only for Pro or higher plans"
+      },
+      {
+        "type": "action",
+        "description": "Switch plan context to Free or Starter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Leave a Review section is not visible"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to About Us page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify About Us page displays VAYRA brand information as trustworthy debt support"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "AI Copilot and Assistant Functionality with Multilingual Support",
+    "description": "Test AI sidebar visibility across Pro modules, context-aware prompts, plan-based restrictions on AI usage, multilingual support defaults and fallbacks, and helpful AI responses with financial advice and motivation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Set user plan to Pro or Premium"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify AI Copilot sidebar is visible in supported modules"
+      },
+      {
+        "type": "action",
+        "description": "Trigger context-aware prompts for debt planning, budgeting, and payoff suggestions"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify AI responses provide relevant financial advice and motivational tips"
+      },
+      {
+        "type": "action",
+        "description": "Switch user plan to Free or Starter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify AI usage is limited according to plan gating"
+      },
+      {
+        "type": "action",
+        "description": "Change app language to English and verify default"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify AI prompts and responses respect multilingual setup and fallbacks"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Pricing Matrix, Grandfathered Users, and Upgrade CTA Verification",
+    "description": "Verify pricing data is sourced from pricing.json, plan gating respects this data, grandfathered users see original price and badge, upgrade call-to-action displays correct perks and prices, and pricing page reflects accurate feature comparisons.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the Pricing page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify pricing matrix reflects the data defined in pricing.json including feature comparisons"
+      },
+      {
+        "type": "action",
+        "description": "Set user as grandfathered with locked original price"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grandfathered badge is displayed and price is locked"
+      },
+      {
+        "type": "action",
+        "description": "Trigger upgrade CTA for each plan"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify upgrade CTA shows correct perks and prices for target plan"
+      },
+      {
+        "type": "action",
+        "description": "Verify plan gating enforces access based on pricing.json data"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Offline Mode and Sync Functionality",
+    "description": "Test service worker caches shell and key routes, offline mode banner appearance, queueing writes while offline, sync on reconnect with conflict resolution, and correct manifest icons and PWA install behavior.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Load the app and verify service worker registration"
+      },
+      {
+        "type": "action",
+        "description": "Simulate offline mode in browser"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify offline banner is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to add/edit/delete data (e.g., payments) while offline"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify actions are queued and not lost"
+      },
+      {
+        "type": "action",
+        "description": "Simulate reconnecting to network"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify queued actions are synced correctly and conflict resolution occurs if needed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify manifest icons and Apple touch icon are present and correct"
+      },
+      {
+        "type": "action",
+        "description": "Test app install prompt for PWA"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify PWA install flow works without errors"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "CI/CD Pipeline and Pre-Deploy QA Validation",
+    "description": "Ensure GitHub Actions workflow installs dependencies, builds the project, runs Vitest unit tests and TestSprite E2E tests, passes lint and type checks, produces error-free production bundle and validates all critical paths.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Trigger GitHub Actions CI workflow"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that workflow passes install, build, and Vitest unit tests stages"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that TestSprite E2E tests pass successfully"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no linting or type checking errors occur"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify production build artefacts are generated without errors"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that all critical user flows and functionality are tested in CI environment"
+      }
+    ]
+  }
+]

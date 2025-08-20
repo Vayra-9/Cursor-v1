@@ -13,10 +13,24 @@ const VayraLogo: React.FC<VayraLogoProps> = ({
 }) => {
   const baseClasses = "object-contain";
   const variantClasses = {
-    default: "h-7 md:h-8",
-    hero: "h-10 md:h-12",
-    compact: "h-5 md:h-6"
+    default: "h-7 md:h-8 w-7 md:w-8",
+    hero: "h-10 md:h-12 w-10 md:w-12",
+    compact: "h-5 md:h-6 w-5 md:w-6"
   };
+
+  // Get dimensions for explicit width/height
+  const getDimensions = () => {
+    switch (variant) {
+      case 'hero':
+        return { width: 48, height: 48 }; // 12 * 4 = 48px
+      case 'compact':
+        return { width: 24, height: 24 }; // 6 * 4 = 24px
+      default:
+        return { width: 32, height: 32 }; // 8 * 4 = 32px
+    }
+  };
+
+  const { width, height } = getDimensions();
 
   return (
     <div className={`flex flex-col items-center ${className}`}>
@@ -30,9 +44,11 @@ const VayraLogo: React.FC<VayraLogoProps> = ({
           <img 
             src="/brand/vayra-logo.svg" 
             alt={alt}
+            width={width}
+            height={height}
             className={`${baseClasses} w-full h-full rounded-full`}
             loading="eager" 
-            fetchPriority="high"
+            decoding="async"
           />
         </div>
         
