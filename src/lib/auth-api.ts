@@ -21,8 +21,8 @@ export const signUpWithEmail = async (email: string, password: string, displayNa
     const user: User = {
       uid: firebaseUser.uid,
       email: firebaseUser.email!,
-      displayName: displayName || firebaseUser.displayName || undefined,
-      photoURL: firebaseUser.photoURL || undefined,
+              displayName: displayName || firebaseUser.displayName || null,
+        photoURL: firebaseUser.photoURL || null,
       createdAt: new Date(),
       lastLoginAt: new Date(),
       preferences: {
@@ -65,8 +65,8 @@ export const signInWithEmail = async (email: string, password: string): Promise<
       const user: User = {
         uid: firebaseUser.uid,
         email: firebaseUser.email!,
-        displayName: firebaseUser.displayName || undefined,
-        photoURL: firebaseUser.photoURL || undefined,
+        displayName: firebaseUser.displayName || null,
+        photoURL: firebaseUser.photoURL || null,
         createdAt: new Date(),
         lastLoginAt: new Date(),
         preferences: {
@@ -121,8 +121,8 @@ export const signInWithGoogle = async (): Promise<User> => {
       const user: User = {
         uid: firebaseUser.uid,
         email: firebaseUser.email!,
-        displayName: firebaseUser.displayName || undefined,
-        photoURL: firebaseUser.photoURL || undefined,
+        displayName: firebaseUser.displayName || null,
+        photoURL: firebaseUser.photoURL || null,
         createdAt: new Date(),
         lastLoginAt: new Date(),
         preferences: {
