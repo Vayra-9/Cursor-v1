@@ -164,9 +164,9 @@ const Layout: React.FC = () => {
 
       {/* Sidebar */}
       <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="flex items-center justify-between h-18 px-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between h-24 px-6 border-b border-gray-200 dark:border-gray-700">
           <Link to="/" className="flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
-            <VayraLogo className="h-10 md:h-11" />
+            <VayraLogo className="h-16 md:h-18" />
           </Link>
           <button
             onClick={() => setMobileMenuOpen(false)}
@@ -224,7 +224,7 @@ const Layout: React.FC = () => {
       <div className="lg:pl-64">
         {/* Top bar */}
         <div className="sticky top-0 z-30 bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-center justify-between h-18 px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-24 px-4 sm:px-6 lg:px-8">
             {/* Left side */}
             <div className="flex items-center">
               <button
