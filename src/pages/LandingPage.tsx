@@ -35,20 +35,20 @@ const LandingPage: React.FC = () => {
       <section id="main-content" className="relative overflow-hidden min-h-[420px] md:min-h-[520px] flex items-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
           <div className="text-center">
-            {/* Logo */}
-            <div className="mx-auto mb-4 flex items-center justify-center">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ 
-                  duration: 0.4, 
-                  ease: "easeOut",
-                  ...(window.matchMedia('(prefers-reduced-motion: reduce)').matches && { duration: 0.01 })
-                }}
-              >
-                                 <VayraLogo className="h-24 md:h-32 w-auto" width={600} height={128} />
-              </motion.div>
-            </div>
+                         {/* Logo */}
+             <div className="mx-auto mb-6 flex items-center justify-center">
+               <motion.div
+                 initial={{ opacity: 0, scale: 0.9 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 transition={{ 
+                   duration: 0.35, 
+                   ease: "easeOut",
+                   ...(window.matchMedia('(prefers-reduced-motion: reduce)').matches && { duration: 0.01 })
+                 }}
+               >
+                 <VayraLogo className="h-20 md:h-28 w-auto" width={400} height={120} />
+               </motion.div>
+             </div>
 
             {/* Main Headline */}
             <motion.h1
