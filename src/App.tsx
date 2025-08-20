@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useAuth } from '@/contexts/AuthContext';
 import { useI18n } from '@/contexts/I18nContext';
 import { AIProvider } from '@/contexts/AIContext';
+import { debugFirebaseConfig } from '@/lib/firebase-debug';
 
 // Layout Components
 import Layout from '@/components/layout/Layout';
@@ -88,6 +89,11 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 const App: React.FC = () => {
   const { ready } = useI18n();
 
+  // Debug Firebase configuration on app start
+  useEffect(() => {
+    debugFirebaseConfig();
+  }, []);
+
   if (!ready) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -168,6 +174,13 @@ const App: React.FC = () => {
                 <ResetPasswordPage />
               </AuthLayout>
             </PublicRoute>
+          } />
+
+          {/* Dashboard redirect for backward compatibility */}
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <Navigate to="/app/dashboard" replace />
+            </ProtectedRoute>
           } />
 
           {/* Protected Routes with Layout */}

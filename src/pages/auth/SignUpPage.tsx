@@ -3,12 +3,11 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, Check } from 'lucide-react';
 import VayraLogo from '@/components/ui/VayraLogo';
-import { useAuth } from '@/contexts/AuthContext';
+import { signUpWithEmail } from '@/lib/auth-api';
 import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton';
 
 const SignUpPage: React.FC = () => {
   const navigate = useNavigate();
-  const { signUp } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -78,7 +77,7 @@ const SignUpPage: React.FC = () => {
       
       try {
         const displayName = `${formData.firstName} ${formData.lastName}`.trim();
-        await signUp(formData.email, formData.password, displayName);
+        await signUpWithEmail(formData.email, formData.password, displayName);
         navigate('/dashboard');
       } catch (error: any) {
         setErrors({ general: error.message });
