@@ -8,7 +8,7 @@ interface VayraLogoProps {
 }
 
 const VayraLogo: React.FC<VayraLogoProps> = ({ 
-  className = "block h-8 w-auto object-contain align-middle select-none",
+  className = "block h-8 w-auto object-contain select-none",
   alt = "VAYRA",
   width,
   height
