@@ -84,7 +84,7 @@ const SignUpPage: React.FC = () => {
       <div className="max-w-md w-full space-y-8">
         {/* Logo Section */}
         <div className="mb-6 flex justify-center">
-          <VayraLogo className="h-8 w-auto" width={160} height={32} />
+          <VayraLogo className="h-10 w-auto" width={200} height={40} />
         </div>
 
         {/* Sign Up Form */}

@@ -46,7 +46,7 @@ const LandingPage: React.FC = () => {
                   ...(window.matchMedia('(prefers-reduced-motion: reduce)').matches && { duration: 0.01 })
                 }}
               >
-                <VayraLogo className="h-12 md:h-16 w-auto" width={320} height={64} />
+                                 <VayraLogo className="h-14 md:h-20 w-auto" width={400} height={80} />
               </motion.div>
             </div>
 
