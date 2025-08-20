@@ -7,14 +7,9 @@ const ResetPasswordPage: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
       <div className="max-w-md w-full space-y-8 p-8">
         {/* Logo Section */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="text-center"
-        >
-          <VayraLogo variant="default" className="mx-auto" />
-        </motion.div>
+        <div className="mb-6 flex justify-center">
+          <VayraLogo className="h-8 w-auto" width={160} height={32} />
+        </div>
 
         {/* Reset Password Form */}
         <motion.div
