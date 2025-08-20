@@ -42,7 +42,7 @@ const LandingPage: React.FC = () => {
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="mb-12"
             >
-              <VayraLogo className="h-12 md:h-16 mx-auto" />
+              <VayraLogo variant="hero" className="mx-auto" />
             </motion.div>
 
             {/* Main Headline */}

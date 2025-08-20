@@ -170,7 +170,7 @@ const Layout: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
-              <VayraLogo className="h-8 md:h-9" />
+              <VayraLogo variant="compact" />
             </motion.div>
           </Link>
           <button

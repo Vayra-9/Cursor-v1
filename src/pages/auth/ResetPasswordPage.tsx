@@ -13,7 +13,7 @@ const ResetPasswordPage: React.FC = () => {
           transition={{ duration: 0.4, ease: "easeOut" }}
           className="text-center"
         >
-          <VayraLogo className="h-8 mx-auto" />
+          <VayraLogo variant="default" className="mx-auto" />
         </motion.div>
 
         {/* Reset Password Form */}
