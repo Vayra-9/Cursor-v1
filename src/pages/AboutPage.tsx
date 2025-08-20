@@ -67,7 +67,7 @@ const AboutPage: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="mb-8"
             >
-              <VayraLogo size="lg" className="justify-center" />
+              <VayraLogo className="h-12 md:h-16 mx-auto" />
             </motion.div>
 
             <motion.h1

@@ -10,15 +10,10 @@ const ForgotPasswordPage: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
           className="text-center"
         >
-          <VayraLogo 
-            size="lg" 
-            className="justify-center mb-4" 
-            showTagline={true}
-            animate={true}
-          />
+          <VayraLogo className="h-8 mx-auto" />
         </motion.div>
 
         {/* Forgot Password Form */}
