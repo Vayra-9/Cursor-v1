@@ -36,20 +36,38 @@ const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
           <div className="text-center">
                          {/* Logo */}
-                            <div className="mx-auto mb-10 flex items-center justify-center">
+                                         <div className="mx-auto mb-8 md:mb-10 flex items-center justify-center relative">
+               <motion.div
+                 initial={{ opacity: 0, scale: 0.9 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 transition={{ 
+                   duration: 0.4, 
+                   ease: "easeOut",
+                   ...(window.matchMedia('(prefers-reduced-motion: reduce)').matches && { duration: 0.01 })
+                 }}
+                 className="flex items-center justify-center relative z-10"
+               >
                  <motion.div
-                   initial={{ opacity: 0, scale: 0.9 }}
-                   animate={{ opacity: 1, scale: 1 }}
-                   transition={{ 
-                     duration: 0.35, 
-                     ease: "easeOut",
-                     ...(window.matchMedia('(prefers-reduced-motion: reduce)').matches && { duration: 0.01 })
+                   animate={{ y: [-4, 0, -4] }}
+                   transition={{
+                     duration: 7.5,
+                     repeat: Infinity,
+                     ease: "easeInOut",
+                     ...(window.matchMedia('(prefers-reduced-motion: reduce)').matches && { duration: 0.01, repeat: 0 })
                    }}
-                   className="flex items-center justify-center"
                  >
-                   <VayraLogo className="h-32 md:h-40 w-auto" width={600} height={160} />
+                   <VayraLogo className="h-24 md:h-36 w-auto" width={480} height={144} />
                  </motion.div>
+               </motion.div>
+               
+               {/* Premium Hero Graphics - Behind Logo Only */}
+               <div className="absolute inset-0 -z-10 flex items-center justify-center">
+                 {/* Radial Glow Circle */}
+                 <div className="w-96 h-96 bg-gradient-to-r from-amber-400/20 to-yellow-500/20 rounded-full blur-3xl opacity-20 dark:opacity-15"></div>
+                 {/* Diagonal Gradient Wash */}
+                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-amber-50/10 to-transparent dark:from-transparent dark:via-amber-900/5 dark:to-transparent"></div>
                </div>
+             </div>
 
             {/* Main Headline */}
             <motion.h1
