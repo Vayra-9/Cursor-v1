@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useI18n } from '@/contexts/I18nContext';
 import { AIProvider } from '@/contexts/AIContext';
 import { debugFirebaseConfig } from '@/lib/firebase-debug';
+import { testFirebaseAuth } from '@/lib/auth-test';
 
 // Layout Components
 import Layout from '@/components/layout/Layout';
@@ -92,6 +93,8 @@ const App: React.FC = () => {
   // Debug Firebase configuration on app start
   useEffect(() => {
     debugFirebaseConfig();
+    // Test Firebase auth functionality
+    testFirebaseAuth();
   }, []);
 
   if (!ready) {
