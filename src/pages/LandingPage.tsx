@@ -35,21 +35,26 @@ const LandingPage: React.FC = () => {
       <section className="relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
           <div className="text-center">
-            {/* Logo */}
+            {/* Logo with Tagline */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-8"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="mb-12"
             >
-              <VayraLogo size="lg" className="justify-center" />
+              <VayraLogo 
+                size="xl" 
+                className="justify-center mb-4" 
+                showTagline={true}
+                animate={true}
+              />
             </motion.div>
 
             {/* Main Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
             >
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -63,7 +68,7 @@ const LandingPage: React.FC = () => {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
               className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed"
             >
               Transform your financial future with AI-powered debt management. 
@@ -74,7 +79,7 @@ const LandingPage: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
               className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
             >
               <Link
@@ -97,7 +102,7 @@ const LandingPage: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
               className="flex flex-wrap justify-center items-center gap-8 text-gray-600 dark:text-gray-400"
             >
               <div className="flex items-center space-x-2">
