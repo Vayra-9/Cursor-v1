@@ -57,16 +57,53 @@ export const signInWithEmail = async (email: string, password: string): Promise<
   try {
     const { user: firebaseUser } = await signInWithEmailAndPassword(auth, email, password);
     
-    // Update last login
-    await updateDoc(doc(db, 'users', firebaseUser.uid), {
-      lastLoginAt: new Date(),
-    });
-
-    // Get user data
+    // Check if user document exists
     const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
-    return userDoc.data() as User;
+    
+    if (!userDoc.exists()) {
+      // Create user document if it doesn't exist (for users created before Firestore integration)
+      const user: User = {
+        uid: firebaseUser.uid,
+        email: firebaseUser.email!,
+        displayName: firebaseUser.displayName || undefined,
+        photoURL: firebaseUser.photoURL || undefined,
+        createdAt: new Date(),
+        lastLoginAt: new Date(),
+        preferences: {
+          theme: 'system',
+          currency: 'USD',
+          language: 'en',
+          plan: 'free',
+          notifications: {
+            email: true,
+            push: true,
+            paymentReminders: true,
+            milestoneAlerts: true,
+            tipsAndMotivation: true,
+          },
+          privacy: {
+            shareProgress: false,
+            shareTestimonials: false,
+            analytics: true,
+          },
+        },
+      };
+      
+      await setDoc(doc(db, 'users', firebaseUser.uid), user);
+      return user;
+    } else {
+      // Update last login for existing user
+      await updateDoc(doc(db, 'users', firebaseUser.uid), {
+        lastLoginAt: new Date(),
+      });
+      
+      return userDoc.data() as User;
+    }
   } catch (error: any) {
-    throw new Error(getErrorMessage(error.code));
+    console.error('Firebase Sign In Error:', error);
+    console.error('Error Code:', error.code);
+    console.error('Error Message:', error.message);
+    throw new Error(getErrorMessage(error.code || 'unknown-error'));
   }
 };
 
@@ -171,6 +208,7 @@ const getErrorMessage = (code: string): string => {
     'auth/expired-action-code': 'The action code has expired.',
     'auth/invalid-action-code': 'The action code is invalid.',
     'auth/missing-action-code': 'The action code is missing.',
+    'unknown-error': 'An unexpected error occurred. Please try again.',
   };
 
   return errorMessages[code] || 'An unexpected error occurred. Please try again.';
