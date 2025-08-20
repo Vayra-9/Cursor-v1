@@ -13,20 +13,20 @@ const VayraLogo: React.FC<VayraLogoProps> = ({
 }) => {
   const baseClasses = "object-contain";
   const variantClasses = {
-    default: "h-8 md:h-9",
-    hero: "h-12 md:h-16",
-    compact: "h-6 md:h-7"
+    default: "h-7 md:h-8",
+    hero: "h-10 md:h-12",
+    compact: "h-5 md:h-6"
   };
 
   return (
     <div className={`flex flex-col items-center ${className}`}>
-      {/* Enhanced Logo Container */}
+      {/* Enhanced Logo Container with Proper Sizing */}
       <div className={`relative ${variantClasses[variant]} logo-float`}>
-        {/* Animated Glow Effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/30 via-purple-400/30 to-pink-400/30 rounded-full blur-lg scale-110 logo-glow"></div>
+        {/* Animated Glow Effect - Reduced Scale */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-md scale-105 logo-glow"></div>
         
         {/* Main Logo with Premium Styling */}
-        <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-full p-1 shadow-2xl border border-gray-700/50 backdrop-blur-sm">
+        <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-full p-0.5 shadow-lg border border-gray-700/50 backdrop-blur-sm">
           <img 
             src="/brand/vayra-logo.svg" 
             alt={alt}
@@ -37,16 +37,16 @@ const VayraLogo: React.FC<VayraLogoProps> = ({
         </div>
         
         {/* Animated Shimmer Effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full logo-shimmer"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent rounded-full logo-shimmer"></div>
         
-        {/* Additional Glow Rings */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-full scale-125 blur-md"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 via-purple-400/5 to-pink-400/5 rounded-full scale-150 blur-lg"></div>
+        {/* Additional Glow Rings - Reduced Scale */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/8 via-purple-500/8 to-pink-500/8 rounded-full scale-110 blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/4 via-purple-400/4 to-pink-400/4 rounded-full scale-115 blur-md"></div>
       </div>
       
       {/* Enhanced Brand Text */}
       {variant === 'hero' && (
-        <div className="mt-3 text-center">
+        <div className="mt-2 text-center">
           <h1 className="text-2xl md:text-3xl font-bold premium-gradient-text">
             VAYRA
           </h1>
