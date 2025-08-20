@@ -9,6 +9,7 @@ import {
 import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from './firebase';
 import { User } from '@/types';
+import { ensureUserDoc } from './ensureUserDoc';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -97,6 +98,7 @@ export const signInWithEmail = async (email: string, password: string): Promise<
         lastLoginAt: new Date(),
       });
       
+      await ensureUserDoc();
       return userDoc.data() as User;
     }
   } catch (error: any) {
@@ -153,6 +155,7 @@ export const signInWithGoogle = async (): Promise<User> => {
         lastLoginAt: new Date(),
       });
 
+      await ensureUserDoc();
       return userDoc.data() as User;
     }
   } catch (error: any) {
