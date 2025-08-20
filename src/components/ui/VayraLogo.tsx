@@ -27,49 +27,13 @@ const VayraLogo: React.FC<VayraLogoProps> = ({
     <div className={`flex items-center space-x-2 ${className}`}>
       {/* Logo Icon */}
       <div className={`${sizeClasses[size]} relative`}>
-        <svg
-          viewBox="0 0 48 48"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+        <img 
+          src="/brand/vayra-logo.svg" 
+          alt="VAYRA" 
           className="w-full h-full"
-        >
-          {/* Background Circle */}
-          <circle
-            cx="24"
-            cy="24"
-            r="22"
-            fill="url(#gradient)"
-            className="dark:opacity-90"
-          />
-          
-          {/* V Shape */}
-          <path
-            d="M16 14L24 26L32 14"
-            stroke="white"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-          />
-          
-          {/* Dollar Sign */}
-          <path
-            d="M20 32H28M24 28V36"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          
-          {/* Gradient Definition */}
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#3B82F6" />
-              <stop offset="50%" stopColor="#8B5CF6" />
-              <stop offset="100%" stopColor="#EC4899" />
-            </linearGradient>
-          </defs>
-        </svg>
+          loading="eager" 
+          fetchPriority="high"
+        />
       </div>
       
       {/* Logo Text */}
