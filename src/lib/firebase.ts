@@ -31,6 +31,15 @@ if (missingVars.length > 0) {
   }
 }
 
+// Runtime assertion for critical Firebase config
+if (typeof window !== 'undefined') {
+  console.assert(
+    import.meta.env.VITE_FIREBASE_API_KEY && 
+    import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    'Critical Firebase environment variables are missing. Auth may not work properly.'
+  );
+}
+
 const cfg = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'demo-api-key',
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'demo.firebaseapp.com',

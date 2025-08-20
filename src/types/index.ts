@@ -34,6 +34,7 @@ export interface UserPreferences {
   theme: 'light' | 'dark' | 'system';
   currency: string;
   language: string;
+  plan: 'free' | 'starter' | 'pro' | 'enterprise';
   notifications: NotificationSettings;
   privacy: PrivacySettings;
 }

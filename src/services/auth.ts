@@ -41,6 +41,7 @@ export class AuthService {
           theme: 'system',
           currency: 'USD',
           language: 'en',
+          plan: 'free',
           notifications: {
             email: true,
             push: true,
@@ -100,23 +101,24 @@ export class AuthService {
           photoURL: firebaseUser.photoURL || undefined,
           createdAt: new Date(),
           lastLoginAt: new Date(),
-          preferences: {
-            theme: 'system',
-            currency: 'USD',
-            language: 'en',
-            notifications: {
-              email: true,
-              push: true,
-              paymentReminders: true,
-              milestoneAlerts: true,
-              tipsAndMotivation: true,
-            },
-            privacy: {
-              shareProgress: false,
-              shareTestimonials: false,
-              analytics: true,
-            },
-          },
+                     preferences: {
+             theme: 'system',
+             currency: 'USD',
+             language: 'en',
+             plan: 'free',
+             notifications: {
+               email: true,
+               push: true,
+               paymentReminders: true,
+               milestoneAlerts: true,
+               tipsAndMotivation: true,
+             },
+             privacy: {
+               shareProgress: false,
+               shareTestimonials: false,
+               analytics: true,
+             },
+           },
         };
 
         await setDoc(doc(db, 'users', firebaseUser.uid), user);
