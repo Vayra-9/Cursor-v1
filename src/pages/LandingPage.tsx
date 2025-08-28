@@ -36,9 +36,9 @@ const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
           <div className="text-center">
                          {/* Logo */}
-                                         <div className="mx-auto mb-8 md:mb-10 flex items-center justify-center relative">
+                         <div className="relative mx-auto mb-8 flex items-center justify-center">
                <motion.div
-                 initial={{ opacity: 0, scale: 0.9 }}
+                 initial={{ opacity: 0, scale: 0.96 }}
                  animate={{ opacity: 1, scale: 1 }}
                  transition={{ 
                    duration: 0.4, 
@@ -62,10 +62,10 @@ const LandingPage: React.FC = () => {
                
                {/* Premium Hero Graphics - Behind Logo Only */}
                <div className="absolute inset-0 -z-10 flex items-center justify-center">
-                 {/* Radial Glow Circle */}
-                 <div className="w-96 h-96 bg-gradient-to-r from-amber-400/20 to-yellow-500/20 rounded-full blur-3xl opacity-20 dark:opacity-15"></div>
-                 {/* Diagonal Gradient Wash */}
-                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-amber-50/10 to-transparent dark:from-transparent dark:via-amber-900/5 dark:to-transparent"></div>
+                 {/* Soft Radial Glow */}
+                 <div className="w-[420px] h-[420px] bg-gradient-to-r from-amber-400/20 to-yellow-500/20 rounded-full blur-3xl opacity-20 dark:opacity-15"></div>
+                 {/* Gentle Diagonal Wash */}
+                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-amber-50/10 to-transparent dark:from-transparent dark:via-amber-900/5 dark:to-transparent transform rotate-12"></div>
                </div>
              </div>
 
