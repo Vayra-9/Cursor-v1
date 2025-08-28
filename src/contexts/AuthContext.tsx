@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User } from '@/types';
 import { AuthService } from '@/services/auth';
+import { getRedirectResult } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
 
 interface AuthContextType {
   user: User | null;
@@ -33,6 +35,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Handle redirect result on app init
+    const handleRedirectResult = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+        if (result) {
+          console.log('Google OAuth redirect result received');
+          // The AuthService.onAuthStateChanged will handle the user state
+        }
+      } catch (error) {
+        console.error('Error handling redirect result:', error);
+        // Non-fatal error, continue with normal auth flow
+      }
+    };
+
+    handleRedirectResult();
+
     const unsubscribe = AuthService.onAuthStateChanged((user) => {
       setUser(user);
       setLoading(false);

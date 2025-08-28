@@ -1,498 +1,512 @@
 [
   {
     "id": "TC001",
-    "title": "Email/Password Authentication Success",
-    "description": "Verify successful sign-in with valid email and password credentials.",
-    "category": "functional",
+    "title": "Verify landing page VAYRA logo presence and size",
+    "description": "Ensure exactly one VAYRA logo SVG is displayed above hero H1, with correct dimensions and no duplicates.",
+    "category": "ui",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to sign-in page."
-      },
-      {
-        "type": "action",
-        "description": "Input valid registered email and correct password."
-      },
-      {
-        "type": "action",
-        "description": "Click on the sign-in button."
+        "description": "Navigate to the landing page"
       },
       {
         "type": "assertion",
-        "description": "Verify user is authenticated and redirected to their dashboard or appropriate page based on plan."
+        "description": "Verify that exactly one VAYRA SVG logo is rendered above the hero header H1"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the logo size matches specifications with no visual distortion"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure no duplicate logos are present on the page"
       }
     ]
   },
   {
     "id": "TC002",
-    "title": "Email/Password Authentication Failure",
-    "description": "Verify error feedback is shown for invalid email or password in sign-in.",
-    "category": "error handling",
+    "title": "Validate animated hero logo behavior and preferences",
+    "description": "Confirm the hero logo animates fade and scale on load without layout shift and respects user reduced-motion preferences.",
+    "category": "ui",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to sign-in page."
-      },
-      {
-        "type": "action",
-        "description": "Input registered email with incorrect password."
-      },
-      {
-        "type": "action",
-        "description": "Click on the sign-in button."
+        "description": "Load landing page in standard mode"
       },
       {
         "type": "assertion",
-        "description": "Verify error message related to invalid credentials is displayed."
+        "description": "Observe the hero logo fade and scale animation completes smoothly"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no cumulative layout shift (CLS) greater than 0.1 occurs during animation"
+      },
+      {
+        "type": "action",
+        "description": "Enable prefers-reduced-motion in browser settings and reload page"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm animation is disabled or significantly reduced according to user preference"
       }
     ]
   },
   {
     "id": "TC003",
-    "title": "Google OAuth Sign-In Success",
-    "description": "Verify successful sign-in via Google OAuth using the GoogleSignInButton.",
+    "title": "Check PWA assets presence and accessibility",
+    "description": "Verify SVG, favicon, and all PWA icons are accessible with HTTP 200 statuses and properly referenced in manifest with maskable attribute.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to sign-in page."
-      },
-      {
-        "type": "action",
-        "description": "Click the GoogleSignInButton component."
-      },
-      {
-        "type": "action",
-        "description": "Complete Google OAuth sign-in flow."
+        "description": "Fetch all SVG, favicon, and PWA icons by URL"
       },
       {
         "type": "assertion",
-        "description": "Verify user is authenticated and redirected appropriately based on their subscription plan."
+        "description": "Verify HTTP status 200 for each asset"
+      },
+      {
+        "type": "action",
+        "description": "Open manifest.webmanifest file"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm all required icons are listed with correct sizes and maskable PNGs have maskable purpose attribute"
       }
     ]
   },
   {
     "id": "TC004",
-    "title": "Session Persistence Across Page Reloads",
-    "description": "Execute tests to ensure user authentication session persists across page reloads, maintaining logged-in state.",
+    "title": "Email/Password sign-up and Firestore user doc creation",
+    "description": "Test user registration via email/password through Firebase and confirm Firestore user document is created with default free plan.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Log in with valid credentials."
+        "description": "Navigate to sign-up page"
       },
       {
         "type": "action",
-        "description": "Reload the page."
+        "description": "Input valid new email and strong password"
+      },
+      {
+        "type": "action",
+        "description": "Submit sign-up form"
       },
       {
         "type": "assertion",
-        "description": "Verify user remains authenticated without requiring to log in again."
+        "description": "Verify authentication success and redirect to dashboard or onboarding"
+      },
+      {
+        "type": "assertion",
+        "description": "Check Firestore users collection for new document with free plan assigned"
       }
     ]
   },
   {
     "id": "TC005",
-    "title": "Plan Gating - Free User Redirect from Dashboard",
-    "description": "Verify that users with Free plan get redirected from dashboard to upgrade page with clear CTAs.",
+    "title": "Google OAuth sign-in and Firestore user doc creation",
+    "description": "Ensure Google OAuth sign-in works correctly and a Firestore user document is created if user is new, with free plan by default.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Log in as a user subscribed under the Free plan."
+        "description": "Navigate to sign-in page"
       },
       {
         "type": "action",
-        "description": "Navigate or attempt to access the dashboard page."
+        "description": "Click Google sign-in button and complete OAuth workflow"
       },
       {
         "type": "assertion",
-        "description": "Verify user is redirected to upgrade page with appropriate call-to-action prompts."
+        "description": "Confirm user is authenticated and redirected appropriately"
+      },
+      {
+        "type": "assertion",
+        "description": "If first login, verify Firestore user document exists with free plan"
       }
     ]
   },
   {
     "id": "TC006",
-    "title": "Plan Access - Starter and Higher Dashboard Access",
-    "description": "Verify users with Starter, Pro, or Premium plans can access the dashboard with personalized analytics.",
-    "category": "functional",
+    "title": "Authentication error handling and friendly feedback",
+    "description": "Verify error messages are user-friendly and specific for invalid credentials, duplicate email, network failures, and unexpected errors.",
+    "category": "error handling",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Log in as a user on Starter plan."
-      },
-      {
-        "type": "action",
-        "description": "Navigate to the dashboard page."
+        "description": "Attempt sign-in with invalid email format"
       },
       {
         "type": "assertion",
-        "description": "Verify dashboard loads successfully with relevant analytics and controls."
+        "description": "Display appropriate validation error message"
+      },
+      {
+        "type": "action",
+        "description": "Attempt sign-up with already registered email"
+      },
+      {
+        "type": "assertion",
+        "description": "Show duplicate email error message"
+      },
+      {
+        "type": "action",
+        "description": "Simulate network failure during sign-in"
+      },
+      {
+        "type": "assertion",
+        "description": "Present network error feedback and retry option"
+      },
+      {
+        "type": "action",
+        "description": "Simulate unexpected Firebase error during auth"
+      },
+      {
+        "type": "assertion",
+        "description": "Display generic error message with friendly wording"
       }
     ]
   },
   {
     "id": "TC007",
-    "title": "Plan Upgrade Workflow",
-    "description": "Validate user flow when upgrading subscription plan from Free to Starter or higher, including frontend gating and backend updates.",
-    "category": "functional",
+    "title": "Redirect unauthenticated users accessing dashboard",
+    "description": "Ensure unauthenticated visits to dashboard redirect to sign-in page immediately.",
+    "category": "security",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Log in as Free plan user."
-      },
-      {
-        "type": "action",
-        "description": "Navigate to pricing or upgrade page."
-      },
-      {
-        "type": "action",
-        "description": "Select an upgrade plan and complete upgrade workflow."
+        "description": "Open dashboard URL without authentication"
       },
       {
         "type": "assertion",
-        "description": "Verify plan upgrade is reflected in user context and gated content is accessible post-upgrade."
+        "description": "Verify user is redirected to sign-in page"
       }
     ]
   },
   {
     "id": "TC008",
-    "title": "Responsive Layout Rendering",
-    "description": "Verify UI layout responsiveness across different viewport sizes and devices including sidebar, header, and content area.",
+    "title": "Plan gating redirects free users to upgrade page",
+    "description": "Confirm that users with a free plan accessing premium dashboard features are redirected to the upgrade subscription page.",
     "category": "functional",
-    "priority": "Medium",
+    "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Load the app in desktop width viewport."
-      },
-      {
-        "type": "assertion",
-        "description": "Verify sidebar, header, and content areas render correctly and are usable."
+        "description": "Authenticate as a user with free plan"
       },
       {
         "type": "action",
-        "description": "Resize viewport to tablet and mobile widths."
+        "description": "Attempt to access pro/premium gated dashboard feature or route"
       },
       {
         "type": "assertion",
-        "description": "Verify layout adapts appropriately with navigation accessible and content visible."
+        "description": "User is redirected to the upgrade page with clear messaging"
       }
     ]
   },
   {
     "id": "TC009",
-    "title": "Theme System Switching",
-    "description": "Test dark, light, and system-preference themes via ThemeSwitcher component and verify correct theme application.",
+    "title": "Subscription upgrade flow correctness",
+    "description": "Test upgrading from free to Starter, Pro, and Premium subscriptions including UI updates and Firestore plan changes.",
     "category": "functional",
-    "priority": "Medium",
+    "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Toggle ThemeSwitcher to 'dark' theme."
-      },
-      {
-        "type": "assertion",
-        "description": "Verify UI colors and styles update to dark mode."
+        "description": "Log in as free plan user"
       },
       {
         "type": "action",
-        "description": "Toggle ThemeSwitcher to 'light' theme."
-      },
-      {
-        "type": "assertion",
-        "description": "Verify UI colors and styles update to light mode."
+        "description": "Navigate to plan selection or upgrade page"
       },
       {
         "type": "action",
-        "description": "Set theme preference to 'system' and change OS/system theme."
+        "description": "Select Starter plan and confirm upgrade"
       },
       {
         "type": "assertion",
-        "description": "Verify UI theme matches current system preference automatically."
+        "description": "Verify successful upgrade and UI reflects Starter plan"
+      },
+      {
+        "type": "action",
+        "description": "Repeat process upgrading to Pro and then Premium"
+      },
+      {
+        "type": "assertion",
+        "description": "Firestore user document updates subscription plan correctly each time"
       }
     ]
   },
   {
     "id": "TC010",
-    "title": "Internationalization Language Switching",
-    "description": "Validate LanguageSelector changes the app language dynamically and multi-language content displays correctly.",
+    "title": "Theme switching persists and applies correctly",
+    "description": "Validate that the theme switcher toggles between light/dark modes, persists preference, and applies to all UI components.",
     "category": "functional",
     "priority": "Medium",
     "steps": [
       {
         "type": "action",
-        "description": "Select a supported language from LanguageSelector."
-      },
-      {
-        "type": "assertion",
-        "description": "Verify UI text switches to selected language everywhere consistently."
+        "description": "Open the app and observe default theme"
       },
       {
         "type": "action",
-        "description": "Switch to another language and execute the above assertion again."
+        "description": "Click the theme switcher control"
+      },
+      {
+        "type": "assertion",
+        "description": "UI theme changes immediately and consistently across components"
+      },
+      {
+        "type": "action",
+        "description": "Reload the page"
+      },
+      {
+        "type": "assertion",
+        "description": "Previously selected theme is preserved and applied"
       }
     ]
   },
   {
     "id": "TC011",
-    "title": "Currency Management Switching",
-    "description": "Validate CurrencySwitcher changes the currency format dynamically and relevant pricing/financial data updates accordingly.",
+    "title": "Language selector switches language and updates UI text",
+    "description": "Test the multi-language selector toggles app language instantly with no page reload and all UI text updates correctly.",
     "category": "functional",
-    "priority": "Medium",
+    "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Select a global currency from CurrencySwitcher."
-      },
-      {
-        "type": "assertion",
-        "description": "Verify pricing and financial amounts display according to selected currency including correct symbol and formatting."
+        "description": "Open the app on landing or dashboard page"
       },
       {
         "type": "action",
-        "description": "Switch to another currency and verify changes reflect accordingly."
+        "description": "Use language selector to switch from English to Spanish"
+      },
+      {
+        "type": "assertion",
+        "description": "All visible UI text updates to Spanish"
+      },
+      {
+        "type": "action",
+        "description": "Switch back to English"
+      },
+      {
+        "type": "assertion",
+        "description": "UI text returns to English"
       }
     ]
   },
   {
     "id": "TC012",
-    "title": "PWA Installation and Offline Caching",
-    "description": "Test the PWA installability on Android/iOS devices and ensure offline caching works via service workers.",
+    "title": "Currency selector updates price and monetary values",
+    "description": "Verify currency selector changes displayed currencies throughout the app and updates all monetary values accordingly.",
     "category": "functional",
-    "priority": "High",
+    "priority": "Medium",
     "steps": [
       {
         "type": "action",
-        "description": "Access the app on supported mobile device or emulator."
+        "description": "Visit pricing or dashboard page showing currency"
       },
       {
         "type": "action",
-        "description": "Trigger the PWA install prompt and complete installation."
+        "description": "Change currency via currency selector"
       },
       {
         "type": "assertion",
-        "description": "Verify the app installs and launches as a PWA."
-      },
-      {
-        "type": "action",
-        "description": "Use the app online to load pages."
-      },
-      {
-        "type": "action",
-        "description": "Turn device connectivity off."
-      },
-      {
-        "type": "action",
-        "description": "Navigate to previously visited pages."
-      },
-      {
-        "type": "assertion",
-        "description": "Verify offline caching serves content properly and the app does not crash."
+        "description": "All prices and currency symbols update correctly and consistently"
       }
     ]
   },
   {
     "id": "TC013",
-    "title": "Branding Assets Load Correctly",
-    "description": "Validate SVG logos, favicons, and PWA icons load without 404 errors, are properly optimized and display correctly in the UI.",
+    "title": "Service worker registration and offline capability",
+    "description": "Ensure service worker registers only in production environment and enables offline caching without interfering with updates.",
     "category": "functional",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Load landing page and all major app routes."
+        "description": "Load app in production mode and check service worker registration status"
       },
       {
         "type": "assertion",
-        "description": "Verify no 404 or loading errors for brand assets in console and visually confirm correct branding asset display."
+        "description": "Verify service worker is registered successfully"
+      },
+      {
+        "type": "action",
+        "description": "Put app offline and reload a previously visited page"
+      },
+      {
+        "type": "assertion",
+        "description": "Page content loads correctly from cache with full functionality where possible"
+      },
+      {
+        "type": "action",
+        "description": "Test updating app assets and confirm service worker updates cache accordingly"
       }
     ]
   },
   {
     "id": "TC014",
-    "title": "Hero Logo Animation with Accessibility Respect",
-    "description": "Verify hero section's logo animation includes fade and scale effects and respects user's prefers-reduced-motion setting.",
-    "category": "ui",
-    "priority": "Medium",
+    "title": "Error boundaries display fallback UI on component errors",
+    "description": "Trigger runtime errors within key routes and verify error boundary catches and displays friendly fallback UI with detailed error info.",
+    "category": "error handling",
+    "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Load landing page with default motion settings."
+        "description": "Simulate error throwing in dashboard component"
       },
       {
         "type": "assertion",
-        "description": "Verify logo animation fade and scale transitions complete smoothly."
+        "description": "Fallback UI displays with user-friendly error message and recovery options"
       },
       {
         "type": "action",
-        "description": "Enable prefers-reduced-motion in device or browser settings."
+        "description": "Simulate error in auth pages"
       },
       {
         "type": "assertion",
-        "description": "Verify animations reduce or disable appropriately according to user preference."
+        "description": "Fallback UI similarly appears without crashing entire app"
       }
     ]
   },
   {
     "id": "TC015",
-    "title": "Routing Protected Routes Enforcement",
-    "description": "Verify protected routes redirect unauthenticated users to sign-in and free-plan users to upgrade page where applicable.",
-    "category": "functional",
+    "title": "Accessibility compliance and keyboard navigation",
+    "description": "Perform keyboard navigation and screen reader testing ensuring WCAG 2.1 AA compliance with focus outlines and ARIA attributes.",
+    "category": "accessibility",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Attempt to access dashboard route while not authenticated."
+        "description": "Navigate landing and auth pages using keyboard only (Tab/Shift+Tab)"
       },
       {
         "type": "assertion",
-        "description": "Verify redirection to sign-in page occurs."
+        "description": "All interactive elements receive visible focus outlines and are reachable"
       },
       {
         "type": "action",
-        "description": "Log in as free plan user and access dashboard route."
+        "description": "Use screen reader to navigate key pages"
       },
       {
         "type": "assertion",
-        "description": "Verify redirection to upgrade page occurs."
+        "description": "Screen reader announces appropriate labels, roles, and states"
+      },
+      {
+        "type": "assertion",
+        "description": "Run axe-core automated accessibility scan and confirm no critical violations"
       }
     ]
   },
   {
     "id": "TC016",
-    "title": "Error Boundary Stability",
-    "description": "Inject runtime error in a child component and verify the error boundary catches it and displays fallback UI without crashing the app.",
-    "category": "error handling",
-    "priority": "High",
+    "title": "Responsive layout and UI element positioning",
+    "description": "Validate app responsiveness ensuring no content overlap, clipping, or layout breaks on standard mobile and desktop viewport sizes.",
+    "category": "ui",
+    "priority": "Medium",
     "steps": [
       {
         "type": "action",
-        "description": "Cause a controlled JavaScript error in a nested UI component."
+        "description": "Load the landing, auth, dashboard, and upgrade pages in 375x812 viewport (mobile)"
       },
       {
         "type": "assertion",
-        "description": "Verify ErrorBoundary catches the error and displays an error message UI."
+        "description": "Verify all contents are fully visible without overlap or clipping"
+      },
+      {
+        "type": "action",
+        "description": "Resize viewport to 1280x800 (desktop)"
+      },
+      {
+        "type": "assertion",
+        "description": "Check for consistent layout and no UI distortions"
       }
     ]
   },
   {
     "id": "TC017",
-    "title": "Authentication Form Validation Feedback",
-    "description": "Verify comprehensive validation feedback and error messages are shown for invalid input in sign-up and sign-in forms.",
-    "category": "error handling",
+    "title": "Lighthouse performance, accessibility, best practices, and SEO scores",
+    "description": "Run Lighthouse audit on landing and dashboard pages for mobile to verify scores ≥ 90 across key categories.",
+    "category": "performance",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to sign-up page."
-      },
-      {
-        "type": "action",
-        "description": "Input invalid email format and weak password."
-      },
-      {
-        "type": "action",
-        "description": "Attempt to submit the form."
+        "description": "Perform Lighthouse audit on landing page (mobile)"
       },
       {
         "type": "assertion",
-        "description": "Verify relevant validation error messages are displayed and submission is blocked."
+        "description": "Performance, Accessibility, Best Practices, and SEO scores meet or exceed 90"
+      },
+      {
+        "type": "action",
+        "description": "Perform Lighthouse audit on dashboard page (mobile)"
+      },
+      {
+        "type": "assertion",
+        "description": "Lighthouse scores remain ≥ 90 in all categories"
       }
     ]
   },
   {
     "id": "TC018",
-    "title": "Accessibility Focus and Labels",
-    "description": "Verify all interactive elements including links, buttons, and inputs have visible focus outlines and proper ARIA labels or accessible names.",
-    "category": "ui",
-    "priority": "High",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Tab through all interactive elements on landing and authentication pages."
-      },
-      {
-        "type": "assertion",
-        "description": "Verify focus outlines are visible on all keyboard focused elements."
-      },
-      {
-        "type": "assertion",
-        "description": "Verify screen reader accessible names or labels are present on inputs and buttons."
-      }
-    ]
-  },
-  {
-    "id": "TC019",
-    "title": "Lighthouse Performance and Accessibility Score",
-    "description": "Run Lighthouse audit on landing and dashboard pages to verify performance ≥ 90, accessibility, and best practices compliance.",
-    "category": "functional",
-    "priority": "High",
-    "steps": [
-      {
-        "type": "action",
-        "description": "Open landing page and run Lighthouse audit."
-      },
-      {
-        "type": "assertion",
-        "description": "Performance score is 90 or above; accessibility and best practices scores meet or exceed thresholds."
-      },
-      {
-        "type": "action",
-        "description": "Log in and open dashboard page, then run Lighthouse audit."
-      },
-      {
-        "type": "assertion",
-        "description": "Performance score is 90 or above; accessibility and best practices scores meet or exceed thresholds."
-      }
-    ]
-  },
-  {
-    "id": "TC020",
-    "title": "Console Free of Errors and Warnings",
-    "description": "Verify no console errors or warnings appear during navigation across all routes including landing, authentication, dashboard, and upgrade flows.",
+    "title": "Console and network error handling across main routes",
+    "description": "Verify no console error logs or network 4xx/5xx errors appear on landing, auth, dashboard, and upgrade pages under normal usage.",
     "category": "error handling",
     "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate sequentially through landing page, sign-in, sign-up, dashboard, upgrade, and profile pages."
+        "description": "Open landing page and monitor browser console and network tab"
       },
       {
         "type": "assertion",
-        "description": "Verify browser console shows no errors or warnings throughout."
+        "description": "Confirm absence of console errors and network 4xx/5xx statuses"
+      },
+      {
+        "type": "action",
+        "description": "Repeat same for authentication, dashboard, and upgrade pages"
       }
     ]
   },
   {
-    "id": "TC021",
-    "title": "Manifest and Service Worker Configuration",
-    "description": "Verify manifest file includes required icons with proper maskable settings and service worker registers only in production environment.",
+    "id": "TC019",
+    "title": "Session persistence after page reload",
+    "description": "Check authenticated user session persists after page reload and no Firestore permission issues occur on reads/writes.",
     "category": "functional",
-    "priority": "Medium",
+    "priority": "High",
     "steps": [
       {
         "type": "action",
-        "description": "Inspect manifest.json for presence of required icons and maskable configuration."
+        "description": "Authenticate as existing user"
       },
       {
         "type": "assertion",
-        "description": "Verify all icons are included and maskable property is set properly."
+        "description": "User is logged in and dashboard is accessible"
       },
       {
         "type": "action",
-        "description": "Run app in development and production build environments."
+        "description": "Reload the page"
       },
       {
         "type": "assertion",
-        "description": "Verify service worker is registered only in the production build."
+        "description": "Session remains active without sign-out"
+      },
+      {
+        "type": "action",
+        "description": "Perform Firestore read and write operations requiring permissions"
+      },
+      {
+        "type": "assertion",
+        "description": "All Firestore operations succeed without permission errors"
       }
     ]
   }

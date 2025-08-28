@@ -46,12 +46,14 @@ import Upgrade from '@/pages/Upgrade';
 // Error Pages
 import NotFoundPage from '@/pages/errors/NotFoundPage';
 import ErrorPage from '@/pages/errors/ErrorPage';
+import DevError from '@/pages/DevError';
 
 // Dev Pages
 import DevSeed from '@/dev/DevSeed';
 
 // Components
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -201,14 +203,12 @@ const App: React.FC = () => {
           {/* Dashboard Route - Allow free users to access basic dashboard */}
           <Route path="/dashboard" element={
             <ProtectedRoute>
-              <Layout />
+              <RequirePlan min="starter">
+                <Layout />
+              </RequirePlan>
             </ProtectedRoute>
           }>
-            <Route index element={
-              <RequirePlan min="free">
-                <DashboardPage />
-              </RequirePlan>
-            } />
+            <Route index element={<DashboardPage />} />
           </Route>
 
           {/* Upgrade Route */}
@@ -244,7 +244,10 @@ const App: React.FC = () => {
 
           {/* Dev Routes */}
           {import.meta.env.DEV && (
-            <Route path="/dev-seed" element={<DevSeed />} />
+            <>
+              <Route path="/dev-seed" element={<DevSeed />} />
+              <Route path="/dev/error" element={<ErrorBoundary><DevError /></ErrorBoundary>} />
+            </>
           )}
 
           {/* Error Routes */}

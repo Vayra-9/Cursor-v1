@@ -4,7 +4,9 @@ import {
   signOut,
   sendPasswordResetEmail,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult
 } from 'firebase/auth';
 import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from './firebase';
@@ -119,7 +121,20 @@ export const signInWithEmail = async (email: string, password: string): Promise<
 // Google Sign In
 export const signInWithGoogle = async (): Promise<User> => {
   try {
-    const result = await signInWithPopup(auth, googleProvider);
+    // Try popup first, fallback to redirect if blocked
+    let result;
+    try {
+      result = await signInWithPopup(auth, googleProvider);
+    } catch (popupError: any) {
+      if (popupError.code === 'auth/popup-blocked' || popupError.code === 'auth/popup-closed-by-user') {
+        console.log('Popup blocked or closed, falling back to redirect');
+        await signInWithRedirect(auth, googleProvider);
+        // The redirect will handle the rest, so we return here
+        throw new Error('Redirecting to Google sign-in...');
+      }
+      throw popupError;
+    }
+
     const firebaseUser = result.user;
 
     // Check if user document exists

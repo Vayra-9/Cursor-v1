@@ -21,7 +21,7 @@ import { useI18n } from '@/contexts/I18nContext';
 import { PlanType } from '@/types';
 import VayraLogo from '@/components/ui/VayraLogo';
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
-import CurrencySwitcher from '@/components/ui/CurrencySwitcher';
+import CurrencySelector from '@/components/ui/CurrencySelector';
 import LanguageSelector from '@/components/ui/LanguageSelector';
 import UserMenu from '@/components/ui/UserMenu';
 import NotificationBell from '@/components/ui/NotificationBell';
@@ -251,8 +251,8 @@ const Layout: React.FC = () => {
               {/* Theme Switcher */}
               <ThemeSwitcher />
 
-              {/* Currency Switcher */}
-              <CurrencySwitcher />
+              {/* Currency Selector */}
+              <CurrencySelector />
 
               {/* Language Selector */}
               <LanguageSelector />

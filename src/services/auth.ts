@@ -7,6 +7,7 @@ import {
   updateProfile,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
   updateEmail,
   updatePassword,
   deleteUser
@@ -16,6 +17,10 @@ import { auth, db } from '@/lib/firebase';
 import { User, UserPreferences } from '@/types';
 
 const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ 
+  prompt: "select_account", 
+  response_type: "id_token" 
+});
 
 export class AuthService {
   // Sign up with email and password
@@ -86,7 +91,20 @@ export class AuthService {
   // Sign in with Google
   static async signInWithGoogle(): Promise<User> {
     try {
-      const result = await signInWithPopup(auth, googleProvider);
+      // Try popup first, fallback to redirect if blocked
+      let result;
+      try {
+        result = await signInWithPopup(auth, googleProvider);
+      } catch (popupError: any) {
+        if (popupError.code === 'auth/popup-blocked' || popupError.code === 'auth/popup-closed-by-user') {
+          console.log('Popup blocked or closed, falling back to redirect');
+          await signInWithRedirect(auth, googleProvider);
+          // The redirect will handle the rest, so we return here
+          throw new Error('Redirecting to Google sign-in...');
+        }
+        throw popupError;
+      }
+
       const firebaseUser = result.user;
 
       // Check if user document exists
