@@ -39,6 +39,10 @@ import AIChatPage from '@/pages/ai/AIChatPage';
 import SettingsPage from '@/pages/settings/SettingsPage';
 import ProfilePage from '@/pages/profile/ProfilePage';
 
+// Plan Guard and Upgrade Page
+import RequirePlan from '@/components/auth/RequirePlan';
+import Upgrade from '@/pages/Upgrade';
+
 // Error Pages
 import NotFoundPage from '@/pages/errors/NotFoundPage';
 import ErrorPage from '@/pages/errors/ErrorPage';
@@ -186,13 +190,24 @@ const App: React.FC = () => {
             </ProtectedRoute>
           } />
 
+          {/* Upgrade Route */}
+          <Route path="/upgrade" element={
+            <ProtectedRoute>
+              <Upgrade />
+            </ProtectedRoute>
+          } />
+
           {/* Protected Routes with Layout */}
           <Route path="/app" element={
             <ProtectedRoute>
               <Layout />
             </ProtectedRoute>
           }>
-            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="dashboard" element={
+              <RequirePlan min="starter">
+                <DashboardPage />
+              </RequirePlan>
+            } />
             <Route path="debts" element={<DebtsPage />} />
             <Route path="payments" element={<PaymentsPage />} />
             <Route path="income" element={<IncomePage />} />

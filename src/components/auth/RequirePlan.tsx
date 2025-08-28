@@ -1,46 +1,45 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 interface RequirePlanProps {
+  min?: 'free' | 'starter' | 'pro' | 'premium';
   children: React.ReactNode;
-  min: 'free' | 'starter' | 'pro' | 'enterprise';
-  redirectTo?: string;
 }
 
-const planLevels = {
-  free: 0,
-  starter: 1,
-  pro: 2,
-  enterprise: 3
-};
-
-export const RequirePlan: React.FC<RequirePlanProps> = ({ 
-  children, 
-  min, 
-  redirectTo = '/upgrade' 
-}) => {
+const RequirePlan: React.FC<RequirePlanProps> = ({ min = 'free', children }) => {
   const { user, loading } = useAuth();
 
+  // Show loading spinner while auth is loading
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <LoadingSpinner size="lg" />
       </div>
     );
   }
 
+  // Redirect to sign-in if no user
   if (!user) {
     return <Navigate to="/signin" replace />;
   }
 
-  // Check if user has the required plan level
-  const userPlanLevel = planLevels[user.preferences?.plan || 'free'];
-  const requiredLevel = planLevels[min];
+  // Define plan hierarchy
+  const planOrder = ['free', 'starter', 'pro', 'premium'] as const;
+  const userPlan = user.preferences?.plan || 'free';
+  
+  // Get plan ranks
+  const userPlanRank = planOrder.indexOf(userPlan as any);
+  const minPlanRank = planOrder.indexOf(min);
 
-  if (userPlanLevel < requiredLevel) {
-    return <Navigate to={redirectTo} replace />;
+  // Redirect to upgrade if user's plan rank is less than required
+  if (userPlanRank < minPlanRank) {
+    return <Navigate to="/upgrade" replace />;
   }
 
+  // User has sufficient plan level, render children
   return <>{children}</>;
 };
+
+export default RequirePlan;
