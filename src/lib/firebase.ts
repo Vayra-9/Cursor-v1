@@ -33,6 +33,8 @@ if (missingVars.length > 0) {
 
 // Runtime assertion for critical Firebase config
 if (typeof window !== 'undefined') {
+  console.info("Firebase project:", import.meta.env.VITE_FIREBASE_PROJECT_ID);
+  
   console.assert(
     import.meta.env.VITE_FIREBASE_API_KEY && 
     import.meta.env.VITE_FIREBASE_PROJECT_ID,

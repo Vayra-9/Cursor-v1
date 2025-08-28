@@ -9,18 +9,24 @@ The VAYRA application expects the following Firestore security rules for proper 
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // User document access
-    match /users/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
+    match /users/{uid} { 
+      allow read, write: if request.auth != null && request.auth.uid == uid; 
     }
-    
-    // User subcollections access
-    match /users/{uid}/{document=**} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
+    match /users/{uid}/{document=**} { 
+      allow read, write: if request.auth != null && request.auth.uid == uid; 
+    }
+    match /config/{docId} { 
+      allow read: if true; 
+      allow write: if false; 
     }
   }
 }
 ```
+
+**IMPORTANT:** These rules must be published in the Firebase Console:
+1. Go to Firebase Console > Firestore Database > Rules
+2. Replace the existing rules with the above configuration
+3. Click "Publish" to apply the changes
 
 ### Key Requirements
 

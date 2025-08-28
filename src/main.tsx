@@ -15,8 +15,8 @@ import { I18nProvider } from './contexts/I18nContext'
 
 import './index.css'
 
-// Register service worker for PWA (both development and production)
-if ('serviceWorker' in navigator) {
+// Register service worker for PWA (production only)
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
       .then((registration) => {
