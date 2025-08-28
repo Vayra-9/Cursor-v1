@@ -1,5 +1,5 @@
 import { initializeApp, getApps } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
+import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth'
 import {
   getFirestore,
   initializeFirestore,
@@ -71,5 +71,9 @@ if (typeof window !== 'undefined' && cfg.measurementId) {
 }
 
 export const auth = getAuth(app)
+
+// Set persistence to local storage for session persistence
+setPersistence(auth, browserLocalPersistence);
+
 export const db = getFirestore(app)
 export { analytics }

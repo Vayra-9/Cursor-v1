@@ -7,10 +7,8 @@ const PricingPage: React.FC = () => {
   const { currentPlan, grandfathered } = usePlan();
 
   const handlePlanSelect = (planId: string) => {
-    // In a real app, this would redirect to Stripe checkout
-    console.log(`Selected plan: ${planId}`);
-    // For now, just show an alert
-    alert(`You selected the ${planId} plan. This would redirect to payment processing in a real app.`);
+    // Redirect to sign-up page for plan selection
+    window.location.href = '/auth/sign-up';
   };
 
   return (

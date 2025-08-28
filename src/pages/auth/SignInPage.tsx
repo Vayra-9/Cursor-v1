@@ -73,7 +73,9 @@ const SignInPage: React.FC = () => {
       <div className="max-w-md w-full space-y-8">
         {/* Logo Section */}
         <div className="mb-8 flex justify-center">
-          <VayraLogo className="h-16 w-auto" width={320} height={64} />
+          <Link to="/" className="focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
+            <VayraLogo className="h-16 w-auto" width={320} height={64} />
+          </Link>
         </div>
 
         {/* Sign In Form */}

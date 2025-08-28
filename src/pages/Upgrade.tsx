@@ -166,7 +166,7 @@ const Upgrade: React.FC = () => {
                 </ul>
 
                 <Link
-                  to="/#pricing"
+                  to={isCurrentPlan ? "/dashboard" : "/auth/sign-up"}
                   className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-semibold transition-all duration-200 ${
                     isCurrentPlan
                       ? 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 cursor-default'
@@ -180,7 +180,7 @@ const Upgrade: React.FC = () => {
                     </>
                   ) : (
                     <>
-                      View Details
+                      Get Started
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
@@ -206,10 +206,10 @@ const Upgrade: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/#pricing"
+                to="/auth/sign-up"
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
               >
-                View All Plans
+                Get Started
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link

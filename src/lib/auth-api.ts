@@ -12,6 +12,10 @@ import { User } from '@/types';
 import { ensureUserDoc } from './ensureUserDoc';
 
 const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ 
+  prompt: "select_account", 
+  response_type: "id_token" 
+});
 
 // Email/Password Sign Up
 export const signUpWithEmail = async (email: string, password: string, displayName?: string): Promise<User> => {
