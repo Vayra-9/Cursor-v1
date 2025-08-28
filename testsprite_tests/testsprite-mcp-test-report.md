@@ -5,216 +5,288 @@
 ## 1️⃣ Document Metadata
 - **Project Name:** Vayra-v2
 - **Version:** 0.1.0
-- **Date:** 2025-08-21
+- **Date:** 2025-08-28
 - **Prepared by:** TestSprite AI Team
 
 ---
 
 ## 2️⃣ Requirement Validation Summary
 
-### Requirement: App Shell and Routing
-- **Description:** Core application shell with proper routing, header, footer, and 404 handling.
+### Requirement: Hero Logo Branding & Motion
+- **Description:** Hero logo presence, uniqueness, animations, and motion preferences.
 
 #### Test 1
 - **Test ID:** TC001
-- **Test Name:** App Shell and Routing Initialization
-- **Test Code:** [code_file](./TC001_App_Shell_and_Routing_Initialization.py)
+- **Test Name:** Landing Page Logo Presence and Uniqueness
+- **Test Code:** [code_file](./TC001_Landing_Page_Logo_Presence_and_Uniqueness.py)
+- **Test Error:** The landing page contains exactly one hero logo SVG element with the source '/brand/vayra-logo.svg'. The logo is visually clear and appropriately sized in the hero section based on visual inspection. However, there is a duplicate logo image element with the same source near the top of the page, which violates the requirement of having no duplicates. Therefore, the task fails due to the presence of this duplicate logo image. Recommend removing or consolidating the duplicate logo to meet the specification.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/d3873c5c-fcc1-433b-bcaa-1f5a47c1fb8d
+- **Status:** ❌ Failed
+- **Severity:** MEDIUM
+- **Analysis / Findings:** Landing page contains duplicate hero logo SVG elements, violating the requirement for exactly one unique logo. Design consistency is compromised.
+
+---
+
+#### Test 2
+- **Test ID:** TC002
+- **Test Name:** Landing Page Logo Animations and Prefers-Reduced-Motion
+- **Test Code:** [code_file](./TC002_Landing_Page_Logo_Animations_and_Prefers_Reduced_Motion.py)
 - **Test Error:** N/A
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/e6f8c485-5aeb-411e-9ec1-7d93a42ca536
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/55c2776e-dede-44c5-b494-3fbd69678eca
 - **Status:** ✅ Passed
 - **Severity:** LOW
-- **Analysis / Findings:** App shell loads correctly with proper routing, including header, footer, and 404 handling, confirming expected navigation and layout behaviors function as intended.
+- **Analysis / Findings:** Hero logo animations correctly include fade, scale, and floating loop effects and properly respect user's prefers-reduced-motion settings.
 
 ---
 
-### Requirement: Authentication and Login
-- **Description:** Login page UI rendering and plan-based feature locking functionality.
-
-#### Test 1
-- **Test ID:** TC002
-- **Test Name:** Login Page UI and Plan-Based Feature Locking
-- **Test Code:** [code_file](./TC002_Login_Page_UI_and_Plan_Based_Feature_Locking.py)
-- **Test Error:** Missing Firebase environment variables causing backend initialization failures. WebSocket connection errors and React warnings about invalid DOM props contributed to UI instability.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/ea06ba10-170d-4782-8636-374470fe3aaf
-- **Status:** ❌ Failed
-- **Severity:** HIGH
-- **Analysis / Findings:** Test failed due to missing Firebase environment variables causing backend initialization failures impacting login functionality. Additionally, WebSocket connection errors and React warnings about invalid DOM props contributed to UI instability preventing proper login page rendering and plan-based feature locking.
-
----
-
-### Requirement: Debt Calculator Functionality
-- **Description:** Debt calculator inputs validation and outputs calculation with local state persistence.
+### Requirement: Branding Assets & PWA
+- **Description:** Branding assets loading, PWA manifest, and service worker configuration.
 
 #### Test 1
 - **Test ID:** TC003
-- **Test Name:** Debt Calculator Inputs and Outputs Validation
-- **Test Code:** [code_file](./TC003_Debt_Calculator_Inputs_and_Outputs_Validation.py)
-- **Test Error:** Login form inputs were inaccessible, blocking authentication and subsequent access.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/f83ef871-9857-431e-9a20-8d92c1cc2d79
-- **Status:** ❌ Failed
-- **Severity:** HIGH
-- **Analysis / Findings:** Debt Calculator inputs test could not proceed because login form inputs were inaccessible, blocking authentication and subsequent access. Similar environment and loading errors as TC002 prevent front-end interactions required for validation.
+- **Test Name:** Branding Assets Load Successfully
+- **Test Code:** [code_file](./TC003_Branding_Assets_Load_Successfully.py)
+- **Test Error:** N/A
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/d834d13d-f4ab-4f31-8f8d-def48569955b
+- **Status:** ✅ Passed
+- **Severity:** LOW
+- **Analysis / Findings:** All branding assets including logo SVG, favicon, and app icons load successfully with HTTP 200 responses and correct MIME types.
 
 ---
 
-### Requirement: Payment Tracker Functionality
-- **Description:** Payment tracking with add, edit, delete operations and monthly sum calculations.
-
-#### Test 1
+#### Test 2
 - **Test ID:** TC004
-- **Test Name:** Payment Tracker Add, Edit, Delete, and Summary
-- **Test Code:** [code_file](./TC004_Payment_Tracker_Add_Edit_Delete_and_Summary.py)
-- **Test Error:** Login inputs and submit button were not detected as interactive, preventing user authentication.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/cbd0397f-f8bd-4a79-a5d5-638c3e9a6fe7
-- **Status:** ❌ Failed
-- **Severity:** HIGH
-- **Analysis / Findings:** Payment Tracker test could not continue as login inputs and submit button were not detected as interactive, preventing user authentication and access to payment features. Underlying causes include missing Firebase environment variables and WebSocket failures.
+- **Test Name:** Header Logo Accessibility and Navigation
+- **Test Code:** [code_file](./TC004_Header_Logo_Accessibility_and_Navigation.py)
+- **Test Error:** N/A
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/5d9a71cf-f333-4505-8296-ceaf4a1e1622
+- **Status:** ✅ Passed
+- **Severity:** LOW
+- **Analysis / Findings:** Header logo is always visible, has proper alt text for accessibility, includes focus outlines, and navigates correctly to the home page.
 
 ---
 
-### Requirement: Analytics and DTI Calculation
-- **Description:** DTI calculation view with plan-based access and chart rendering.
+#### Test 3
+- **Test ID:** TC015
+- **Test Name:** PWA Manifest and Service Worker Configuration
+- **Test Code:** [code_file](./TC015_PWA_Manifest_and_Service_Worker_Configuration.py)
+- **Test Error:** The PWA manifest is correctly configured and includes maskable icons. However, the service worker is not registered or active, which prevents offline caching and installability features from functioning. Offline capabilities could not be tested, and no PWA install prompt was observed. Please ensure the service worker registration script is implemented and active to enable full PWA functionality.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/8542ab6c-4860-41db-b94d-92e73f06ddb0
+- **Status:** ❌ Failed
+- **Severity:** HIGH
+- **Analysis / Findings:** PWA manifest is well configured with maskable icons, but service worker is not registered or active, disabling offline caching and installability features.
+
+---
+
+### Requirement: Authentication System
+- **Description:** Email/password authentication, Google sign-in, and error handling.
 
 #### Test 1
 - **Test ID:** TC005
-- **Test Name:** Analytics and DTI Calculation View with Plan-Based Access
-- **Test Code:** [code_file](./TC005_Analytics_and_DTI_Calculation_View_with_Plan_Based_Access.py)
-- **Test Error:** Login page returns 404 error, blocking all navigation and testing.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/4428ab8a-477b-408a-aea1-8fe45391df73
+- **Test Name:** Email/Password Authentication Success
+- **Test Code:** [code_file](./TC005_EmailPassword_Authentication_Success.py)
+- **Test Error:** Tested email/password authentication with valid credentials. Sign-in succeeded and redirected to upgrade page. However, clicking 'Back to Dashboard' button did not redirect to dashboard as expected. Reported this issue and stopped further testing.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/d6dde0dc-9188-4692-8054-96017c69c587
 - **Status:** ❌ Failed
 - **Severity:** HIGH
-- **Analysis / Findings:** The login page returns a 404 error, blocking all navigation and testing of analytics, DTI calculation, and chart rendering features. This points to routing or deployment misconfiguration preventing access to core frontend routes.
+- **Analysis / Findings:** After successful email/password login, user was redirected to upgrade page instead of dashboard, and 'Back to Dashboard' button did not navigate as expected.
 
 ---
 
-### Requirement: PWA and Accessibility Compliance
-- **Description:** PWA manifest validation and accessibility compliance including Lighthouse checks.
-
-#### Test 1
+#### Test 2
 - **Test ID:** TC006
-- **Test Name:** PWA Manifest and Accessibility Compliance
-- **Test Code:** [code_file](./TC006_PWA_Manifest_and_Accessibility_Compliance.py)
+- **Test Name:** Email/Password Authentication Failure with Descriptive Error
+- **Test Code:** [code_file](./TC006_EmailPassword_Authentication_Failure_with_Descriptive_Error.py)
 - **Test Error:** N/A
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/73bfcf21-22ae-48d3-8ac7-4c06572153db
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/0ddd82a5-999c-4656-bfa4-4f88e384ca65
 - **Status:** ✅ Passed
 - **Severity:** LOW
-- **Analysis / Findings:** PWA manifest and accessibility features are correctly implemented, including proper icon references, labels, alt texts, and ARIA roles resulting in a passing Lighthouse accessibility score.
+- **Analysis / Findings:** Invalid email/password attempts display user-friendly, descriptive error messages, improving user experience on authentication failure.
 
 ---
 
-### Requirement: UI/UX Branding and Visual Enhancements
-- **Description:** VAYRA branding consistency, visual elements, animations, and accessibility across the app.
-
-#### Test 1
+#### Test 3
 - **Test ID:** TC007
-- **Test Name:** UI/UX Branding and Visual Enhancements
-- **Test Code:** [code_file](./TC007_UIUX_Branding_and_Visual_Enhancements.py)
-- **Test Error:** Dashboard page is inaccessible with 404 error and homepage lacks visible branding elements.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/2fe7763f-4fae-43a4-a696-64c46fe77cb2
+- **Test Name:** Google Sign-In Success and Firestore User Document Creation
+- **Test Code:** [code_file](./TC007_Google_Sign_In_Success_and_Firestore_User_Document_Creation.py)
+- **Test Error:** Google Sign-In OAuth flow is blocked by Google's security restrictions in the current testing environment, preventing successful sign-in and Firestore user document creation verification. Testing stopped due to this blocking issue.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/c6e0ad6c-291e-46d9-a71f-3a61f45153a1
 - **Status:** ❌ Failed
 - **Severity:** HIGH
-- **Analysis / Findings:** The dashboard page is inaccessible with a 404 error and the homepage lacks visible branding elements, blocking validation of branding consistency, visual elements, animations, and accessibility. Missing Firebase variables and resource load failures exacerbate the issue.
+- **Analysis / Findings:** Google Sign-In OAuth flow is blocked by Google's security restrictions in the testing environment, preventing login and Firestore user document creation verification.
 
 ---
 
-### Requirement: Pro Modules Functionality
-- **Description:** Pro modules with enhanced visuals, advanced analytics, and gated content functionality.
-
-#### Test 1
+#### Test 4
 - **Test ID:** TC008
-- **Test Name:** Pro Modules Functionality and Advanced Visuals
-- **Test Code:** [code_file](./TC008_Pro_Modules_Functionality_and_Advanced_Visuals.py)
-- **Test Error:** All key modules and pages returning 404 Page Not Found errors.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/3e23568a-b5ad-4a7d-a9ec-a7c20a8bde00
+- **Test Name:** Google Sign-In Unauthorized Domain Error Handling
+- **Test Code:** [code_file](./TC008_Google_Sign_In_Unauthorized_Domain_Error_Handling.py)
+- **Test Error:** 🖱️  Clicked button with index 2: Start Your Journey
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/e717f1b0-bd91-4b86-83eb-5d93c4a4997d
 - **Status:** ❌ Failed
-- **Severity:** HIGH
-- **Analysis / Findings:** Access to all Pro module pages is denied due to 404 errors, preventing verification of debt breakdown visuals, advanced analytics, gated sections, and premium content. Backend connectivity and routing problems cause these failures.
+- **Severity:** MEDIUM
+- **Analysis / Findings:** Google Sign-In correctly blocked unauthorized domain usage but error handling and reporting did not function as expected due to network fetch errors.
 
 ---
 
-### Requirement: AI Copilot and Assistant Functionality
-- **Description:** AI sidebar functionality with multilingual support and plan-based restrictions.
+### Requirement: Plan Gating & Navigation
+- **Description:** Plan-based access control, upgrade flow, and navigation functionality.
 
 #### Test 1
 - **Test ID:** TC009
-- **Test Name:** AI Copilot and Assistant Functionality with Multilingual Support
-- **Test Code:** [code_file](./TC009_AI_Copilot_and_Assistant_Functionality_with_Multilingual_Support.py)
-- **Test Error:** Failed resource loads indicate backend or hosting instability.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/0dafec17-3455-4536-b12d-578ae18b0a13
+- **Test Name:** Plan Gating for Dashboard Feature Access
+- **Test Code:** [code_file](./TC009_Plan_Gating_for_Dashboard_Feature_Access.py)
+- **Test Error:** Test completed with issue: Free plan user is correctly prompted to upgrade when accessing premium features, but the 'Back to Dashboard' link on the upgrade page is broken and does not redirect to the dashboard. This issue should be fixed to ensure proper navigation flow.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/a423d88c-09fb-4b0e-a978-6cec45569a3e
 - **Status:** ❌ Failed
-- **Severity:** MEDIUM
-- **Analysis / Findings:** Failed resource loads indicate backend or hosting instability, specifically impacting NotificationBell component. This disruption prevents complete testing of AI Copilot visibility, prompts, plan gating, multilingual support, and response generation.
+- **Severity:** HIGH
+- **Analysis / Findings:** Plan gating prompting free users to upgrade works, but 'Back to Dashboard' link on upgrade page is broken, preventing expected navigation.
 
 ---
 
-### Requirement: Pricing Matrix and Upgrade Functionality
-- **Description:** Pricing data integration, plan gating, grandfathered user pricing, and upgrade CTAs.
-
-#### Test 1
+#### Test 2
 - **Test ID:** TC010
-- **Test Name:** Pricing Matrix, Grandfathered Users, and Upgrade CTA Verification
-- **Test Code:** [code_file](./TC010_Pricing_Matrix_Grandfathered_Users_and_Upgrade_CTA_Verification.py)
-- **Test Error:** Pricing page and related components fail to load due to failed WebSocket connection.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/32722a17-cd4f-4a48-9b33-7fd0787cbc34
+- **Test Name:** Protected Routes Redirect for Unauthenticated Users
+- **Test Code:** [code_file](./TC010_Protected_Routes_Redirect_for_Unauthenticated_Users.py)
+- **Test Error:** Tested unauthenticated access to protected routes /dashboard and /upgrade. Both correctly redirected to sign-in page. However, the sign-in and sign-up pages at /auth/sign-in, /auth/sign-up, and /auth/login are missing or misconfigured, returning 404 errors. Unable to fully verify redirect target page behavior. Please fix authentication routes to complete testing.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/83bbc2d7-066d-4707-804a-34a9e882d0a3
 - **Status:** ❌ Failed
 - **Severity:** HIGH
-- **Analysis / Findings:** Pricing page and related components fail to load due to failed WebSocket connection and resource load errors, hindering validation of pricing data sourcing, plan gating, grandfathered user pricing display, and upgrade CTAs.
+- **Analysis / Findings:** Unauthenticated users correctly redirected from protected routes, but sign-in and sign-up pages are missing or misconfigured resulting in 404 errors.
 
 ---
 
-### Requirement: Offline Mode and Sync Functionality
-- **Description:** Service worker caching, offline mode banner, queueing, and sync behavior.
-
-#### Test 1
+#### Test 3
 - **Test ID:** TC011
-- **Test Name:** Offline Mode and Sync Functionality
-- **Test Code:** [code_file](./TC011_Offline_Mode_and_Sync_Functionality.py)
-- **Test Error:** Inability to interact with login form inputs and absence of offline mode banner.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/5177b2a7-5154-4bcb-8291-c81cc4f02891
+- **Test Name:** Routing and Navigation Components Functionality
+- **Test Code:** [code_file](./TC011_Routing_and_Navigation_Components_Functionality.py)
+- **Test Error:** Reported critical navigation issue: 'Back to Dashboard' button on upgrade page is broken and does not navigate to dashboard. Further testing stopped until issue is resolved.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/7fcd8a8a-2545-4aaf-b0c1-68d993a07c25
 - **Status:** ❌ Failed
 - **Severity:** HIGH
-- **Analysis / Findings:** Test was halted due to inability to interact with login form inputs and absence of the offline mode banner. Firebase environment issues and network resource failures blocked checking service worker registration, offline capabilities, queuing, sync behavior, and PWA install flows.
+- **Analysis / Findings:** Critical navigation issue where 'Back to Dashboard' button on upgrade page does not function, blocking further testing of routing and navigation logic.
 
 ---
 
-### Requirement: CI/CD Pipeline Validation
-- **Description:** GitHub Actions workflow execution with build, tests, and deployment validation.
+### Requirement: Accessibility & Performance
+- **Description:** Accessibility compliance, responsive layouts, and performance audits.
 
 #### Test 1
 - **Test ID:** TC012
-- **Test Name:** CI/CD Pipeline and Pre-Deploy QA Validation
-- **Test Code:** [code_file](./TC012_CICD_Pipeline_and_Pre_Deploy_QA_Validation.py)
-- **Test Error:** Login to GitHub failed due to incorrect credentials preventing workflow triggering.
-- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/2a60ed6e-33b6-40e7-8e9e-8a5fc1fb0085/ef41a329-4524-4ba7-b4cd-7650f6e07a8f
+- **Test Name:** Accessibility Compliance on Landing and Auth Pages
+- **Test Code:** [code_file](./TC012_Accessibility_Compliance_on_Landing_and_Auth_Pages.py)
+- **Test Error:** N/A
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/61365e74-bcae-42cb-acfc-a2e51df180c6
+- **Status:** ✅ Passed
+- **Severity:** LOW
+- **Analysis / Findings:** Accessibility audit confirms zero critical violations on landing page and authentication pages, ensuring compliance with accessibility standards.
+
+---
+
+#### Test 2
+- **Test ID:** TC013
+- **Test Name:** Responsive Layouts and No Visual Layout Shifts
+- **Test Code:** [code_file](./TC013_Responsive_Layouts_and_No_Visual_Layout_Shifts.py)
+- **Test Error:** The task to test multiple device breakpoints for responsive layouts with no layout shifts or overlaps on both mobile and desktop views is partially complete. Desktop view testing on the landing page at http://localhost:5174/ was successful with no layout issues. However, mobile viewport testing at 375x812 was not executed, so responsiveness and layout shifts on mobile remain unverified. Further testing is needed to fully confirm responsive behavior across device sizes.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/0201e36b-a02f-4c0d-841c-fbdb061700ad
+- **Status:** ❌ Failed
+- **Severity:** MEDIUM
+- **Analysis / Findings:** Desktop layout passed with no issues, but mobile viewport testing at 375x812 was not performed, leaving responsiveness unverified on mobile devices.
+
+---
+
+#### Test 3
+- **Test ID:** TC014
+- **Test Name:** Lighthouse Audits Performance, Accessibility, Best Practices, SEO
+- **Test Code:** [code_file](./TC014_Lighthouse_Audits_Performance_Accessibility_Best_Practices_SEO.py)
+- **Test Error:** The task to run Lighthouse audits on key pages (landing, sign-in, dashboard, upgrade) and confirm scores ≥90 for Performance, Accessibility, Best Practices, and SEO categories is not fully completed. Only qualitative content extraction was done for the landing and sign-in pages. Numeric Lighthouse audit scores were not obtained or verified. Further steps require running actual Lighthouse audits in a suitable environment to get numeric scores. Task marked as incomplete.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/fb1322eb-94dd-4dfa-8e7f-cf3c6a1673e6
+- **Status:** ❌ Failed
+- **Severity:** MEDIUM
+- **Analysis / Findings:** Actual numeric Lighthouse audit scores were not obtained or verified; only qualitative content review was done. Full performance and SEO audits remain incomplete.
+
+---
+
+### Requirement: UI/UX Features
+- **Description:** Theme switching, language support, pricing, and error handling.
+
+#### Test 1
+- **Test ID:** TC016
+- **Test Name:** Dark/Light Mode Theme Switching
+- **Test Code:** [code_file](./TC016_DarkLight_Mode_Theme_Switching.py)
+- **Test Error:** Testing stopped because the theme toggle switcher UI element is missing on the landing page, preventing further testing of dark and light theme toggles as per the task instructions.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/2e8998b3-f738-4647-bc81-515aecb9caeb
+- **Status:** ❌ Failed
+- **Severity:** MEDIUM
+- **Analysis / Findings:** Theme toggle switcher UI element is missing on the landing page, preventing testing of dark/light mode functionality and user preference maintenance.
+
+---
+
+#### Test 2
+- **Test ID:** TC017
+- **Test Name:** Language Switching with i18next
+- **Test Code:** [code_file](./TC017_Language_Switching_with_i18next.py)
+- **Test Error:** N/A
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/243d917d-ce6f-488f-8de0-0294be216ac4
+- **Status:** ✅ Passed
+- **Severity:** LOW
+- **Analysis / Findings:** Seamless language switching using i18next integration with correct translations and no page reloads, enhancing UI internationalization.
+
+---
+
+#### Test 3
+- **Test ID:** TC018
+- **Test Name:** Pricing Page and Plan Management
+- **Test Code:** [code_file](./TC018_Pricing_Page_and_Plan_Management.py)
+- **Test Error:** Testing of pricing and plan management pages completed. All subscription plans and features are clearly listed and compared. However, upgrade call-to-action buttons do not function and do not route to the upgrade workflow as expected. This is a critical issue blocking further upgrade path verification. Please investigate and fix the button routing issue.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/5a61b3a0-e4f1-4a1e-9b50-3ab891267f4f
 - **Status:** ❌ Failed
 - **Severity:** HIGH
-- **Analysis / Findings:** Login to GitHub failed due to incorrect credentials preventing triggering of the GitHub Actions workflow. This blocks build, unit tests, E2E tests, linting, type checks, production build validation, and critical path testing within the CI/CD pipeline.
+- **Analysis / Findings:** Subscription plans and features are correctly displayed, but upgrade call-to-action buttons are non-functional and do not route to the upgrade flow.
+
+---
+
+#### Test 4
+- **Test ID:** TC019
+- **Test Name:** Error Boundaries and Custom Error Pages
+- **Test Code:** [code_file](./TC019_Error_Boundaries_and_Custom_Error_Pages.py)
+- **Test Error:** Testing stopped due to inability to sign in with provided credentials, which blocks further error boundary testing in authenticated areas. Reported the issue for resolution.
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/68724ae9-2f4a-440a-9344-f83cd33288d2
+- **Status:** ❌ Failed
+- **Severity:** HIGH
+- **Analysis / Findings:** Authentication failed due to invalid credentials, preventing access to authenticated areas and blocking error boundary and custom error page testing.
+
+---
+
+#### Test 5
+- **Test ID:** TC020
+- **Test Name:** No Console Errors or Network Failures on Critical Routes
+- **Test Code:** [code_file](./TC020_No_Console_Errors_or_Network_Failures_on_Critical_Routes.py)
+- **Test Error:** N/A
+- **Test Visualization and Result:** https://www.testsprite.com/dashboard/mcp/tests/f5d6ee47-7e3c-47c7-989c-133e71ea385f/8d67f482-67e0-477b-91f6-0d701809b98f
+- **Status:** ✅ Passed
+- **Severity:** LOW
+- **Analysis / Findings:** No console errors or network failures observed on critical application routes, indicating stable runtime performance and network integration.
 
 ---
 
 ## 3️⃣ Coverage & Matching Metrics
 
-- **17% of product requirements tested** 
-- **17% of tests passed** 
+- **100% of product requirements tested** 
+- **35% of tests passed** 
 - **Key gaps / risks:**  
-> 17% of product requirements had at least one test generated.  
-> 17% of tests passed fully.  
-> Risks: Missing Firebase environment variables; routing/deployment issues; WebSocket connection failures; React DOM prop warnings; CI/CD authentication issues.
+> 100% of product requirements had at least one test generated.  
+> 35% of tests passed fully.  
+> Risks: Critical navigation issues; Firebase authentication problems; missing UI elements; incomplete mobile responsiveness testing.
 
 | Requirement                    | Total Tests | ✅ Passed | ⚠️ Partial | ❌ Failed |
 |--------------------------------|-------------|-----------|-------------|------------|
-| App Shell and Routing          | 1           | 1         | 0           | 0          |
-| Authentication and Login       | 1           | 0         | 0           | 1          |
-| Debt Calculator Functionality  | 1           | 0         | 0           | 1          |
-| Payment Tracker Functionality  | 1           | 0         | 0           | 1          |
-| Analytics and DTI Calculation  | 1           | 0         | 0           | 1          |
-| PWA and Accessibility          | 1           | 1         | 0           | 0          |
-| UI/UX Branding                 | 1           | 0         | 0           | 1          |
-| Pro Modules Functionality      | 1           | 0         | 0           | 1          |
-| AI Copilot Functionality       | 1           | 0         | 0           | 1          |
-| Pricing Matrix                 | 1           | 0         | 0           | 1          |
-| Offline Mode                   | 1           | 0         | 0           | 1          |
-| CI/CD Pipeline                 | 1           | 0         | 0           | 1          |
+| Hero Logo Branding & Motion    | 2           | 1         | 0           | 1          |
+| Branding Assets & PWA          | 3           | 2         | 0           | 1          |
+| Authentication System          | 4           | 1         | 0           | 3          |
+| Plan Gating & Navigation       | 3           | 0         | 0           | 3          |
+| Accessibility & Performance    | 3           | 1         | 0           | 2          |
+| UI/UX Features                 | 5           | 2         | 0           | 3          |
 
 ---
 
@@ -222,20 +294,24 @@
 
 ### 🔴 **High Priority Issues:**
 
-1. **Missing Firebase Environment Variables** - All authentication and backend functionality blocked
-2. **404 Routing Errors** - Multiple pages inaccessible including login, dashboard, and pro modules
-3. **WebSocket Connection Failures** - Real-time features and development server issues
-4. **React DOM Prop Warnings** - Invalid `fetchPriority` prop causing console errors
-5. **CI/CD Authentication Issues** - GitHub Actions workflow blocked
+1. **Broken Navigation Links** - 'Back to Dashboard' button on upgrade page does not function
+2. **Firebase Authentication Problems** - Quota exceeded and invalid credentials blocking testing
+3. **Google Sign-In Blocked** - OAuth flow blocked by security restrictions in testing environment
+4. **Missing Auth Routes** - Sign-in and sign-up pages returning 404 errors
+5. **PWA Service Worker Issues** - Service worker not registered, disabling offline features
+6. **Non-functional Upgrade Buttons** - Pricing page upgrade CTAs do not route properly
 
 ### 🟡 **Medium Priority Issues:**
 
-1. **Resource Loading Failures** - Multiple component files failing to load
-2. **Login Form Accessibility** - Input fields not detected as interactive elements
+1. **Duplicate Hero Logo** - Landing page contains duplicate logo elements
+2. **Missing Theme Toggle** - Theme switcher UI element missing on landing page
+3. **Incomplete Mobile Testing** - Mobile viewport testing at 375x812 not performed
+4. **Incomplete Lighthouse Audits** - Numeric scores not obtained for performance metrics
 
 ### 🟢 **Low Priority Issues:**
 
 1. **React Router Future Flag Warnings** - Deprecation warnings for v7 compatibility
+2. **Network Resource Failures** - Some external resources failing to load
 
 ---
 
@@ -243,26 +319,39 @@
 
 ### **Immediate Actions Required:**
 
-1. **Set Firebase Environment Variables** in Vercel deployment settings
-2. **Fix Routing Configuration** to resolve 404 errors
-3. **Resolve WebSocket Issues** for development server stability
-4. **Fix React DOM Props** by removing invalid `fetchPriority` attribute
-5. **Configure CI/CD Authentication** for GitHub Actions
+1. **Fix Navigation Issues** - Repair 'Back to Dashboard' button functionality
+2. **Resolve Firebase Configuration** - Address authentication quota and credential issues
+3. **Implement Missing Auth Routes** - Fix 404 errors on sign-in and sign-up pages
+4. **Register Service Worker** - Enable PWA offline functionality and installability
+5. **Fix Upgrade Button Routing** - Ensure pricing page CTAs work correctly
 
 ### **Secondary Improvements:**
 
-1. **Optimize SVG Logo** (currently 2.9MB, target <150KB)
-2. **Add Missing Form Labels** for better accessibility
-3. **Implement Error Boundaries** for graceful error handling
-4. **Add Loading States** for better UX during resource loading
+1. **Remove Duplicate Logo** - Consolidate hero logo elements to single instance
+2. **Add Theme Toggle** - Implement theme switcher UI on landing page
+3. **Complete Mobile Testing** - Test responsive layouts at 375x812 viewport
+4. **Run Lighthouse Audits** - Obtain quantitative performance scores
+5. **Whitelist Testing Domain** - Configure Google OAuth for testing environment
 
 ---
 
 ## 6️⃣ Test Results Summary
 
-- **Total Tests:** 12
-- **Passed:** 2 (17%)
-- **Failed:** 10 (83%)
-- **Success Rate:** 17%
+- **Total Tests:** 20
+- **Passed:** 7 (35%)
+- **Failed:** 13 (65%)
+- **Success Rate:** 35%
 
-**Critical blocking issues prevent comprehensive testing of core functionality. Resolution of Firebase configuration and routing issues is required before meaningful feature validation can proceed.**
+**Critical navigation and authentication issues prevent comprehensive testing of core functionality. Resolution of Firebase configuration and routing issues is required before meaningful feature validation can proceed.**
+
+---
+
+## 7️⃣ Artifacts Generated
+
+- **Screenshots:** Available for all test cases via TestSprite visualization links
+- **Console Logs:** Comprehensive error logging captured for each test
+- **Accessibility Reports:** axe-core scans completed with 0 critical violations
+- **Performance Data:** Partial Lighthouse audit data collected
+- **Test Videos:** Full test execution recordings available via TestSprite dashboard
+
+**The test report should be presented to the coding agent for implementation of the identified fixes and improvements.**

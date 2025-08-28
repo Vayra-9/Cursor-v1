@@ -213,7 +213,7 @@ const Upgrade: React.FC = () => {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                to="/app/dashboard"
+                to="/dashboard"
                 className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 py-3 px-6 rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200"
               >
                 Back to Dashboard

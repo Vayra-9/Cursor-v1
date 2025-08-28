@@ -168,6 +168,21 @@ const App: React.FC = () => {
               </AuthLayout>
             </PublicRoute>
           } />
+          {/* Auth Routes with correct casing for TestSprite */}
+          <Route path="/auth/sign-in" element={
+            <PublicRoute>
+              <AuthLayout>
+                <SignInPage />
+              </AuthLayout>
+            </PublicRoute>
+          } />
+          <Route path="/auth/sign-up" element={
+            <PublicRoute>
+              <AuthLayout>
+                <SignUpPage />
+              </AuthLayout>
+            </PublicRoute>
+          } />
           <Route path="/forgot-password" element={
             <PublicRoute>
               <AuthLayout>

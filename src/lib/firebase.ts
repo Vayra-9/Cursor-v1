@@ -38,6 +38,14 @@ if (typeof window !== 'undefined') {
     import.meta.env.VITE_FIREBASE_PROJECT_ID,
     'Critical Firebase environment variables are missing. Auth may not work properly.'
   );
+  
+  // Additional runtime checks for all required env vars
+  requiredEnvVars.forEach(varName => {
+    console.assert(
+      import.meta.env[varName],
+      `Firebase environment variable ${varName} is missing`
+    );
+  });
 }
 
 const cfg = {
