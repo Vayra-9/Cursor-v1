@@ -49,6 +49,9 @@ export const signUpWithEmail = async (email: string, password: string, displayNa
     await setDoc(doc(db, 'users', firebaseUser.uid), user);
     return user;
   } catch (error: any) {
+    console.error('Firebase Sign Up Error:', error);
+    console.error('Error Code:', error.code);
+    console.error('Error Message:', error.message);
     throw new Error(getErrorMessage(error.code));
   }
 };
@@ -119,7 +122,7 @@ export const signInWithGoogle = async (): Promise<User> => {
     const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
 
     if (!userDoc.exists()) {
-      // Create new user document
+      // Create new user document with plan: "free"
       const user: User = {
         uid: firebaseUser.uid,
         email: firebaseUser.email!,
@@ -159,6 +162,9 @@ export const signInWithGoogle = async (): Promise<User> => {
       return userDoc.data() as User;
     }
   } catch (error: any) {
+    console.error('Firebase Google Sign In Error:', error);
+    console.error('Error Code:', error.code);
+    console.error('Error Message:', error.message);
     throw new Error(getErrorMessage(error.code));
   }
 };
@@ -211,8 +217,9 @@ const getErrorMessage = (code: string): string => {
     'auth/expired-action-code': 'The action code has expired.',
     'auth/invalid-action-code': 'The action code is invalid.',
     'auth/missing-action-code': 'The action code is missing.',
+    'auth/invalid-api-key': 'Invalid API key. Please contact support.',
     'unknown-error': 'An unexpected error occurred. Please try again.',
   };
 
-  return errorMessages[code] || 'An unexpected error occurred. Please try again.';
+  return errorMessages[code] || `An unexpected error occurred (${code}). Please try again.`;
 };

@@ -54,6 +54,7 @@ const SignInPage: React.FC = () => {
         await signInWithEmail(formData.email, formData.password);
         navigate('/dashboard');
       } catch (error: any) {
+        // The error message from auth-api.ts already includes the code for unknown errors
         setErrors({ general: error.message });
       } finally {
         setLoading(false);
