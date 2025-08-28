@@ -198,12 +198,18 @@ const App: React.FC = () => {
             </PublicRoute>
           } />
 
-          {/* Dashboard redirect for backward compatibility */}
+          {/* Dashboard Route */}
           <Route path="/dashboard" element={
             <ProtectedRoute>
-              <Navigate to="/app/dashboard" replace />
+              <Layout />
             </ProtectedRoute>
-          } />
+          }>
+            <Route index element={
+              <RequirePlan min="starter">
+                <DashboardPage />
+              </RequirePlan>
+            } />
+          </Route>
 
           {/* Upgrade Route */}
           <Route path="/upgrade" element={

@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { Toaster } from 'react-hot-toast'
 
 import App from './App.tsx'
-import ErrorBoundary from './components/ErrorBoundary'
+import ErrorBoundary from './components/system/ErrorBoundary'
 import { AuthProvider } from './contexts/AuthContext'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { CurrencyProvider } from './contexts/CurrencyContext'
@@ -15,8 +15,8 @@ import { I18nProvider } from './contexts/I18nContext'
 
 import './index.css'
 
-// Register service worker for PWA
-if ('serviceWorker' in navigator) {
+// Register service worker for PWA (production only)
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
       .then((registration) => {
