@@ -76,4 +76,18 @@ export const auth = getAuth(app)
 setPersistence(auth, browserLocalPersistence);
 
 export const db = getFirestore(app)
+
+// Add error handling for Firestore permission issues
+if (typeof window !== 'undefined') {
+  // Listen for Firestore permission errors
+  const originalConsoleError = console.error;
+  console.error = (...args) => {
+    if (args[0] && typeof args[0] === 'string' && args[0].includes('permission-denied')) {
+      console.warn('Firestore permission error detected. Please check Firestore security rules.');
+      console.warn('Expected rules: users/{uid} allow read,write if request.auth != null && request.auth.uid == uid');
+    }
+    originalConsoleError.apply(console, args);
+  };
+}
+
 export { analytics }

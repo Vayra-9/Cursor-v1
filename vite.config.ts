@@ -177,7 +177,13 @@ export default defineConfig({
   server: {
     port: 5174,
     strictPort: true,
-    host: true
+    host: true,
+    hmr: {
+      port: 5174
+    },
+    watch: {
+      usePolling: false
+    }
   },
   build: {
     outDir: 'dist',

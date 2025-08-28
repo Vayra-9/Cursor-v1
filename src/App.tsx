@@ -198,14 +198,14 @@ const App: React.FC = () => {
             </PublicRoute>
           } />
 
-          {/* Dashboard Route */}
+          {/* Dashboard Route - Allow free users to access basic dashboard */}
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <Layout />
             </ProtectedRoute>
           }>
             <Route index element={
-              <RequirePlan min="starter">
+              <RequirePlan min="free">
                 <DashboardPage />
               </RequirePlan>
             } />
@@ -225,7 +225,7 @@ const App: React.FC = () => {
             </ProtectedRoute>
           }>
             <Route path="dashboard" element={
-              <RequirePlan min="starter">
+              <RequirePlan min="free">
                 <DashboardPage />
               </RequirePlan>
             } />
