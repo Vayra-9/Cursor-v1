@@ -172,6 +172,7 @@ const Upgrade: React.FC = () => {
                       ? 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 cursor-default'
                       : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700'
                   }`}
+                  data-testid="cta-upgrade-get-started"
                 >
                   {isCurrentPlan ? (
                     <>
@@ -208,6 +209,7 @@ const Upgrade: React.FC = () => {
               <Link
                 to="/auth/sign-up"
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
+                data-testid="cta-upgrade-get-started"
               >
                 Get Started
                 <ArrowRight className="w-4 h-4" />
@@ -215,6 +217,7 @@ const Upgrade: React.FC = () => {
               <Link
                 to="/dashboard"
                 className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 py-3 px-6 rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200"
+                data-testid="btn-back-dashboard"
               >
                 Back to Dashboard
               </Link>

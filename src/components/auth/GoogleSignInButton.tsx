@@ -31,6 +31,7 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
       type="button"
       onClick={handleGoogleSignIn}
       disabled={loading}
+      data-testid="btn-google"
       className={`w-full flex items-center justify-center gap-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-white py-3 px-4 rounded-lg font-semibold border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
     >
       {loading ? (

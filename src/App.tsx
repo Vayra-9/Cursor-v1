@@ -148,7 +148,7 @@ const App: React.FC = () => {
       <AIProvider>
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<ErrorBoundary><LandingPage /></ErrorBoundary>} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/pricing" element={<PricingPage />} />

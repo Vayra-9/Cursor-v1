@@ -121,64 +121,21 @@ export const signInWithEmail = async (email: string, password: string): Promise<
 // Google Sign In
 export const signInWithGoogle = async (): Promise<User> => {
   try {
-    // Try popup first, fallback to redirect if blocked
-    let result;
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: "select_account", response_type: "id_token" });
+    
     try {
-      result = await signInWithPopup(auth, googleProvider);
-    } catch (popupError: any) {
-      if (popupError.code === 'auth/popup-blocked' || popupError.code === 'auth/popup-closed-by-user') {
+      const { user } = await signInWithPopup(auth, provider);
+      await ensureUserDoc(user.uid, user.email || undefined);
+      return user as any;
+    } catch (e: any) {
+      const msg = String(e?.code || e?.message || "");
+      if (msg.includes("popup") || msg.includes("blocked") || msg.includes("closed")) {
         console.log('Popup blocked or closed, falling back to redirect');
-        await signInWithRedirect(auth, googleProvider);
-        // The redirect will handle the rest, so we return here
-        throw new Error('Redirecting to Google sign-in...');
+        await signInWithRedirect(auth, provider);
+        return null as any; // boot handler will complete
       }
-      throw popupError;
-    }
-
-    const firebaseUser = result.user;
-
-    // Check if user document exists
-    const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
-
-    if (!userDoc.exists()) {
-      // Create new user document with plan: "free"
-      const user: User = {
-        uid: firebaseUser.uid,
-        email: firebaseUser.email!,
-        displayName: firebaseUser.displayName || null,
-        photoURL: firebaseUser.photoURL || null,
-        createdAt: new Date(),
-        lastLoginAt: new Date(),
-        preferences: {
-          theme: 'system',
-          currency: 'USD',
-          language: 'en',
-          plan: 'free',
-          notifications: {
-            email: true,
-            push: true,
-            paymentReminders: true,
-            milestoneAlerts: true,
-            tipsAndMotivation: true,
-          },
-          privacy: {
-            shareProgress: false,
-            shareTestimonials: false,
-            analytics: true,
-          },
-        },
-      };
-
-      await setDoc(doc(db, 'users', firebaseUser.uid), user);
-      return user;
-    } else {
-      // Update last login for existing user
-      await updateDoc(doc(db, 'users', firebaseUser.uid), {
-        lastLoginAt: new Date(),
-      });
-
-      await ensureUserDoc();
-      return userDoc.data() as User;
+      throw e;
     }
   } catch (error: any) {
     console.error('Firebase Google Sign In Error:', error);

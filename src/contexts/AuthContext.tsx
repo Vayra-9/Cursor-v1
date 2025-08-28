@@ -3,6 +3,7 @@ import { User } from '@/types';
 import { AuthService } from '@/services/auth';
 import { getRedirectResult } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
+import { ensureUserDoc } from '@/lib/ensureUserDoc';
 
 interface AuthContextType {
   user: User | null;
@@ -39,12 +40,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const handleRedirectResult = async () => {
       try {
         const result = await getRedirectResult(auth);
-        if (result) {
+        if (result?.user) {
           console.log('Google OAuth redirect result received');
-          // The AuthService.onAuthStateChanged will handle the user state
+          await ensureUserDoc(result.user.uid, result.user.email || undefined);
         }
-      } catch (error) {
-        console.error('Error handling redirect result:', error);
+      } catch (error: any) {
+        console.warn('Google redirect err:', error?.code, error?.message);
         // Non-fatal error, continue with normal auth flow
       }
     };

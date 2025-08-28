@@ -38,7 +38,7 @@ const LandingPage: React.FC = () => {
       <header className="absolute top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center">
+            <Link to="/" className="flex items-center" data-testid="nav-home-logo">
               <VayraLogo className="h-8 w-auto" />
             </Link>
             <div className="flex items-center space-x-4">
@@ -75,7 +75,7 @@ const LandingPage: React.FC = () => {
                      ...(window.matchMedia('(prefers-reduced-motion: reduce)').matches && { duration: 0.01, repeat: 0 })
                    }}
                  >
-                   <VayraLogo className="h-24 md:h-36 w-auto" width={480} height={144} />
+                   <VayraLogo className="h-24 md:h-36 w-auto" width={480} height={144} data-testid="hero-logo" />
                  </motion.div>
                </motion.div>
                

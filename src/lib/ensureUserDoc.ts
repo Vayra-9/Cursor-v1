@@ -1,18 +1,18 @@
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
 
-export async function ensureUserDoc() {
-  const uid = auth.currentUser?.uid;
-  if (!uid) return;
+export async function ensureUserDoc(uid?: string, email?: string) {
+  const userId = uid || auth.currentUser?.uid;
+  if (!userId) return;
   
-  const ref = doc(db, "users", uid);
+  const ref = doc(db, "users", userId);
   const snap = await getDoc(ref);
   
   if (!snap.exists()) {
     await setDoc(ref, {
-      createdAt: serverTimestamp(),
+      email: email || auth.currentUser?.email,
       plan: "free",
-      profile: { email: auth.currentUser?.email || null }
-    });
+      createdAt: serverTimestamp()
+    }, { merge: true });
   }
 }
