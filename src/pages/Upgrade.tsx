@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Crown, Check, ArrowRight, Star, Zap, Rocket } from 'lucide-react';
 import VayraLogo from '@/components/ui/VayraLogo';
 import { useAuth } from '@/contexts/AuthContext';
+import PlanSetter from '@/components/qa/PlanSetter';
 
 const Upgrade: React.FC = () => {
   const { user } = useAuth();
@@ -224,6 +225,9 @@ const Upgrade: React.FC = () => {
             </div>
           </div>
         </motion.div>
+        
+        {/* QA Plan Setter (DEV only) */}
+        {import.meta.env.DEV && <PlanSetter />}
       </div>
     </div>
   );

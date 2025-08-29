@@ -45,35 +45,13 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Navigate to /auth/sign-in page.
+        # Toggle theme switcher to light mode by clicking the 'Switch to Light mode' button.
         frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a').nth(0)
+        elem = frame.locator('xpath=html/body/div/div/header/div/div/div/div/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Input registered email and password.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Assert user is authenticated by checking the presence of the welcome message on the dashboard
-        frame = context.pages[-1]
-        welcome_message = await frame.locator('text=Welcome to your VAYRA dashboard').text_content()
-        assert welcome_message is not None and 'Welcome to your VAYRA dashboard' in welcome_message, 'User is not redirected to dashboard or not authenticated properly'
-        # Assert the current plan is displayed correctly
-        current_plan_text = await frame.locator('text=free').text_content()
-        assert current_plan_text is not None and 'free' in current_plan_text.lower(), 'Current plan is not displayed or incorrect'
+        assert False, 'Test failed: Unable to verify expected result due to unknown expected outcome.'
         await asyncio.sleep(5)
     
     finally:

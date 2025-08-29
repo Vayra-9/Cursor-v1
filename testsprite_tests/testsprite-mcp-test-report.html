@@ -47,281 +47,301 @@
 <ul>
 <li><strong>Project Name:</strong> Vayra-v2</li>
 <li><strong>Version:</strong> 0.1.0</li>
-<li><strong>Date:</strong> 2025-08-28</li>
+<li><strong>Date:</strong> 2025-08-29</li>
 <li><strong>Prepared by:</strong> TestSprite AI Team</li>
 </ul>
 <hr>
 <h2>2️⃣ Requirement Validation Summary</h2>
-<h3>Requirement: Landing Page &amp; Hero Section</h3>
+<h3>Requirement: Landing Page and Branding</h3>
 <ul>
-<li><strong>Description:</strong> Landing page with animated hero section, VAYRA branding, and responsive design.</li>
+<li><strong>Description:</strong> Core landing page with VAYRA branding and hero section.</li>
 </ul>
 <h4>Test 1</h4>
 <ul>
 <li><strong>Test ID:</strong> TC001</li>
-<li><strong>Test Name:</strong> Verify landing page VAYRA logo presence and size</li>
-<li><strong>Test Code:</strong> <a href="./TC001_Verify_landing_page_VAYRA_logo_presence_and_size.py">code_file</a></li>
-<li><strong>Test Error:</strong> N/A</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/87ab8b8b-4a0e-478c-b34e-4131942b64b0</li>
-<li><strong>Status:</strong> ✅ Passed</li>
-<li><strong>Severity:</strong> LOW</li>
-<li><strong>Analysis / Findings:</strong> Exactly one VAYRA logo SVG is properly rendered above the hero H1 with correct dimensions and no duplicates, ensuring branding consistency.</li>
+<li><strong>Test Name:</strong> Landing Page Logo and Hero Verification</li>
+<li><strong>Test Code:</strong> <a href="./TC001_Landing_Page_Logo_and_Hero_Verification.py">code_file</a></li>
+<li><strong>Test Error:</strong> The landing page at http://localhost:5174/ does not display any branded SVG logo above the hero H1 element. No hero H1 element or branded SVG logo is present or visible.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/ee81a4bb-68a1-48ad-a0ed-eebf1534dce0</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Landing page failed to display the branded SVG logo above the hero H1 element, indicating that the logo component is missing or not rendering properly. This breaks the core branding and visual cue requirements for the landing page.</li>
 </ul>
 <hr>
 <h4>Test 2</h4>
 <ul>
-<li><strong>Test ID:</strong> TC002</li>
-<li><strong>Test Name:</strong> Validate animated hero logo behavior and preferences</li>
-<li><strong>Test Code:</strong> <a href="./TC002_Validate_animated_hero_logo_behavior_and_preferences.py">code_file</a></li>
+<li><strong>Test ID:</strong> TC015</li>
+<li><strong>Test Name:</strong> Hero Logo Animation and Reduced Motion Preference</li>
+<li><strong>Test Code:</strong> <a href="./TC015_Hero_Logo_Animation_and_Reduced_Motion_Preference.py">code_file</a></li>
 <li><strong>Test Error:</strong> N/A</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/bea5a15b-4cff-483a-9677-5918611ba998</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/cac39beb-b491-41e2-9fc2-a633be6a67ea</li>
 <li><strong>Status:</strong> ✅ Passed</li>
 <li><strong>Severity:</strong> LOW</li>
-<li><strong>Analysis / Findings:</strong> Hero logo animates fade and scale on load without causing layout shifts and respects user reduced-motion preferences, providing accessible and smooth visual experience.</li>
-</ul>
-<hr>
-<h3>Requirement: PWA Configuration and Assets</h3>
-<ul>
-<li><strong>Description:</strong> Progressive Web App setup with service worker, manifest, and asset management.</li>
-</ul>
-<h4>Test 1</h4>
-<ul>
-<li><strong>Test ID:</strong> TC003</li>
-<li><strong>Test Name:</strong> Check PWA assets presence and accessibility</li>
-<li><strong>Test Code:</strong> <a href="./TC003_Check_PWA_assets_presence_and_accessibility.py">code_file</a></li>
-<li><strong>Test Error:</strong> N/A</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/2df86fdd-8ef5-4668-99cb-17159ed98629</li>
-<li><strong>Status:</strong> ✅ Passed</li>
-<li><strong>Severity:</strong> LOW</li>
-<li><strong>Analysis / Findings:</strong> All SVG, favicon, and PWA icons return HTTP 200 statuses and manifest references are correct with maskable attribute, ensuring proper PWA functionality.</li>
-</ul>
-<hr>
-<h4>Test 2</h4>
-<ul>
-<li><strong>Test ID:</strong> TC013</li>
-<li><strong>Test Name:</strong> Service worker registration and offline capability</li>
-<li><strong>Test Code:</strong> <a href="./TC013_Service_worker_registration_and_offline_capability.py">code_file</a></li>
-<li><strong>Test Error:</strong> N/A</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/70cb6639-f964-42d0-b4f7-d2369bc5069b</li>
-<li><strong>Status:</strong> ✅ Passed</li>
-<li><strong>Severity:</strong> LOW</li>
-<li><strong>Analysis / Findings:</strong> Service worker registers only in production environment and enables offline caching without disrupting updates, enabling PWA offline capabilities.</li>
+<li><strong>Analysis / Findings:</strong> Test passed validating hero logo animations respect OS reduced motion preferences, ensuring compliance with accessibility standards for motion reduction.</li>
 </ul>
 <hr>
 <h3>Requirement: Authentication System</h3>
 <ul>
-<li><strong>Description:</strong> Email/password and Google OAuth authentication with Firebase integration.</li>
+<li><strong>Description:</strong> Email/password and Google OAuth authentication with popup/redirect fallback.</li>
 </ul>
 <h4>Test 1</h4>
 <ul>
-<li><strong>Test ID:</strong> TC004</li>
-<li><strong>Test Name:</strong> Email/Password sign-up and Firestore user doc creation</li>
-<li><strong>Test Code:</strong> <a href="./TC004_EmailPassword_sign_up_and_Firestore_user_doc_creation.py">code_file</a></li>
+<li><strong>Test ID:</strong> TC002</li>
+<li><strong>Test Name:</strong> Email/Password Authentication Success</li>
+<li><strong>Test Code:</strong> <a href="./TC002_EmailPassword_Authentication_Success.py">code_file</a></li>
 <li><strong>Test Error:</strong> N/A</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/b680b557-c2c3-481c-adac-2509bb9beef7</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/fa2c9cdb-dbca-40a5-bcd9-e3ab1bf9c4f8</li>
 <li><strong>Status:</strong> ✅ Passed</li>
 <li><strong>Severity:</strong> LOW</li>
-<li><strong>Analysis / Findings:</strong> Successful user registration via email/password using Firebase and creation of Firestore user document with default free plan, ensuring correct onboarding flow.</li>
+<li><strong>Analysis / Findings:</strong> The test passed as the authentication system correctly allows sign in with valid credentials and persists the user session, validating normal login flow.</li>
 </ul>
 <hr>
 <h4>Test 2</h4>
 <ul>
-<li><strong>Test ID:</strong> TC005</li>
-<li><strong>Test Name:</strong> Google OAuth sign-in and Firestore user doc creation</li>
-<li><strong>Test Code:</strong> <a href="./TC005_Google_OAuth_sign_in_and_Firestore_user_doc_creation.py">code_file</a></li>
-<li><strong>Test Error:</strong> Google OAuth sign-in test failed due to security restrictions blocking OAuth workflow. Cannot verify user authentication or Firestore user document creation. Please fix OAuth environment or client configuration.</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/316e136f-f1a9-4551-982b-6c458026f985</li>
+<li><strong>Test ID:</strong> TC003</li>
+<li><strong>Test Name:</strong> Google OAuth Authentication Success</li>
+<li><strong>Test Code:</strong> <a href="./TC003_Google_OAuth_Authentication_Success.py">code_file</a></li>
+<li><strong>Test Error:</strong> Google OAuth sign-in via popup method failed repeatedly due to browser or app security restrictions. Redirect fallback method could not be tested.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/33e26013-6af0-4741-9f67-a11bff88e201</li>
 <li><strong>Status:</strong> ❌ Failed</li>
 <li><strong>Severity:</strong> HIGH</li>
-<li><strong>Analysis / Findings:</strong> OAuth workflow is blocked by security restrictions and environment misconfiguration, preventing the verification of successful Google sign-in and user doc creation.</li>
+<li><strong>Analysis / Findings:</strong> The Google OAuth sign-in failed due to browser/app security restrictions blocking the popup, and the redirect method was untested, indicating OAuth flow is currently broken or misconfigured.</li>
 </ul>
 <hr>
 <h4>Test 3</h4>
 <ul>
-<li><strong>Test ID:</strong> TC006</li>
-<li><strong>Test Name:</strong> Authentication error handling and friendly feedback</li>
-<li><strong>Test Code:</strong> <a href="./TC006_Authentication_error_handling_and_friendly_feedback.py">code_file</a></li>
+<li><strong>Test ID:</strong> TC004</li>
+<li><strong>Test Name:</strong> Authentication Failure with Invalid Credentials</li>
+<li><strong>Test Code:</strong> <a href="./TC004_Authentication_Failure_with_Invalid_Credentials.py">code_file</a></li>
 <li><strong>Test Error:</strong> N/A</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/e3abe985-74a5-4469-8953-c8d337bdb66e</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/c48812c2-aff6-4776-a0a6-c9f5ca0c7cbe</li>
 <li><strong>Status:</strong> ✅ Passed</li>
 <li><strong>Severity:</strong> LOW</li>
-<li><strong>Analysis / Findings:</strong> User-friendly and specific error messages for invalid credentials, duplicate emails, network failures, and unexpected errors, enhancing UX during authentication.</li>
+<li><strong>Analysis / Findings:</strong> The test passed showing correct feedback UI on authentication failure with invalid credentials, ensuring good user experience on invalid login attempts.</li>
 </ul>
 <hr>
-<h4>Test 4</h4>
+<h3>Requirement: Plan Gating and Upgrade Flow</h3>
+<ul>
+<li><strong>Description:</strong> Subscription plan enforcement with upgrade flow and navigation.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC005</li>
+<li><strong>Test Name:</strong> Plan Gating Enforcement for Free Users</li>
+<li><strong>Test Code:</strong> <a href="./TC005_Plan_Gating_Enforcement_for_Free_Users.py">code_file</a></li>
+<li><strong>Test Error:</strong> Test completed. Verified that free-tier users are redirected to the Upgrade page when attempting to access premium features, and premium content is blurred with upgrade prompts. However, clicking the upgrade prompts does not initiate the upgrade flow or redirect to the Upgrade page.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/a0167ca4-e7aa-47cb-a15e-33f96333af71</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> While free-tier users are redirected and premium content is blurred correctly, clicking upgrade prompts fails to initiate the upgrade flow or redirect users, breaking the upgrade process critical to monetization.</li>
+</ul>
+<hr>
+<h3>Requirement: Currency and Language Support</h3>
+<ul>
+<li><strong>Description:</strong> Multi-currency selector and language switching functionality.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC006</li>
+<li><strong>Test Name:</strong> Multi-Currency Selector Functionality</li>
+<li><strong>Test Code:</strong> <a href="./TC006_Multi_Currency_Selector_Functionality.py">code_file</a></li>
+<li><strong>Test Error:</strong> Testing stopped due to navigation blockage caused by plan gating enforcement. User cannot access the dashboard to test currency selector functionality.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/32f8c575-4c52-4916-90d7-1839256652cd</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> MEDIUM</li>
+<li><strong>Analysis / Findings:</strong> Testing could not proceed because plan gating blocks navigation to the dashboard where currency selector is located. The currency selector functionality remains unverified.</li>
+</ul>
+<hr>
+<h4>Test 2</h4>
 <ul>
 <li><strong>Test ID:</strong> TC007</li>
-<li><strong>Test Name:</strong> Redirect unauthenticated users accessing dashboard</li>
-<li><strong>Test Code:</strong> <a href="./TC007_Redirect_unauthenticated_users_accessing_dashboard.py">code_file</a></li>
-<li><strong>Test Error:</strong> N/A</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/0398da7e-d8c9-41f2-9045-7afb1ec15a97</li>
-<li><strong>Status:</strong> ✅ Passed</li>
-<li><strong>Severity:</strong> LOW</li>
-<li><strong>Analysis / Findings:</strong> Unauthenticated users visiting the dashboard are promptly redirected to the sign-in page, enforcing access control.</li>
+<li><strong>Test Name:</strong> Multi-Language Support with Dynamic UI Adaptation</li>
+<li><strong>Test Code:</strong> <a href="./TC007_Multi_Language_Support_with_Dynamic_UI_Adaptation.py">code_file</a></li>
+<li><strong>Test Error:</strong> Testing stopped due to broken navigation from upgrade page to dashboard and missing language selector. Cannot verify dynamic language switching or consistency across pages.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/1a41712d-b36a-4d60-a278-5bfb4fc2c1b4</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Test halted due to broken navigation from upgrade page to dashboard and missing language selector, preventing verification of dynamic language switching and translation consistency.</li>
 </ul>
 <hr>
-<h3>Requirement: Plan Management and Subscription</h3>
+<h3>Requirement: Navigation and Accessibility</h3>
 <ul>
-<li><strong>Description:</strong> Plan-based feature gating and subscription upgrade system.</li>
+<li><strong>Description:</strong> Dashboard navigation and accessibility compliance.</li>
 </ul>
 <h4>Test 1</h4>
 <ul>
 <li><strong>Test ID:</strong> TC008</li>
-<li><strong>Test Name:</strong> Plan gating redirects free users to upgrade page</li>
-<li><strong>Test Code:</strong> <a href="./TC008_Plan_gating_redirects_free_users_to_upgrade_page.py">code_file</a></li>
-<li><strong>Test Error:</strong> Tested access to premium dashboard features as a free plan user. Expected redirection to upgrade subscription page did not occur. Issue reported to development team. Task complete.</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/fbd1eaa6-807a-4c06-a20a-c4768d9e756d</li>
+<li><strong>Test Name:</strong> Dashboard Sidebar and Navigation Accessibility</li>
+<li><strong>Test Code:</strong> <a href="./TC008_Dashboard_Sidebar_and_Navigation_Accessibility.py">code_file</a></li>
+<li><strong>Test Error:</strong> Testing stopped due to broken navigation from upgrade plans page to Dashboard. The 'Back to Dashboard' button does not work, preventing access to the Dashboard page.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/2c1d207d-be74-4316-acba-920edc537aa8</li>
 <li><strong>Status:</strong> ❌ Failed</li>
 <li><strong>Severity:</strong> HIGH</li>
-<li><strong>Analysis / Findings:</strong> Free plan users accessing premium features are not redirected to the upgrade subscription page as expected, leading to unauthorized access.</li>
-</ul>
-<hr>
-<h4>Test 2</h4>
-<ul>
-<li><strong>Test ID:</strong> TC009</li>
-<li><strong>Test Name:</strong> Subscription upgrade flow correctness</li>
-<li><strong>Test Code:</strong> <a href="./TC009_Subscription_upgrade_flow_correctness.py">code_file</a></li>
-<li><strong>Test Error:</strong> Testing stopped due to non-functional upgrade buttons on the dashboard. Upgrade process cannot be tested as buttons do not initiate any action or UI change. Please investigate and fix this issue.</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/fd1c5008-1a9e-4703-9c80-933fec37143c</li>
-<li><strong>Status:</strong> ❌ Failed</li>
-<li><strong>Severity:</strong> HIGH</li>
-<li><strong>Analysis / Findings:</strong> Non-functional subscription upgrade buttons on the dashboard; users cannot initiate plan upgrades and related UI does not respond.</li>
-</ul>
-<hr>
-<h3>Requirement: UI Components and User Experience</h3>
-<ul>
-<li><strong>Description:</strong> Theme switching, language selection, and currency management components.</li>
-</ul>
-<h4>Test 1</h4>
-<ul>
-<li><strong>Test ID:</strong> TC010</li>
-<li><strong>Test Name:</strong> Theme switching persists and applies correctly</li>
-<li><strong>Test Code:</strong> <a href="./TC010_Theme_switching_persists_and_applies_correctly.py">code_file</a></li>
-<li><strong>Test Error:</strong> N/A</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/786b9df1-3e77-4b2d-bc93-fb9970e6eadf</li>
-<li><strong>Status:</strong> ✅ Passed</li>
-<li><strong>Severity:</strong> LOW</li>
-<li><strong>Analysis / Findings:</strong> Theme switcher toggles between light and dark modes, persists user preference, and applies theme consistently across UI components.</li>
-</ul>
-<hr>
-<h4>Test 2</h4>
-<ul>
-<li><strong>Test ID:</strong> TC011</li>
-<li><strong>Test Name:</strong> Language selector switches language and updates UI text</li>
-<li><strong>Test Code:</strong> <a href="./TC011_Language_selector_switches_language_and_updates_UI_text.py">code_file</a></li>
-<li><strong>Test Error:</strong> Tested the multi-language selector on the landing page. The language selector changes the selected language to Spanish but the UI text does not update instantly as required. This is a failure of the language toggle functionality. Stopping further testing.</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/cdd10cc7-6cd3-4c7e-baa3-76e6ac08c1e0</li>
-<li><strong>Status:</strong> ❌ Failed</li>
-<li><strong>Severity:</strong> MEDIUM</li>
-<li><strong>Analysis / Findings:</strong> Language selector updates the selected language state but does not update UI text instantly, violating real-time language toggle requirements.</li>
-</ul>
-<hr>
-<h4>Test 3</h4>
-<ul>
-<li><strong>Test ID:</strong> TC012</li>
-<li><strong>Test Name:</strong> Currency selector updates price and monetary values</li>
-<li><strong>Test Code:</strong> <a href="./TC012_Currency_selector_updates_price_and_monetary_values.py">code_file</a></li>
-<li><strong>Test Error:</strong> Testing stopped due to quota exceeded error on sign-in page. Currency selector change verified on landing page only. Unable to verify currency updates on dashboard or other authenticated pages due to sign-in blockage. Please resolve quota issue to continue testing.</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/ab6bfdc0-1710-486e-8475-9eca7c3d5821</li>
-<li><strong>Status:</strong> ❌ Failed</li>
-<li><strong>Severity:</strong> HIGH</li>
-<li><strong>Analysis / Findings:</strong> Quota exceeded error on sign-in blocking authentication, resulting in incomplete verification of currency selector propagation beyond landing page.</li>
-</ul>
-<hr>
-<h3>Requirement: Error Handling and System Stability</h3>
-<ul>
-<li><strong>Description:</strong> Error boundaries, console error handling, and system stability across routes.</li>
-</ul>
-<h4>Test 1</h4>
-<ul>
-<li><strong>Test ID:</strong> TC014</li>
-<li><strong>Test Name:</strong> Error boundaries display fallback UI on component errors</li>
-<li><strong>Test Code:</strong> <a href="./TC014_Error_boundaries_display_fallback_UI_on_component_errors.py">code_file</a></li>
-<li><strong>Test Error:</strong> Testing stopped due to inability to navigate to dashboard from sign-in page. The critical path to simulate runtime errors and verify error boundary fallback UI on key routes is blocked. Please investigate and fix navigation issues to enable proper QA testing.</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/06932b37-7ae9-452d-ad1a-731ddf163bbe</li>
-<li><strong>Status:</strong> ❌ Failed</li>
-<li><strong>Severity:</strong> HIGH</li>
-<li><strong>Analysis / Findings:</strong> Inability to navigate to the dashboard from sign-in blocks testing of runtime errors and error boundary fallback UI, preventing validation of error handling on key routes.</li>
-</ul>
-<hr>
-<h4>Test 2</h4>
-<ul>
-<li><strong>Test ID:</strong> TC018</li>
-<li><strong>Test Name:</strong> Console and network error handling across main routes</li>
-<li><strong>Test Code:</strong> <a href="./TC018_Console_and_network_error_handling_across_main_routes.py">code_file</a></li>
-<li><strong>Test Error:</strong> N/A</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/8bfb8975-cfa7-4460-b0ad-96a7bfa75ed6</li>
-<li><strong>Status:</strong> ✅ Passed</li>
-<li><strong>Severity:</strong> LOW</li>
-<li><strong>Analysis / Findings:</strong> No console errors or network 4xx/5xx errors are present on landing, auth, dashboard, and upgrade pages under normal conditions, indicating stable runtime environment.</li>
-</ul>
-<hr>
-<h3>Requirement: Accessibility and Performance</h3>
-<ul>
-<li><strong>Description:</strong> WCAG compliance, keyboard navigation, responsive design, and performance metrics.</li>
-</ul>
-<h4>Test 1</h4>
-<ul>
-<li><strong>Test ID:</strong> TC015</li>
-<li><strong>Test Name:</strong> Accessibility compliance and keyboard navigation</li>
-<li><strong>Test Code:</strong> <a href="./TC015_Accessibility_compliance_and_keyboard_navigation.py">code_file</a></li>
-<li><strong>Test Error:</strong> N/A</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/ae0bb8db-3f66-4f0b-8480-b95197ac7d48</li>
-<li><strong>Status:</strong> ✅ Passed</li>
-<li><strong>Severity:</strong> LOW</li>
-<li><strong>Analysis / Findings:</strong> Keyboard navigation and screen reader compliance to WCAG 2.1 AA standards, including focus visibility and appropriate ARIA attributes, ensuring accessibility.</li>
+<li><strong>Analysis / Findings:</strong> Accessibility testing of dashboard sidebar could not proceed as navigation is broken preventing access to dashboard. The 'Back to Dashboard' button fails to work.</li>
 </ul>
 <hr>
 <h4>Test 2</h4>
 <ul>
 <li><strong>Test ID:</strong> TC016</li>
-<li><strong>Test Name:</strong> Responsive layout and UI element positioning</li>
-<li><strong>Test Code:</strong> <a href="./TC016_Responsive_layout_and_UI_element_positioning.py">code_file</a></li>
+<li><strong>Test Name:</strong> No Critical Accessibility Violations on Key Pages</li>
+<li><strong>Test Code:</strong> <a href="./TC016_No_Critical_Accessibility_Violations_on_Key_Pages.py">code_file</a></li>
+<li><strong>Test Error:</strong> Reported the navigation issue preventing access to Dashboard from Upgrade page. Stopping further testing as the Dashboard page is critical for completing axe-core accessibility scans.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/7e01b984-acdd-47d9-9bc4-8b0d45b5a06f</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Accessibility scans could not proceed as navigation blocking upgrade page to dashboard prevents reaching critical pages necessary for axe-core testing.</li>
+</ul>
+<hr>
+<h3>Requirement: PWA Features</h3>
+<ul>
+<li><strong>Description:</strong> Progressive Web App functionality and service worker.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC009</li>
+<li><strong>Test Name:</strong> PWA Offline Caching and Service Worker Registration</li>
+<li><strong>Test Code:</strong> <a href="./TC009_PWA_Offline_Caching_and_Service_Worker_Registration.py">code_file</a></li>
+<li><strong>Test Error:</strong> Testing stopped due to navigation issue on upgrade plans page preventing access to dashboard and verification of service worker registration and offline caching.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/2cef843c-189a-4375-94a0-f369c4cb1329</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Unable to verify PWA service worker registration and offline caching as the upgrade page navigation issue prevents access to dashboard where these features are tested.</li>
+</ul>
+<hr>
+<h4>Test 2</h4>
+<ul>
+<li><strong>Test ID:</strong> TC014</li>
+<li><strong>Test Name:</strong> PWA Manifest and Icon Loading</li>
+<li><strong>Test Code:</strong> <a href="./TC014_PWA_Manifest_and_Icon_Loading.py">code_file</a></li>
 <li><strong>Test Error:</strong> N/A</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/b51931f1-dc36-452e-aaf7-2ab0aa412f39</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/c40aa742-3734-4e1a-a178-ceadd8af8f2b</li>
 <li><strong>Status:</strong> ✅ Passed</li>
 <li><strong>Severity:</strong> LOW</li>
-<li><strong>Analysis / Findings:</strong> Responsive layout on mobile and desktop viewports without content overlap, clipping, or layout breaks, providing a good user experience across devices.</li>
+<li><strong>Analysis / Findings:</strong> Test passed confirming PWA manifest and icons load correctly with HTTP 200, proper masking, and favicon support, demonstrating proper configuration of PWA assets.</li>
+</ul>
+<hr>
+<h3>Requirement: Security and Data Isolation</h3>
+<ul>
+<li><strong>Description:</strong> Firestore security rules and user data isolation.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC010</li>
+<li><strong>Test Name:</strong> Firestore Security Rules and User Data Isolation</li>
+<li><strong>Test Code:</strong> <a href="./TC010_Firestore_Security_Rules_and_User_Data_Isolation.py">code_file</a></li>
+<li><strong>Test Error:</strong> User B sign-in failed due to invalid credentials. Cannot proceed with testing User B's access to their own Firestore documents without valid credentials.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/69b1d14d-e538-4434-9c45-f66cbcd11505</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> User B failed to sign in due to invalid credentials, blocking testing of Firestore security rules and user data isolation for that user.</li>
+</ul>
+<hr>
+<h3>Requirement: Dashboard Functionality</h3>
+<ul>
+<li><strong>Description:</strong> Core dashboard features and financial modules.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC011</li>
+<li><strong>Test Name:</strong> Dashboard Financial Modules Normal Flow</li>
+<li><strong>Test Code:</strong> <a href="./TC011_Dashboard_Financial_Modules_Normal_Flow.py">code_file</a></li>
+<li><strong>Test Error:</strong> The initial page at http://localhost:5174/ is completely empty with no visible sign in or navigation elements. Therefore, I could not proceed with the testing steps.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/5077fa5f-78f2-4db8-a48a-10f9786698c9</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Testing could not start because the initial page is blank with no visible signin or nav elements, likely a loading or routing failure that blocks all downstream dashboard functionality tests.</li>
+</ul>
+<hr>
+<h4>Test 2</h4>
+<ul>
+<li><strong>Test ID:</strong> TC012</li>
+<li><strong>Test Name:</strong> AI Chat and Copilot Functional Tests</li>
+<li><strong>Test Code:</strong> <a href="./TC012_AI_Chat_and_Copilot_Functional_Tests.py">code_file</a></li>
+<li><strong>Test Error:</strong> Testing stopped due to critical navigation bug on the upgrade page preventing access to Dashboard and AI Chat or Copilot interface. Unable to proceed with AI feature testing.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/01f61454-04d1-4c9b-a60e-16b1233cbf23</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> AI Chat and Copilot tests could not proceed due to critical navigation bug blocking dashboard access, preventing usage of these features and their validation.</li>
+</ul>
+<hr>
+<h3>Requirement: Theme and UI Functionality</h3>
+<ul>
+<li><strong>Description:</strong> Theme switching and responsive layout functionality.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC013</li>
+<li><strong>Test Name:</strong> Theme Switching Functionality</li>
+<li><strong>Test Code:</strong> <a href="./TC013_Theme_Switching_Functionality.py">code_file</a></li>
+<li><strong>Test Error:</strong> Testing stopped due to critical issue: Theme toggle back to Light mode on Pricing page is not accessible or misidentified, causing navigation to account creation page instead.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/2241fa63-50f8-403a-974c-7ae39af89906</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Theme toggle functionality testing stopped because theme toggle on Pricing page back to Light mode is inaccessible or misidentified, causing redirection to account creation page instead.</li>
+</ul>
+<hr>
+<h4>Test 2</h4>
+<ul>
+<li><strong>Test ID:</strong> TC019</li>
+<li><strong>Test Name:</strong> Responsive Layouts Across Multiple Breakpoints</li>
+<li><strong>Test Code:</strong> <a href="./TC019_Responsive_Layouts_Across_Multiple_Breakpoints.py">code_file</a></li>
+<li><strong>Test Error:</strong> The app layout was verified on the desktop viewport with no visible shifts, overlaps, or misalignments. However, the testing for tablet and mobile viewports, including orientation changes, was not performed.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/87c8223d-b2dc-466a-a7af-db29cb1288b8</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> MEDIUM</li>
+<li><strong>Analysis / Findings:</strong> Partial test completion: desktop viewport layout verified with no issues but tablet and mobile viewport testing including orientation changes was not performed, leaving responsive behavior unverified for those breakpoints.</li>
+</ul>
+<hr>
+<h3>Requirement: Performance and Quality Assurance</h3>
+<ul>
+<li><strong>Description:</strong> Lighthouse performance scores and error handling.</li>
+</ul>
+<h4>Test 1</h4>
+<ul>
+<li><strong>Test ID:</strong> TC017</li>
+<li><strong>Test Name:</strong> Lighthouse Audit Scores Verification</li>
+<li><strong>Test Code:</strong> <a href="./TC017_Lighthouse_Audit_Scores_Verification.py">code_file</a></li>
+<li><strong>Test Error:</strong> N/A</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/eb48e5fa-c76c-4a88-83a2-c1c14e2ab55a</li>
+<li><strong>Status:</strong> ✅ Passed</li>
+<li><strong>Severity:</strong> LOW</li>
+<li><strong>Analysis / Findings:</strong> Test passed confirming Lighthouse audit scores meet or exceed 90 in core categories for Landing and Dashboard pages, indicating good performance and SEO.</li>
+</ul>
+<hr>
+<h4>Test 2</h4>
+<ul>
+<li><strong>Test ID:</strong> TC018</li>
+<li><strong>Test Name:</strong> No Console Errors or Failed Network Requests</li>
+<li><strong>Test Code:</strong> <a href="./TC018_No_Console_Errors_or_Failed_Network_Requests.py">code_file</a></li>
+<li><strong>Test Error:</strong> Testing stopped due to broken navigation from upgrade page to dashboard. No console errors or failed network requests related to branding or core assets were found up to this point.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/d3a65cda-63a6-4444-818e-e16a7fc3219d</li>
+<li><strong>Status:</strong> ❌ Failed</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Test halted due to broken navigation preventing dashboard access. Until resolved, no complete verification of console errors or failed network requests during user navigation can be made.</li>
 </ul>
 <hr>
 <h4>Test 3</h4>
 <ul>
-<li><strong>Test ID:</strong> TC017</li>
-<li><strong>Test Name:</strong> Lighthouse performance, accessibility, best practices, and SEO scores</li>
-<li><strong>Test Code:</strong> <a href="./TC017_Lighthouse_performance_accessibility_best_practices_and_SEO_scores.py">code_file</a></li>
-<li><strong>Test Error:</strong> Unable to perform Google search due to reCAPTCHA block. Proceeding to run Lighthouse audit directly on landing page at http://localhost:5174 for mobile with goal to verify scores ≥ 90 across key categories.</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/3b6d3ea6-a68c-4942-92f9-f153d8b4ffb7</li>
+<li><strong>Test ID:</strong> TC020</li>
+<li><strong>Test Name:</strong> Error Boundary Handling</li>
+<li><strong>Test Code:</strong> <a href="./TC020_Error_Boundary_Handling.py">code_file</a></li>
+<li><strong>Test Error:</strong> Reported navigation issue blocking access to dashboard and error boundary test route. Cannot proceed with error boundary testing due to this critical navigation failure.</li>
+<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/e4a92fbe-ed30-4500-bbc1-110682c420ea/43f73e64-f92a-4a8c-a98e-27f04929a7c9</li>
 <li><strong>Status:</strong> ❌ Failed</li>
-<li><strong>Severity:</strong> MEDIUM</li>
-<li><strong>Analysis / Findings:</strong> Google search automation was blocked by reCAPTCHA, preventing scripted Lighthouse audits on dashboard page; direct Lighthouse audit run on landing page was completed but affected by backend permission errors affecting score validation.</li>
-</ul>
-<hr>
-<h3>Requirement: Session Management and Firestore Integration</h3>
-<ul>
-<li><strong>Description:</strong> User session persistence and Firestore database operations.</li>
-</ul>
-<h4>Test 1</h4>
-<ul>
-<li><strong>Test ID:</strong> TC019</li>
-<li><strong>Test Name:</strong> Session persistence after page reload</li>
-<li><strong>Test Code:</strong> <a href="./TC019_Session_persistence_after_page_reload.py">code_file</a></li>
-<li><strong>Test Error:</strong> Test completed. User authentication and session persistence verified. However, Firestore read/write operations could not be verified due to lack of feedback or effect from UI triggers. Please investigate the Firestore operation triggers on the dashboard. No permission errors were observed during login or navigation.</li>
-<li><strong>Test Visualization and Result:</strong> https://www.testsprite.com/dashboard/mcp/tests/9dc3e41f-e406-481b-8a34-6db3b5050403/8b6b7bbb-4682-46e2-ac0c-3dfec0bb56f0</li>
-<li><strong>Status:</strong> ❌ Failed</li>
-<li><strong>Severity:</strong> MEDIUM</li>
-<li><strong>Analysis / Findings:</strong> Although user authentication and session persistence are verified, Firestore read/write operations could not be confirmed due to lack of UI triggers or feedback, leaving database interaction uncertain.</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Analysis / Findings:</strong> Test could not start because of navigation issues blocking access to dashboard and error boundary test routes, so error boundary handling remains unverified.</li>
 </ul>
 <hr>
 <h2>3️⃣ Coverage &amp; Matching Metrics</h2>
 <ul>
-<li><strong>85% of product requirements tested</strong></li>
-<li><strong>58% of tests passed</strong></li>
+<li><strong>25% of product requirements tested</strong></li>
+<li><strong>25% of tests passed</strong></li>
 <li><strong>Key gaps / risks:</strong></li>
 </ul>
 <blockquote>
-<p>85% of product requirements had at least one test generated.
-58% of tests passed fully.
-Risks: Google OAuth configuration issues, plan gating logic problems, language selector functionality, Firebase quota limits, and navigation issues blocking critical testing paths.</p>
+<p>25% of product requirements had at least one test generated.<br>
+25% of tests passed fully.<br>
+Risks: Critical navigation issues blocking dashboard access; Google OAuth popup blocked; plan gating upgrade flow broken; landing page logo missing.</p>
 </blockquote>
 <table>
 <thead>
@@ -335,108 +355,226 @@ Risks: Google OAuth configuration issues, plan gating logic problems, language s
 </thead>
 <tbody>
 <tr>
-<td>Landing Page &amp; Hero Section</td>
+<td>Landing Page and Branding</td>
 <td>2</td>
-<td>2</td>
+<td>1</td>
 <td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>PWA Configuration and Assets</td>
-<td>2</td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
+<td>1</td>
 </tr>
 <tr>
 <td>Authentication System</td>
-<td>4</td>
-<td>3</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Plan Management and Subscription</td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>2</td>
-</tr>
-<tr>
-<td>UI Components and User Experience</td>
-<td>3</td>
-<td>1</td>
-<td>0</td>
-<td>2</td>
-</tr>
-<tr>
-<td>Error Handling and System Stability</td>
-<td>2</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Accessibility and Performance</td>
 <td>3</td>
 <td>2</td>
 <td>0</td>
 <td>1</td>
 </tr>
 <tr>
-<td>Session Management and Firestore Integration</td>
+<td>Plan Gating and Upgrade Flow</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>1</td>
+</tr>
+<tr>
+<td>Currency and Language Support</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Navigation and Accessibility</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>PWA Features</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Security and Data Isolation</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Dashboard Functionality</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Theme and UI Functionality</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Performance and Quality</td>
+<td>3</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h2>4️⃣ Critical Issues Summary</h2>
-<h3>🔴 HIGH SEVERITY ISSUES (5)</h3>
+<h3>🔴 <strong>HIGH PRIORITY - BLOCKING ISSUES</strong></h3>
 <ol>
-<li><strong>Google OAuth Configuration</strong> - OAuth workflow blocked by security restrictions</li>
-<li><strong>Plan Gating Logic</strong> - Free users not redirected to upgrade page for premium features</li>
-<li><strong>Subscription Upgrade Flow</strong> - Non-functional upgrade buttons on dashboard</li>
-<li><strong>Currency Selector</strong> - Quota exceeded error blocking authentication testing</li>
-<li><strong>Error Boundary Testing</strong> - Navigation issues preventing error handling validation</li>
-</ol>
-<h3>🟡 MEDIUM SEVERITY ISSUES (2)</h3>
-<ol>
-<li><strong>Language Selector</strong> - UI text not updating instantly on language change</li>
-<li><strong>Lighthouse Performance</strong> - reCAPTCHA blocking automated audits</li>
-<li><strong>Session Management</strong> - Firestore operations not verifiable due to lack of UI feedback</li>
-</ol>
-<h3>🟢 LOW SEVERITY ISSUES (11)</h3>
-<p>All passed tests fall into this category, indicating good functionality in core areas.</p>
-<hr>
-<h2>5️⃣ Recommendations</h2>
-<h3>Immediate Actions Required:</h3>
-<ol>
-<li><strong>Fix Google OAuth Configuration</strong> - Resolve security restrictions and environment setup</li>
-<li><strong>Implement Plan Gating</strong> - Ensure free users are properly redirected to upgrade page</li>
-<li><strong>Debug Subscription Flow</strong> - Fix non-functional upgrade buttons and related UI</li>
-<li><strong>Resolve Firebase Quota</strong> - Address authentication quota limits</li>
-<li><strong>Fix Navigation Issues</strong> - Ensure proper routing from sign-in to dashboard</li>
-</ol>
-<h3>Secondary Improvements:</h3>
-<ol>
-<li><strong>Language Selector</strong> - Implement instant UI text updates</li>
-<li><strong>Error Boundary Testing</strong> - Enable proper navigation for error handling validation</li>
-<li><strong>Firestore Integration</strong> - Add UI feedback for database operations</li>
-<li><strong>Performance Monitoring</strong> - Bypass reCAPTCHA for automated audits</li>
-</ol>
-<hr>
-<h2>6️⃣ Test Artifacts</h2>
+<li>
+<p><strong>Navigation System Broken</strong></p>
 <ul>
-<li><strong>Screenshots:</strong> Available for all test cases via provided URLs</li>
-<li><strong>Console Logs:</strong> Comprehensive error logging captured during testing</li>
-<li><strong>Performance Metrics:</strong> Lighthouse scores affected by backend issues</li>
-<li><strong>Accessibility Reports:</strong> WCAG 2.1 AA compliance verified</li>
+<li>Upgrade page &quot;Back to Dashboard&quot; button non-functional</li>
+<li>Plan gating redirects working but upgrade flow broken</li>
+<li>Dashboard access blocked for most tests</li>
+</ul>
+</li>
+<li>
+<p><strong>Google OAuth Authentication</strong></p>
+<ul>
+<li>Popup blocked by browser security restrictions</li>
+<li>Redirect fallback untested</li>
+<li>OAuth flow completely non-functional</li>
+</ul>
+</li>
+<li>
+<p><strong>Landing Page Critical</strong></p>
+<ul>
+<li>VAYRA logo missing from hero section</li>
+<li>Core branding broken</li>
+<li>Page appears blank in some scenarios</li>
+</ul>
+</li>
+<li>
+<p><strong>Firebase Configuration</strong></p>
+<ul>
+<li>Firestore permission-denied errors</li>
+<li>Authentication API 400 errors</li>
+<li>Invalid credentials for test user B</li>
+</ul>
+</li>
+</ol>
+<h3>🟡 <strong>MEDIUM PRIORITY - FUNCTIONAL ISSUES</strong></h3>
+<ol>
+<li>
+<p><strong>Currency Selector</strong></p>
+<ul>
+<li>Cannot test due to navigation blocking</li>
+<li>Implementation exists but unverified</li>
+</ul>
+</li>
+<li>
+<p><strong>Responsive Design</strong></p>
+<ul>
+<li>Desktop layout verified</li>
+<li>Mobile/tablet testing incomplete</li>
+</ul>
+</li>
+<li>
+<p><strong>Theme Switching</strong></p>
+<ul>
+<li>Toggle misidentified on pricing page</li>
+<li>Navigation side effects</li>
+</ul>
+</li>
+</ol>
+<h3>🟢 <strong>WORKING FEATURES</strong></h3>
+<ol>
+<li><strong>Email/Password Authentication</strong> ✅</li>
+<li><strong>PWA Manifest &amp; Icons</strong> ✅</li>
+<li><strong>Hero Logo Animations</strong> ✅</li>
+<li><strong>Lighthouse Performance</strong> ✅</li>
+<li><strong>Error Feedback UI</strong> ✅</li>
+</ol>
+<hr>
+<h2>5️⃣ Recommendations for Development Team</h2>
+<h3><strong>Immediate Actions Required:</strong></h3>
+<ol>
+<li>
+<p><strong>Fix Navigation System</strong></p>
+<ul>
+<li>Investigate and resolve upgrade page routing issues</li>
+<li>Ensure &quot;Back to Dashboard&quot; functionality works</li>
+<li>Test all navigation paths thoroughly</li>
+</ul>
+</li>
+<li>
+<p><strong>Resolve Google OAuth</strong></p>
+<ul>
+<li>Configure browser security settings for popup testing</li>
+<li>Test redirect fallback flow</li>
+<li>Verify Firebase OAuth configuration</li>
+</ul>
+</li>
+<li>
+<p><strong>Fix Landing Page</strong></p>
+<ul>
+<li>Restore VAYRA logo in hero section</li>
+<li>Ensure proper component rendering</li>
+<li>Test page loading scenarios</li>
+</ul>
+</li>
+<li>
+<p><strong>Firebase Configuration</strong></p>
+<ul>
+<li>Review and fix Firestore security rules</li>
+<li>Update test credentials</li>
+<li>Resolve authentication API errors</li>
+</ul>
+</li>
+</ol>
+<h3><strong>Secondary Actions:</strong></h3>
+<ol>
+<li>
+<p><strong>Complete Currency Selector Testing</strong></p>
+<ul>
+<li>Test once navigation is fixed</li>
+<li>Verify localStorage persistence</li>
+<li>Test currency switching functionality</li>
+</ul>
+</li>
+<li>
+<p><strong>Error Boundary Testing</strong></p>
+<ul>
+<li>Test <code>/dev/error</code> route once accessible</li>
+<li>Verify error boundary fallback UI</li>
+<li>Test error handling scenarios</li>
+</ul>
+</li>
+<li>
+<p><strong>Responsive Design</strong></p>
+<ul>
+<li>Complete mobile/tablet testing</li>
+<li>Test orientation changes</li>
+<li>Verify all breakpoints</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>6️⃣ Test Environment Notes</h2>
+<ul>
+<li><strong>Test Environment:</strong> Local development server (localhost:5174)</li>
+<li><strong>Browser:</strong> Chrome with TestSprite automation</li>
+<li><strong>Test Credentials:</strong> test@vayra.digital / VayraTest@2025</li>
+<li><strong>Test User B:</strong> Invalid credentials (needs update)</li>
+<li><strong>Firebase Project:</strong> vayra-prod (permission issues detected)</li>
 </ul>
 <hr>
-<p><em>Report generated by TestSprite AI Team on 2025-08-28</em></p>
+<p><strong>Report Generated:</strong> 2025-08-29<br>
+<strong>Test Execution Time:</strong> ~20 minutes<br>
+<strong>Total Test Cases:</strong> 20<br>
+<strong>Critical Failures:</strong> 15<br>
+<strong>Passed Tests:</strong> 5<br>
+<strong>Success Rate:</strong> 25%</p>
 
     </body>
     </html>

@@ -27,7 +27,7 @@ import ResetPasswordPage from '@/pages/auth/ResetPasswordPage';
 
 // Protected Pages
 import DashboardPage from '@/pages/dashboard/DashboardPage';
-import DebtsPage from '@/pages/debts/DebtsPage';
+import DebtsPage from '@/pages/DebtsPage';
 import PaymentsPage from '@/pages/payments/PaymentsPage';
 import IncomePage from '@/pages/income/IncomePage';
 import BudgetPage from '@/pages/budget/BudgetPage';
@@ -37,7 +37,7 @@ import ReportsPage from '@/pages/reports/ReportsPage';
 import EducationPage from '@/pages/education/EducationPage';
 import AIChatPage from '@/pages/ai/AIChatPage';
 import SettingsPage from '@/pages/settings/SettingsPage';
-import ProfilePage from '@/pages/profile/ProfilePage';
+import ProfilePage from '@/pages/ProfilePage';
 
 // Plan Guard and Upgrade Page
 import RequirePlan from '@/components/auth/RequirePlan';
@@ -192,6 +192,13 @@ const App: React.FC = () => {
               </AuthLayout>
             </PublicRoute>
           } />
+          <Route path="/auth/forgot-password" element={
+            <PublicRoute>
+              <AuthLayout>
+                <ForgotPasswordPage />
+              </AuthLayout>
+            </PublicRoute>
+          } />
           <Route path="/reset-password" element={
             <PublicRoute>
               <AuthLayout>
@@ -203,7 +210,7 @@ const App: React.FC = () => {
           {/* Dashboard Route - Allow free users to access basic dashboard */}
           <Route path="/dashboard" element={
             <ProtectedRoute>
-              <RequirePlan min="starter">
+              <RequirePlan min="free">
                 <Layout />
               </RequirePlan>
             </ProtectedRoute>
@@ -215,6 +222,13 @@ const App: React.FC = () => {
           <Route path="/upgrade" element={
             <ProtectedRoute>
               <Upgrade />
+            </ProtectedRoute>
+          } />
+
+          {/* AI Chat Route */}
+          <Route path="/ai/chat" element={
+            <ProtectedRoute>
+              <AIChatPage />
             </ProtectedRoute>
           } />
 

@@ -45,35 +45,7 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Navigate to /auth/sign-in page.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Input registered email and password.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Assert user is authenticated by checking the presence of the welcome message on the dashboard
-        frame = context.pages[-1]
-        welcome_message = await frame.locator('text=Welcome to your VAYRA dashboard').text_content()
-        assert welcome_message is not None and 'Welcome to your VAYRA dashboard' in welcome_message, 'User is not redirected to dashboard or not authenticated properly'
-        # Assert the current plan is displayed correctly
-        current_plan_text = await frame.locator('text=free').text_content()
-        assert current_plan_text is not None and 'free' in current_plan_text.lower(), 'Current plan is not displayed or incorrect'
+        # Assert PWA install prompt availability\ninstall_prompt = await page.evaluate('window.matchMedia("(display-mode: standalone)").matches')\nassert install_prompt is False, "PWA install prompt should be available when not in standalone mode"\n\n# Assert manifest presence and icon sets including maskable icons\nmanifest_url = await page.evaluate('document.querySelector("link[rel=manifest]").href')\nassert manifest_url, "Manifest file should be linked in the page"\n\nmanifest_response = await page.request.get(manifest_url)\nassert manifest_response.ok, "Manifest file should be accessible"\nmanifest = await manifest_response.json()\n\nicons = manifest.get('icons', [])\nassert icons, "Manifest should contain icons"\n\nmaskable_icons = [icon for icon in icons if 'maskable' in icon.get('purpose', '')]\nassert maskable_icons, "Manifest should contain maskable icons"\n\n# Assert service worker registration for offline support\nservice_worker_registered = await page.evaluate('navigator.serviceWorker.controller !== null')\nassert service_worker_registered, "Service worker should be registered for offline support"\n\n# Simulate going offline and reloading the app\nawait page.context.set_offline(True)\nawait page.reload()\n\n# Assert app continues to function with cached data\n# For example, check if main content or key element is visible\nmain_content_visible = await page.is_visible('text=VAYRA - Debt Management & Income Platform')\nassert main_content_visible, "App should continue to function and display main content when offline"\n\n# Optionally check for offline UI elements if any\noffline_ui_visible = await page.is_visible('text=offline') or await page.is_visible('text=No internet')\n# This assertion is not strict as offline UI may vary\n# But we log if offline UI is present\nif offline_ui_visible:\n    print("Offline UI is displayed as expected")\nelse:\n    print("No explicit offline UI detected, ensure app handles offline gracefully")\n\n# Restore online state\nawait page.context.set_offline(False)
         await asyncio.sleep(5)
     
     finally:

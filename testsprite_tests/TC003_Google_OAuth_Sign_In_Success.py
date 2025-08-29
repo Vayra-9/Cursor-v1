@@ -45,29 +45,12 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Find and navigate to the sign-in page or reveal the GoogleSignInButton to start the OAuth sign-in process.
+        # Navigate to /auth/sign-in page.
+        await page.goto('http://localhost:5174/auth/sign-in', timeout=10000)
+        
+
+        # Scroll down or try to find the Google Sign-In button on the /auth/sign-in page.
         await page.mouse.wheel(0, window.innerHeight)
-        
-
-        # Try to find a navigation element or link to the sign-in page or reload the page to check for any changes.
-        await page.goto('http://localhost:5174/signin', timeout=10000)
-        
-
-        # Click the 'Continue with Google' button to initiate the Google OAuth sign-in flow.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Input the test user's email 'test+vayra@demo.local' into the email field and click 'Next' to proceed with Google OAuth sign-in.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div[2]/div/div[2]/c-wiz/main/div[2]/div/div/div/form/span/section/div/div/div/div/div/div/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('test+vayra@demo.local')
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div[2]/div/div[2]/c-wiz/main/div[3]/div/div/div/div/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         assert False, 'Test failed: Expected result unknown, forcing failure.'

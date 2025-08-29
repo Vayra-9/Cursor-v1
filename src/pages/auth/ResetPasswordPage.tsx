@@ -27,12 +27,31 @@ const ResetPasswordPage: React.FC = () => {
             </p>
           </div>
           
-          {/* Placeholder for reset password form */}
-          <div className="space-y-4">
-            <div className="h-12 bg-gray-100 dark:bg-gray-700 rounded-lg animate-pulse"></div>
-            <div className="h-12 bg-gray-100 dark:bg-gray-700 rounded-lg animate-pulse"></div>
-            <div className="h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg animate-pulse"></div>
-          </div>
+          {/* Reset Password Form */}
+          <form className="space-y-4">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                placeholder="Enter your email address"
+                data-testid="reset-email-input"
+              />
+            </div>
+            
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
+              data-testid="reset-password-submit"
+            >
+              Send Reset Link
+            </button>
+          </form>
         </motion.div>
       </div>
     </div>

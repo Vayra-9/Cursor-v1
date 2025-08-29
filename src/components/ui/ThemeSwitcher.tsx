@@ -19,6 +19,7 @@ const ThemeSwitcher: React.FC = () => {
           <button
             key={value}
             onClick={() => setTheme(value as 'light' | 'dark' | 'system')}
+            data-testid={`toggle-theme-${value}`}
             className={`relative p-2 rounded-md transition-colors duration-200 ${
               theme === value
                 ? 'bg-white dark:bg-gray-600 text-blue-600 dark:text-blue-400 shadow-sm'

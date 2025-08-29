@@ -16,16 +16,12 @@ import { I18nProvider } from './contexts/I18nContext'
 import './index.css'
 
 // Register service worker for PWA (production only)
-if (import.meta.env.PROD && 'serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration);
-      })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
-      });
-  });
+if (import.meta.env.PROD) {
+  // @ts-ignore
+  import("virtual:pwa-register").then(({ registerSW }) => registerSW({ immediate: true }));
+} else {
+  // Development console note for network errors
+  console.info("💡 Dev Tip: If you see network errors, unregister SW (DevTools → Application) and hard refresh.");
 }
 
 const queryClient = new QueryClient({

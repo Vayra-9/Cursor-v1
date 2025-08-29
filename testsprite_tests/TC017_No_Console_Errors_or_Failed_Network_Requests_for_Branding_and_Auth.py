@@ -45,13 +45,13 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Navigate to /auth/sign-in page.
+        # Click 'Start Your Journey' to navigate to authentication/login page.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Input registered email and password.
+        # Input email and password, then click 'Sign In' button to proceed to dashboard.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
@@ -67,13 +67,33 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Assert user is authenticated by checking the presence of the welcome message on the dashboard
+        # Navigate to PWA install flow and verify no console errors or failed network requests.
         frame = context.pages[-1]
-        welcome_message = await frame.locator('text=Welcome to your VAYRA dashboard').text_content()
-        assert welcome_message is not None and 'Welcome to your VAYRA dashboard' in welcome_message, 'User is not redirected to dashboard or not authenticated properly'
-        # Assert the current plan is displayed correctly
-        current_plan_text = await frame.locator('text=free').text_content()
-        assert current_plan_text is not None and 'free' in current_plan_text.lower(), 'Current plan is not displayed or incorrect'
+        elem = frame.locator('xpath=html/body/div/div/div[2]/div/div/div[2]/div[5]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Trigger or navigate to the PWA install flow to verify no console errors or failed network requests during PWA installation.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[2]/main/div/div/div/div/div[4]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Assert no console errors or warnings during navigation and usage
+        console_messages = []
+        page.on('console', lambda msg: console_messages.append(msg))
+        await page.wait_for_timeout(1000)  # Wait a bit to collect console messages
+        assert all(msg.type() != 'error' and msg.type() != 'warning' for msg in console_messages), f'Console errors or warnings found: {[msg.text() for msg in console_messages if msg.type() in ["error", "warning"]]}'
+          
+        # Assert no failed network requests for branding SVGs, authentication backend APIs, or PWA service worker assets
+        failed_requests = []
+        def check_request(request):
+            url = request.url
+            if any(keyword in url for keyword in ['branding', 'auth', 'service-worker', 'pwa']):
+                request.failed() and failed_requests.append(request)
+        page.on('requestfailed', check_request)
+        await page.wait_for_timeout(1000)  # Wait a bit to catch failed requests
+        assert len(failed_requests) == 0, f'Failed network requests found: {[req.url for req in failed_requests]}'
         await asyncio.sleep(5)
     
     finally:
