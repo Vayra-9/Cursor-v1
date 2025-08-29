@@ -57,15 +57,16 @@ async def run_test():
           const results = await axe.run();
           return results;
         }''')
-        assert all(violation['impact'] not in ['critical', 'serious'] for violation in results['violations']), 'Accessibility violations found on landing page with critical or serious impact'
-        # Navigate to /auth/sign-in page to run axe-core accessibility scan
+        assert all(issue['impact'] not in ['critical', 'serious'] for issue in results['violations']), 'Accessibility violations found on landing page with critical or serious impact.'
+        # Navigate to /auth/sign-in page
         await page.goto('/auth/sign-in')
+        # Run axe-core accessibility scan on /auth/sign-in page and assert no critical or serious violations
         results_sign_in = await page.evaluate('''async () => {
           const axe = require('axe-core');
           const results = await axe.run();
           return results;
         }''')
-        assert all(violation['impact'] not in ['critical', 'serious'] for violation in results_sign_in['violations']), 'Accessibility violations found on sign-in page with critical or serious impact'
+        assert all(issue['impact'] not in ['critical', 'serious'] for issue in results_sign_in['violations']), 'Accessibility violations found on /auth/sign-in page with critical or serious impact.'
         await asyncio.sleep(5)
     
     finally:

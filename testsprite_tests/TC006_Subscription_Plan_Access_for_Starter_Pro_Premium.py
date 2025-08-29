@@ -45,17 +45,121 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Look for a sign-in or login link or button to proceed with user authentication.
-        await page.mouse.wheel(0, window.innerHeight)
-        
-
-        # Try to navigate to a sign-in or login page using URL or other means.
-        await page.goto('http://localhost:5174/login', timeout=10000)
-        
-
-        # Click on 'Start Your Journey' to initiate sign-in or registration process for Starter plan user.
+        # Click on 'Get Started Free' or equivalent to proceed to sign in or registration.
         frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a').nth(0)
+        elem = frame.locator('xpath=html/body/div/div/section[3]/div/a').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Input email and password for Starter plan user and click Sign In.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Sign out current user and sign in as Starter plan user.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[2]/div/div/div[2]/div[5]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Click 'Sign out' button to log out current user.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[2]/div/div/div[2]/div[5]/div/div/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Input email and password for Starter plan user and click Sign In.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Sign out current user and attempt to sign in with correct Starter plan user credentials or verify account plan.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[2]/div/div/div[2]/div[5]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Click 'Sign out' button to log out current user and prepare for Starter plan sign in.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[2]/div/div/div[2]/div[5]/div/div/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Input email and password for Starter plan user and click Sign In.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Click 'Sign out' button to log out current user and prepare for Starter plan sign in.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[2]/div/div/div[2]/div[5]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Click 'Sign out' button to log out current user and prepare for Starter plan sign in with correct credentials.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[2]/div/div/div[2]/div[5]/div/div/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Input email and password for Starter plan user and click Sign In.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Click 'User menu' button to open dropdown and then click 'Sign out' to log out current user and prepare for Starter plan sign in with correct credentials.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[2]/div/div/div[2]/div[5]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Click 'Sign out' button to log out current user and prepare for Starter plan sign in with correct credentials.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[2]/div/div/div[2]/div[5]/div/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 

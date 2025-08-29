@@ -854,7 +854,9 @@ i18n
 export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
   const [language, setLanguageState] = useState<string>(() => {
     const saved = localStorage.getItem('vayra-language');
-    return saved || 'en';
+    const initialLanguage = saved || 'en';
+    console.log("Lang on load:", initialLanguage);
+    return initialLanguage;
   });
 
   const { t, ready } = useTranslation();

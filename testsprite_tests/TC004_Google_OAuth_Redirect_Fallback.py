@@ -51,13 +51,13 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Simulate Google OAuth popup being blocked and click 'Continue with Google' button to trigger sign-in.
+        # Simulate Google OAuth popup being blocked and click the 'Continue with Google' button to trigger sign-in.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Enter the test email 'test@vayra.digital' and click 'Next' to proceed with authentication.
+        # Input the test email 'test@vayra.digital' and click 'Next' to proceed with sign-in.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div[2]/div/div[2]/c-wiz/main/div[2]/div/div/div/form/span/section/div/div/div/div/div/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
@@ -68,7 +68,7 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        assert False, 'Test failed: Expected result unknown, forcing failure.'
+        assert False, 'Test failed: Expected authentication fallback to redirect flow did not complete successfully.'
         await asyncio.sleep(5)
     
     finally:

@@ -45,13 +45,13 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Click on the login or navigation element to proceed to login page or dashboard.
+        # Click on 'Get Started Free' or equivalent to initiate login and navigate to dashboard.
         frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a').nth(0)
+        elem = frame.locator('xpath=html/body/div/div/section[3]/div/a').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Input email and password, then click Sign In to navigate to the dashboard.
+        # Input email and password, then click Sign In to access dashboard.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
@@ -67,11 +67,14 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Resize viewport to mobile breakpoint and check dashboard layout for content overflow, overlap, or layout shifts.
-        await page.goto('http://localhost:5174/app/dashboard', timeout=10000)
+        # Resize viewport to mobile breakpoint and verify dashboard layout for no overflow, overlap, or layout shifts.
+        await page.goto('http://localhost:5174/dashboard', timeout=10000)
         
 
-        # Input email and password, then click Sign In to proceed to the dashboard.
+        await page.mouse.wheel(0, window.innerHeight)
+        
+
+        # Input email and password, then click Sign In to access dashboard.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
@@ -87,7 +90,113 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        assert False, 'Test plan execution failed: dashboard layout verification could not be completed.'
+        # Resize viewport to tablet breakpoint and verify dashboard layout for no overflow, overlap, or layout shifts.
+        await page.goto('http://localhost:5174/dashboard', timeout=10000)
+        
+
+        await page.mouse.wheel(0, window.innerHeight)
+        
+
+        # Input email and password, then click Sign In to access dashboard.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Resize viewport to tablet breakpoint and verify dashboard layout for no overflow, overlap, or layout shifts.
+        await page.goto('http://localhost:5174/dashboard', timeout=10000)
+        
+
+        # Input email and password, then click Sign In to access dashboard.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Resize viewport to tablet breakpoint and verify dashboard layout for no overflow, overlap, or layout shifts.
+        await page.goto('http://localhost:5174/dashboard', timeout=10000)
+        
+
+        # Input email and password, then click Sign In to access dashboard.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Resize viewport to tablet breakpoint and verify dashboard layout for no overflow, overlap, or layout shifts.
+        await page.goto('http://localhost:5174/dashboard', timeout=10000)
+        
+
+        # Input email and password, then click Sign In to access dashboard.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Resize viewport to tablet breakpoint and verify dashboard layout for no overflow, overlap, or layout shifts.
+        await page.goto('http://localhost:5174/dashboard', timeout=10000)
+        
+
+        await page.mouse.wheel(0, window.innerHeight)
+        
+
+        # Input email and password, then click Sign In to access dashboard.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        assert False, 'Test plan execution failed: generic failure assertion.'
         await asyncio.sleep(5)
     
     finally:

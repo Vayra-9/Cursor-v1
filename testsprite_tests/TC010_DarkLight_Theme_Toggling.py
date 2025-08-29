@@ -51,7 +51,7 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        assert False, 'Test failed: Unable to verify expected result due to unknown expected outcome.'
+        assert False, 'Test failed: Expected result unknown, forcing failure.'
         await asyncio.sleep(5)
     
     finally:

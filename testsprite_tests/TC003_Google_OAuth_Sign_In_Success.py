@@ -45,15 +45,23 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Navigate to /auth/sign-in page.
-        await page.goto('http://localhost:5174/auth/sign-in', timeout=10000)
+        # Navigate to /auth/sign-in page
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Scroll down or try to find the Google Sign-In button on the /auth/sign-in page.
-        await page.mouse.wheel(0, window.innerHeight)
+        # Click on Google Sign-In button to initiate OAuth popup flow
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        assert False, 'Test failed: Expected result unknown, forcing failure.'
+        # Complete OAuth popup flow with valid Google credentials
+        await page.goto('https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fvayra-prod.firebaseapp.com%2F__%2Fauth%2Fhandler&service=oauth2&flowName=GeneralOAuthFlow', timeout=10000)
+        
+
+        assert False, 'Test failed: Unable to verify user authentication and routing due to unknown expected result.'
         await asyncio.sleep(5)
     
     finally:

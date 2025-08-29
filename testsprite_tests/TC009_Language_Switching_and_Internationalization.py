@@ -57,23 +57,29 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Refresh the page to verify language preference persistence and UI remains localized in Spanish
+        # Refresh the page to verify language preference persistence and UI localization remains in Spanish
         await page.goto('http://localhost:5174/', timeout=10000)
         
 
-        # Navigate to another UI page to verify language persistence and UI localization there
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Click on the language selector to check and reselect 'Español' to verify if language can be reapplied on this page
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        assert False, 'Test failed: Expected UI language change and persistence could not be verified.'
+        # Assert that UI text is updated to Spanish immediately after language change
+        spanish_texts = [
+            'Transforma tu futuro financiero con la gestión de deuda impulsada por IA',
+            'Análisis inteligente de deuda',
+            'Seguimiento visual del progreso',
+            'Seguro y privado',
+            'Resultados comprobados',
+            'Únete a más de 50K usuarios que han pagado más de $2.5M en deuda',
+            'Comienza tu viaje',
+            'Ver planes',
+            'Comienza gratis'
+            ]
+        for text in spanish_texts:
+            assert await page.locator(f'text={text}').is_visible(), f"Expected Spanish text '{text}' to be visible after language change"
+          
+        # Refresh the page to verify language preference persistence and UI localization remains in Spanish
+        await page.reload()
+        for text in spanish_texts:
+            assert await page.locator(f'text={text}').is_visible(), f"Expected Spanish text '{text}' to persist after page reload"
         await asyncio.sleep(5)
     
     finally:

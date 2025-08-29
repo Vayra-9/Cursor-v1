@@ -25,7 +25,9 @@ interface ThemeProviderProps {
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
     const saved = localStorage.getItem('vayra-theme');
-    return (saved as Theme) || 'system';
+    const initialTheme = (saved as Theme) || 'system';
+    console.log("Theme on load:", initialTheme);
+    return initialTheme;
   });
 
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');

@@ -45,38 +45,21 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Navigate to the next page containing Framer Motion animations and transitions to verify animations there.
+        # Navigate through pages containing Framer Motion animations and transitions to verify smoothness and absence of layout shifts or visual glitches.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Navigate to the next page or section containing Framer Motion animations and transitions to continue verification of smooth animations without layout shifts or long tasks.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/div[3]/p/a').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Navigate to another page or section with Framer Motion animations to continue verifying smooth animations without layout shifts or long tasks exceeding 200ms.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/div[3]/p/a').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Trigger and observe any interactive animations or UI transitions on the sign-in page, such as focusing input fields or clicking buttons, to verify smoothness, no layout shifts, and no long tasks exceeding 200ms.
+        # Fill in login credentials and sign in to trigger any animations or transitions for verification.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
         
 
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
         
 
         frame = context.pages[-1]
@@ -84,30 +67,13 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Complete final verification of any remaining animations or transitions on this page or navigate to any other pages with Framer Motion animations to finish the task.
+        # Navigate through pages containing Framer Motion animations and transitions to verify smoothness and absence of layout shifts or visual glitches.
         frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/div[3]/p/a').nth(0)
+        elem = frame.locator('xpath=html/body/div/div/div/nav/div/a[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Assert no long tasks exceeding 200ms during animations using Performance API
-        performance_entries = await page.evaluate('''() => {
-          return performance.getEntriesByType('longtask').filter(task => task.duration > 200).length;
-        }''')
-        assert performance_entries == 0, 'Long tasks exceeding 200ms detected during animations'
-        
-        # Assert no layout shifts using Performance API's layout-shift entries
-        layout_shifts = await page.evaluate('''() => {
-          return performance.getEntriesByType('layout-shift').filter(shift => !shift.hadRecentInput).length;
-        }''')
-        assert layout_shifts == 0, 'Layout shifts detected during animations'
-        
-        # Assert no visual glitches by checking for any unexpected changes in bounding boxes of key elements during animation
-        logo = page.locator('xpath=//div[contains(@class, "logo")]')
-        logo_box_before = await logo.bounding_box()
-        await page.wait_for_timeout(3000)  # Wait for animation to complete
-        logo_box_after = await logo.bounding_box()
-        assert logo_box_before == logo_box_after, 'Visual glitches detected: logo bounding box changed during animation'
+        assert False, 'Test plan execution failed: animations did not run smoothly or caused layout shifts/visual glitches.'
         await asyncio.sleep(5)
     
     finally:

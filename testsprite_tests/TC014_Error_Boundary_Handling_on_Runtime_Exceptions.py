@@ -45,83 +45,36 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Locate and navigate to a page or component that has error boundary enabled to simulate runtime error.
+        # Navigate to any page with error boundary enabled to test error boundary behavior.
         await page.mouse.wheel(0, window.innerHeight)
         
 
-        # Look for a link or button that leads to a page or component with error boundary enabled to simulate runtime error.
-        await page.mouse.wheel(0, window.innerHeight)
-        
-
+        # Click on a navigation or link element that likely leads to a page with error boundary enabled.
         frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/div[2]/button').nth(0)
+        elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a[2]').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Scroll and look for a link or component that explicitly mentions error boundary or error handling to test runtime error simulation.
+        # Find or simulate a runtime exception in a UI component to test error boundary fallback UI.
         await page.mouse.wheel(0, window.innerHeight)
         
 
-        # Scroll further down or explore navigation links to find a page or component with error boundary enabled to simulate runtime error.
-        await page.mouse.wheel(0, window.innerHeight)
-        
-
-        # Click on 'Get Started Free' link to navigate to a new page that might have error boundary enabled components for testing.
+        # Simulate a runtime exception in a UI component to trigger the error boundary and verify fallback UI.
         frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/section[3]/div/a').nth(0)
+        elem = frame.locator('xpath=html/body/div/div/div/div[2]/div[2]/div/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Check if this page or any component here has error boundary enabled or simulate a runtime error to test error boundary fallback UI.
-        await page.mouse.wheel(0, window.innerHeight)
-        
-
-        # Simulate a runtime exception in a UI component to trigger error boundary and verify fallback UI.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('test@example.com')
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('password123')
-        
-
+        # Simulate a runtime exception in a UI component on the sign-up page to trigger error boundary and verify fallback UI.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Manually trigger a runtime error in a UI component to verify error boundary fallback UI and app stability.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/div[3]/p/a').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Attempt to simulate a runtime error in a UI component to trigger error boundary and verify fallback UI without crashing the app.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
+        # Simulate a runtime exception in a UI component on the sign-up page to trigger error boundary and verify fallback UI.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('Test')
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div[2]/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
         frame = context.pages[-1]
@@ -131,17 +84,7 @@ async def run_test():
 
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.fill('testuser@example.com')
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[3]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
         
 
         frame = context.pages[-1]
@@ -151,33 +94,21 @@ async def run_test():
 
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[4]/div/input').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[4]/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('Password123!')
         
 
-        # Submit the form without checking the terms checkbox to see if it triggers an error boundary fallback UI or validation error without crashing the app.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Manually simulate a runtime JavaScript error in a UI component to trigger error boundary and verify fallback UI without crashing the app.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[5]/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Manually simulate a runtime JavaScript error in a UI component to trigger error boundary and verify fallback UI without crashing the app.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        assert False, 'Test failed: Runtime JavaScript error did not trigger expected error boundary fallback UI.'
+        # Generic failing assertion since expected result is unknown
+        assert False, 'Test plan execution failed: generic failure assertion.'
         await asyncio.sleep(5)
     
     finally:

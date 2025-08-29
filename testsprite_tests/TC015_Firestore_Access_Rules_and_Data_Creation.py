@@ -45,7 +45,7 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Click on 'Start Your Journey' to proceed to sign-in.
+        # Click on 'Start Your Journey' button to proceed to sign-in or registration page.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
@@ -67,13 +67,13 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Navigate to user profile or relevant section to create or update user data in Firestore.
+        # Navigate to user profile or settings page to update user data.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div[2]/div/div/div[2]/div[5]/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Click on 'Profile' to navigate to user profile page for data update.
+        # Click on Profile link to navigate to user profile page for data update.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div[2]/div/div/div[2]/div[5]/div/div/a').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)

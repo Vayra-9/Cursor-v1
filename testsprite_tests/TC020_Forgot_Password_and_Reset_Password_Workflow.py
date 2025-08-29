@@ -45,11 +45,15 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Navigate to /auth/forgot-password page to start the password reset process.
+        # Find and navigate to /auth/forgot-password page by looking for relevant links or buttons.
+        await page.mouse.wheel(0, window.innerHeight)
+        
+
+        # Try to navigate directly to /auth/forgot-password page using URL navigation since no link found.
         await page.goto('http://localhost:5174/auth/forgot-password', timeout=10000)
         
 
-        # Enter registered email 'test@vayra.digital' and click 'Send Reset Link' button.
+        # Enter the registered email 'test@vayra.digital' in the email input and click 'Send Reset Link' button.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
@@ -60,27 +64,12 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Navigate to /auth/reset-password page with a valid token to test password reset form.
-        await page.goto('http://localhost:5174/auth/reset-password?token=validtoken123', timeout=10000)
+        # Navigate to the /auth/reset-password page with a valid token to test setting a new password.
+        await page.goto('http://localhost:5174/auth/reset-password?token=valid_test_token', timeout=10000)
         
 
-        # Check if the 'Back to Sign In' link leads to a page where password reset or token handling might be accessible or if it provides clues for the reset password page.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/div[2]/a').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Click the 'Forgot password?' link to verify if it leads to the correct forgot password page or reset password flow.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[3]/a').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        # Navigate to /auth/reset-password page with a valid token to test password reset form.
-        await page.goto('http://localhost:5174/auth/reset-password?token=validtoken123', timeout=10000)
-        
-
-        assert False, "Test plan execution failed: generic failure assertion."
+        # Generic failing assertion since expected result is unknown
+        assert False, 'Test plan execution failed: generic failure assertion'
         await asyncio.sleep(5)
     
     finally:

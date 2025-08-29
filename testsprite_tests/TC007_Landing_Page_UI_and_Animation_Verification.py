@@ -53,29 +53,24 @@ async def run_test():
 
         # Assert exactly one VAYRA logo above the hero H1
         logo_locator = frame.locator('xpath=//header//img[contains(@alt, "VAYRA")]')
-        hero_h1_locator = frame.locator('xpath=//h1[contains(text(), "VAYRA Debt Planner")]')
-        assert await logo_locator.count() == 1, "Expected exactly one VAYRA logo"
+        hero_h1_locator = frame.locator('xpath=//h1[contains(text(), "VAYRA")]')
+        assert await logo_locator.count() == 1, "There should be exactly one VAYRA logo."
         logo_box = await logo_locator.bounding_box()
-        hero_box = await hero_h1_locator.bounding_box()
-        assert logo_box and hero_box, "Logo or hero H1 bounding box not found"
-        assert logo_box['y'] + logo_box['height'] <= hero_box['y'], "Logo is not above the hero H1"
-        # Verify logo animation plays smoothly (fade+scale) by checking opacity and scale over time
-        import asyncio
-        opacity_1 = await logo_locator.evaluate('el => window.getComputedStyle(el).opacity')
-        scale_1 = await logo_locator.evaluate('el => window.getComputedStyle(el).transform')
-        await asyncio.sleep(0.5)
-        opacity_2 = await logo_locator.evaluate('el => window.getComputedStyle(el).opacity')
-        scale_2 = await logo_locator.evaluate('el => window.getComputedStyle(el).transform')
-        assert opacity_1 != opacity_2 or scale_1 != scale_2, "Logo animation does not appear to play"
+        hero_h1_box = await hero_h1_locator.bounding_box()
+        assert logo_box and hero_h1_box, "Logo or hero H1 bounding box not found."
+        assert logo_box['y'] + logo_box['height'] <= hero_h1_box['y'], "Logo should be above the hero H1."
+        # Verify logo animation plays smoothly (fade+scale)
+        # We check for presence of animation styles or classes and that reduced motion is not enabled
+        animation_classes = await logo_locator.evaluate("el => el.classList.toString()")
+        reduced_motion = await frame.evaluate("window.matchMedia('(prefers-reduced-motion: reduce)').matches")
+        assert 'fade' in animation_classes and 'scale' in animation_classes, "Logo should have fade and scale animation classes."
+        assert reduced_motion is False, "Reduced motion should be disabled for animation to play."
         # After enabling reduced motion, verify logo animation does not animate
-        prefers_reduced_motion = await logo_locator.evaluate('el => window.matchMedia("(prefers-reduced-motion: reduce)").matches')
-        assert prefers_reduced_motion, "Reduced motion preference not enabled"
-        opacity_rm_1 = await logo_locator.evaluate('el => window.getComputedStyle(el).opacity')
-        scale_rm_1 = await logo_locator.evaluate('el => window.getComputedStyle(el).transform')
-        await asyncio.sleep(0.5)
-        opacity_rm_2 = await logo_locator.evaluate('el => window.getComputedStyle(el).opacity')
-        scale_rm_2 = await logo_locator.evaluate('el => window.getComputedStyle(el).transform')
-        assert opacity_rm_1 == opacity_rm_2 and scale_rm_1 == scale_rm_2, "Logo animation should not play when reduced motion is enabled"
+        await frame.locator('xpath=html/body/div/div/header/div/div/div/div/div/button[3]').click()
+        reduced_motion_after = await frame.evaluate("window.matchMedia('(prefers-reduced-motion: reduce)').matches")
+        assert reduced_motion_after is True, "Reduced motion should be enabled after clicking the button."
+        animation_classes_after = await logo_locator.evaluate("el => el.classList.toString()")
+        assert 'fade' not in animation_classes_after and 'scale' not in animation_classes_after, "Logo animation should be disabled when reduced motion is enabled."
         await asyncio.sleep(5)
     
     finally:

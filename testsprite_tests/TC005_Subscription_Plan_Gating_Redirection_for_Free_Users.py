@@ -45,13 +45,13 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Click on 'Start Your Journey' or equivalent to go to login or signup to authenticate as Free plan user.
+        # Click on 'Get Started Free' or equivalent to go to login or signup page to authenticate.
         frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a').nth(0)
+        elem = frame.locator('xpath=html/body/div/div/section[3]/div/a').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Input email and password for Free plan user and click Sign In.
+        # Input email and password, then click Sign In to authenticate as Free plan user.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
@@ -67,19 +67,13 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Attempt to access a premium feature or dashboard module requiring a higher plan to verify redirection to /upgrade.
+        # Click on a premium feature or dashboard module that requires a higher plan to verify redirection to /upgrade.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div[2]/div/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Click on a locked premium feature or dashboard module requiring a higher plan to verify redirection to /upgrade.
-        frame = context.pages[-1]
-        elem = frame.locator('xpath=html/body/div/div/div/div[2]/div/div/button').nth(0)
-        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
-        
-
-        assert False, 'Test failed: Expected redirection to /upgrade did not occur.'
+        assert False, "Test failed: User was not redirected to /upgrade as expected."
         await asyncio.sleep(5)
     
     finally:

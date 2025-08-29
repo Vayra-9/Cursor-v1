@@ -67,8 +67,10 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        error_locator = frame.locator('text=Invalid credentials.')
-        assert await error_locator.is_visible(), 'Expected error message "Invalid credentials." to be visible after failed sign-in attempt.'
+        # Assert that sign-in fails and an appropriate error message is displayed
+        frame = context.pages[-1]
+        error_elem = frame.locator('text=Invalid credentials.')
+        assert await error_elem.is_visible(), 'Error message for invalid credentials is not visible'
         await asyncio.sleep(5)
     
     finally:

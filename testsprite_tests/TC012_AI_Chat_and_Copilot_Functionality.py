@@ -45,23 +45,13 @@ async def run_test():
                 pass
         
         # Interact with the page elements to simulate user flow
-        # Try to navigate to login page or find a login link/button.
-        await page.mouse.wheel(0, window.innerHeight)
+        # Click on 'Start Your Journey' button to proceed to login or dashboard.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/section/div/div/div[2]/a').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Try to go directly to login page URL /login or /auth or similar.
-        await page.goto('http://localhost:5174/login', timeout=10000)
-        
-
-        # Try to find any other links or navigation elements on the base page or try common login URLs like /auth or /signin.
-        await page.goto('http://localhost:5174/auth', timeout=10000)
-        
-
-        # Try navigating to /signin page to check for login form.
-        await page.goto('http://localhost:5174/signin', timeout=10000)
-        
-
-        # Input email and password, then click Sign In button to login.
+        # Input email and password, then click Sign In button.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
@@ -77,13 +67,13 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Click on AI chat widget button (index 18) to open embedded AI chat and send a sample valid query.
+        # Click on AI chat widget button (index 18) to open the embedded AI chat and send a sample valid query.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Input a sample valid query into the AI chat input field (index 24) and click send button (index 25).
+        # Input a sample valid query into the AI chat input box (index 24) and send it using the send button (index 25).
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div[3]/div[4]/form/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('What is the best way to pay off my debt?')
@@ -94,11 +84,11 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Navigate to standalone AI chat page at /ai/chat.
+        # Navigate to the standalone AI chat page (/ai/chat) to test the AI copilot there.
         await page.goto('http://localhost:5174/ai/chat', timeout=10000)
         
 
-        # Input email and password to login again, then navigate to standalone AI chat page.
+        # Input email and password on sign-in page and click Sign In to proceed to AI chat page.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
         await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
@@ -114,17 +104,80 @@ async def run_test():
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Click AI Copilot button (index 18) to open embedded AI chat and send a valid query.
+        # Click the AI chat widget button (index 18) to open the embedded AI chat and send a sample valid query.
         frame = context.pages[-1]
         elem = frame.locator('xpath=html/body/div/div/button').nth(0)
         await page.wait_for_timeout(3000); await elem.click(timeout=5000)
         
 
-        # Navigate to standalone AI chat page at /ai/chat to test AI copilot standalone functionality.
+        # Input a sample valid query into the AI chat input box (index 24) and send it using the send button (index 25).
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[3]/div[4]/form/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('What is the best way to pay off my debt?')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[3]/div[4]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Navigate to the standalone AI chat page (/ai/chat) to test the AI copilot there.
         await page.goto('http://localhost:5174/ai/chat', timeout=10000)
         
 
-        assert False, 'Test plan execution failed: generic failure assertion.'
+        # Try to reload the standalone AI chat page to see if it loads correctly on refresh.
+        await page.goto('http://localhost:5174/ai/chat', timeout=10000)
+        
+
+        # Input email and password, then click Sign In button to authenticate and access standalone AI chat page.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('test@vayra.digital')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/div[2]/div/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('VayraTest@2025')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div/div/div[2]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Click the AI Copilot button (index 18) to open the embedded AI chat and verify it loads and responds correctly.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Input a valid query into the AI chat input box (index 24) and click the send button (index 25) to verify AI copilot response and UI stability.
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[3]/div[4]/form/input').nth(0)
+        await page.wait_for_timeout(3000); await elem.fill('How can I improve my budgeting skills?')
+        
+
+        frame = context.pages[-1]
+        elem = frame.locator('xpath=html/body/div/div/div[3]/div[4]/form/button').nth(0)
+        await page.wait_for_timeout(3000); await elem.click(timeout=5000)
+        
+
+        # Assert AI chat widget response on dashboard page
+        response_locator = frame.locator('xpath=html/body/div/div/div[3]/div[4]/div[contains(@class, "chat-response")]')
+        await response_locator.wait_for(timeout=10000)
+        response_text = await response_locator.inner_text()
+        assert 'debt' in response_text.lower() or 'budget' in response_text.lower(), 'AI response on dashboard does not contain expected content.'
+        # Navigate to standalone AI chat page and assert AI copilot response and UI stability
+        await page.wait_for_timeout(3000)
+        response_locator_standalone = frame.locator('xpath=html/body/div/div/div[3]/div[4]/div[contains(@class, "chat-response")]')
+        await response_locator_standalone.wait_for(timeout=10000)
+        response_text_standalone = await response_locator_standalone.inner_text()
+        assert 'debt' in response_text_standalone.lower() or 'budget' in response_text_standalone.lower(), 'AI copilot response on standalone page does not contain expected content.'
+        # Assert UI stability by checking the presence of input box and send button after response
+        input_box = frame.locator('xpath=html/body/div/div/div[3]/div[4]/form/input').nth(0)
+        send_button = frame.locator('xpath=html/body/div/div/div[3]/div[4]/form/button').nth(0)
+        assert await input_box.is_visible(), 'AI chat input box is not visible after response.'
+        assert await send_button.is_visible(), 'Send button is not visible after response.'
         await asyncio.sleep(5)
     
     finally:
