@@ -2,6 +2,7 @@ import React from 'react'
 import { usePlan } from '@/contexts/PlanContext'
 import { pricing } from '@/data/pricing'
 import LockedFeature from '@/components/ui/LockedFeature'
+import { ProOnlyModule } from '@/components/ui/ProOnlyModule'
 
 export default function DashboardPage() {
   const { tier, grandfathered } = usePlan()
@@ -109,6 +110,14 @@ export default function DashboardPage() {
             <div className="text-xs text-green-600">✅ Available</div>
           </div>
         </LockedFeature>
+      </div>
+
+      {/* Claims-based Pro Module Demo */}
+      <div className="mt-8">
+        <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
+          Claims-Based Access Control
+        </h2>
+        <ProOnlyModule />
       </div>
 
       {/* Upgrade Banner for Free Users */}

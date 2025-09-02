@@ -20,5 +20,28 @@ service cloud.firestore {
       allow read: if true;
       allow write: if false;
     }
+
+    // Pro-only collection
+    match /pro_data/{docId} {
+      allow read, write: if isPro();
+    }
+
+    // Admin-only collection
+    match /admin/{docId} {
+      allow read, write: if isAdmin();
+    }
+
+    function isAdmin() {
+      return request.auth != null &&
+             (request.auth.token.role == 'admin' ||
+              request.auth.token.full_access == true);
+    }
+
+    function isPro() {
+      return isAdmin() ||
+             (request.auth != null &&
+              request.auth.token.plans is list &&
+              request.auth.token.plans.hasAny(['pro','premium']));
+    }
   }
 }

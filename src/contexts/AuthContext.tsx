@@ -4,6 +4,7 @@ import { AuthService } from '@/services/auth';
 import { getRedirectResult } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { ensureUserDoc } from '@/lib/ensureUserDoc';
+import { initClaimsWatcher } from '@/lib/auth/claims';
 
 interface AuthContextType {
   user: User | null;
@@ -36,6 +37,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Initialize claims watcher for role/plan permissions
+    initClaimsWatcher();
+
     // Handle redirect result on app init
     const handleRedirectResult = async () => {
       try {
