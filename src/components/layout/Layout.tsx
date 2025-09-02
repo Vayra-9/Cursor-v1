@@ -144,7 +144,7 @@ const Layout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900" data-testid="layout">
       {/* Offline Banner */}
       <OfflineBanner />
       {/* Mobile menu overlay */}
@@ -165,7 +165,7 @@ const Layout: React.FC = () => {
       {/* Sidebar */}
       <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex items-center justify-between h-24 px-6 border-b border-gray-200 dark:border-gray-700">
-          <Link to="/" className="flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
+          <Link to="/" className="flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none" data-testid="logo">
             <VayraLogo className="h-16 md:h-18" />
           </Link>
           <button
@@ -177,7 +177,7 @@ const Layout: React.FC = () => {
           </button>
         </div>
 
-        <nav className="mt-6 px-3">
+        <nav className="mt-6 px-3" data-testid="nav">
           <div className="space-y-1">
             {filteredNavigation.map((item) => {
               const locked = isFeatureLocked(item);
@@ -186,6 +186,7 @@ const Layout: React.FC = () => {
                   key={item.id}
                   to={locked ? '#' : item.path}
                   onClick={locked ? (e) => e.preventDefault() : undefined}
+                  data-testid={`nav-${item.id}`}
                   className={`group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
                     isActive(item.path)
                       ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300'
@@ -223,7 +224,7 @@ const Layout: React.FC = () => {
       {/* Main content */}
       <div className="lg:pl-64">
         {/* Top bar */}
-        <div className="sticky top-0 z-30 bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div className="sticky top-0 z-30 bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700" data-testid="header">
           <div className="flex items-center justify-between h-24 px-4 sm:px-6 lg:px-8">
             {/* Left side */}
             <div className="flex items-center">

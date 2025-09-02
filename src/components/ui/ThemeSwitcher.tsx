@@ -13,7 +13,7 @@ const ThemeSwitcher: React.FC = () => {
   ];
 
   return (
-    <div className="relative">
+    <div className="relative" data-testid="theme-toggle">
       <div className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
         {themes.map(({ value, icon: Icon, label }) => (
           <button

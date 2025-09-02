@@ -7,6 +7,7 @@ import Testimonials from '@/components/testimonials/Testimonials';
 import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
 import CurrencySwitcher from '@/components/ui/CurrencySwitcher';
 import LanguageSelector from '@/components/ui/LanguageSelector';
+import { LiteCalculator } from '@/components/ui/LiteCalculator';
 
 const LandingPage: React.FC = () => {
   const features = [
@@ -35,10 +36,10 @@ const LandingPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Header with UI Components */}
-      <header className="absolute top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+      <header className="absolute top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700" data-testid="header">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center" data-testid="nav-home-logo">
+            <Link to="/" className="flex items-center" data-testid="logo">
               <VayraLogo className="h-8 w-auto" />
             </Link>
             <div className="flex items-center space-x-4">
@@ -51,7 +52,7 @@ const LandingPage: React.FC = () => {
       </header>
 
       {/* Hero Section */}
-      <section id="main-content" className="relative overflow-hidden min-h-[420px] md:min-h-[520px] flex items-center">
+      <section id="main-content" className="relative overflow-hidden min-h-[420px] md:min-h-[520px] flex items-center" data-testid="hero">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
           <div className="text-center">
                          {/* Logo */}
@@ -75,7 +76,7 @@ const LandingPage: React.FC = () => {
                      ...(window.matchMedia('(prefers-reduced-motion: reduce)').matches && { duration: 0.01, repeat: 0 })
                    }}
                  >
-                   <VayraLogo className="h-24 md:h-36 w-auto" width={480} height={144} data-testid="hero-logo" />
+                   <VayraLogo className="h-24 md:h-36 w-auto" width={480} height={144} data-testid="hero-title" />
                  </motion.div>
                </motion.div>
                
@@ -122,6 +123,7 @@ const LandingPage: React.FC = () => {
             >
               <Link
                 to="/signin"
+                data-testid="cta-primary"
                 className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
               >
                 <span>Start Your Journey</span>
@@ -129,6 +131,7 @@ const LandingPage: React.FC = () => {
               </Link>
               <Link
                 to="/pricing"
+                data-testid="nav-pricing"
                 className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-8 py-4 rounded-xl font-semibold text-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 flex items-center space-x-2"
               >
                 <span>View Plans</span>
@@ -200,6 +203,23 @@ const LandingPage: React.FC = () => {
                 </p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Lite Calculator Section */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Try Our Lite Calculator
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              Get a quick estimate of your debt payoff timeline
+            </p>
+          </div>
+          <div className="max-w-md mx-auto">
+            <LiteCalculator />
           </div>
         </div>
       </section>

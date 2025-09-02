@@ -6,8 +6,11 @@ dist/
 *.env
 *.key
 # testsprite temp & reports
-testsprite_tests/tmp/
-testsprite_tests/reports/
+testsprite_tests/
+# Playwright reports
+reports/
+playwright-report/
+test-results/
 coverage/
 .DS_Store
 node_modules
