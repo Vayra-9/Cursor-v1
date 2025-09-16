@@ -1,60 +1,37 @@
 import { test, expect } from '@playwright/test';
-import { byTid, maybeGoto } from './_utils';
+import { maybeGoto } from './_utils';
 
-const IGNORE = [
-  'FIREBASE',
-  'Auth (',
-  'manifest.json',
-  'service-worker',
-  'Vercel',
-  'CORS policy',
-  'Access-Control-Allow-Origin',
-  'Access-Control-Allow-Headers',
-  'identitytoolkit.googleapis.com',
-  'fonts.gstatic.com',
-  'auth/network-request-failed',
-  'auth/api-key-not-valid'
+const IGNORE_CONSOLE = [
+  'FIREBASE', 'manifest.json', 'service-worker', 'Vercel', 'Non-serializable'
 ];
 
-test('no critical console/network errors after sign in', async ({ page }) => {
+test('post-login health — no critical console/network errors', async ({ page }) => {
   const errors: string[] = [];
   page.on('console', (msg) => {
-    if (msg.type() === 'error' && !IGNORE.some(s => msg.text().includes(s))) {
-      errors.push(msg.text());
+    if (msg.type() === 'error') {
+      const t = msg.text();
+      if (!IGNORE_CONSOLE.some(s => t.includes(s))) errors.push(t);
     }
   });
-  const bad: string[] = [];
+
+  const badResponses: string[] = [];
   page.on('response', (res) => {
-    const s = res.status();
-    if (s >= 400) {
+    const status = res.status();
+    if (status >= 400) {
       const url = res.url();
-      if (!url.endsWith('.map') && !url.includes('favicon')) bad.push(`${s} ${url}`);
+      if (!url.endsWith('.map') && !url.includes('favicon')) badResponses.push(`${status} ${url}`);
     }
   });
 
-  await maybeGoto(page, '/');
-  // Click login if present, else go to dashboard (soft)
-  const login = page.getByRole('button', { name: /login|sign in/i }).or(byTid(page, 'auth-login'));
-  if (await login.count()) await login.first().click().catch(() => {});
-  else await maybeGoto(page, '/dashboard');
+  // Attempt to hit the dashboard (fallback to root)
+  await maybeGoto(page, '/dashboard');
 
+  // Allow app to settle
   await page.waitForLoadState('networkidle');
   await page.waitForTimeout(500);
 
-  // In development, network errors are expected due to Firebase demo keys
-  // Only fail if there are critical application errors
-  const criticalErrors = errors.filter(e => 
-    !e.includes('Failed to load resource') && 
-    !e.includes('net::ERR_FAILED') &&
-    !e.includes('status of 400')
-  );
-
-  if (criticalErrors.length > 0) {
-    expect(criticalErrors, `Critical console errors:\n${criticalErrors.join('\n')}`).toEqual([]);
-  }
-
-  // Log network issues for debugging but don't fail the test
-  if (bad.length > 0) {
-    console.warn(`Network issues detected (non-critical):\n${bad.join('\n')}`);
+  expect(errors, `Console errors:\n${errors.join('\n')}`).toEqual([]);
+  if (badResponses.length > 0) {
+    throw new Error(`Network errors detected:\n${badResponses.join('\n')}`);
   }
 });

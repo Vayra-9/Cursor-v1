@@ -1,20 +1,24 @@
-import { Page, expect, Locator, test } from '@playwright/test';
+import { Page } from '@playwright/test';
+import { test } from '@playwright/test';
 
 export async function maybeGoto(page: Page, path: string) {
-  try { await page.goto(path, { waitUntil: 'load' }); }
-  catch { await page.goto('/'); }
+  try {
+    await page.goto(path, { waitUntil: 'load' });
+  } catch {
+    // fallback to root if route not available
+    await page.goto('/', { waitUntil: 'load' }).catch(()=>{});
+  }
 }
 
+// byTid helper if the project uses data-testid attributes
 export function byTid(page: Page, id: string) {
-  return page.getByTestId(id);
+  return page.locator(`[data-testid="${id}"]`);
 }
 
-export async function expectVisibleIfPresent(page: Page, locator: Locator) {
-  if (await locator.count()) await expect(locator.first()).toBeVisible();
-}
-
-export async function requireOrSkip(page: Page, locator: Locator, reason: string) {
-  if ((await locator.count()) === 0) {
+// requireOrSkip: skip test when locator not present
+export async function requireOrSkip(page: Page, locator: ReturnType<typeof byTid>, reason = 'Required element not present') {
+  const count = await locator.count();
+  if (count === 0) {
     test.skip(true, reason);
   }
 }
