@@ -38,6 +38,7 @@ import EducationPage from '@/pages/education/EducationPage';
 import AIChatPage from '@/pages/ai/AIChatPage';
 import SettingsPage from '@/pages/settings/SettingsPage';
 import ProfilePage from '@/pages/ProfilePage';
+import AdminPage from '@/pages/admin';
 
 // Plan Guard and Upgrade Page
 import RequirePlan from '@/components/auth/RequirePlan';
@@ -229,6 +230,13 @@ const App: React.FC = () => {
           <Route path="/ai/chat" element={
             <ProtectedRoute>
               <AIChatPage />
+            </ProtectedRoute>
+          } />
+
+          {/* Admin Route */}
+          <Route path="/admin" element={
+            <ProtectedRoute>
+              <AdminPage />
             </ProtectedRoute>
           } />
 

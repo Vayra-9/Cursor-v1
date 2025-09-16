@@ -1,15 +1,15 @@
 /**
  * Run with:
  *   GOOGLE_APPLICATION_CREDENTIALS=/abs/path/to/serviceAccount.json \
- *   npm run claims:admin
+ *   node scripts/setClaims.js
  *
  * This sets custom claims for testuser@vayra.digital as admin with full access.
  */
-import { initializeApp } from 'firebase-admin/app';
-import { getAuth } from 'firebase-admin/auth';
+const { initializeApp } = require('firebase-admin/app');
+const { getAuth } = require('firebase-admin/auth');
 
 async function main() {
-  const email = 'test@vayra.digital'; // 👈 Test user from TestSprite
+  const email = 'testuser@vayra.digital'; // 👈 Hardcoded admin user
 
   initializeApp(); // requires GOOGLE_APPLICATION_CREDENTIALS env var
   const auth = getAuth();
@@ -31,3 +31,4 @@ main().catch((e) => {
   console.error('❌ Error setting claims:', e);
   process.exit(1);
 });
+

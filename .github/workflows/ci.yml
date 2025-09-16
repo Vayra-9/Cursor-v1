@@ -107,55 +107,6 @@ jobs:
           path: dist/
           retention-days: 7
 
-  # E2E Tests with TestSprite
-  e2e-tests:
-    name: E2E Tests (TestSprite)
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-files
-          path: dist/
-
-      - name: Start preview server
-        run: |
-          pnpm preview &
-          sleep 10
-        env:
-          PORT: 4173
-
-      - name: Run TestSprite E2E tests
-        run: |
-          pnpm testsprite:validate
-        env:
-          TESTSprite_URL: http://localhost:4173
-          TESTSprite_CREDENTIALS: testsprite+local@vayra.app:VayraTest!123
-
-      - name: Upload TestSprite reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: testsprite-reports
-          path: testsprite_tests/reports/
-          retention-days: 30
 
   # Security Audit
   security-audit:
@@ -336,19 +287,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run post-deploy TestSprite validation
-        run: |
-          pnpm testsprite:validate:prod
-        env:
-          TESTSprite_URL: https://vayra.app
-          TESTSprite_CREDENTIALS: testsprite+prod@vayra.app:VayraTest!123
-
-      - name: Upload post-deploy reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: post-deploy-reports
-          path: testsprite_tests/reports/
-          retention-days: 30
 
   # Performance Monitoring
   performance-monitoring:

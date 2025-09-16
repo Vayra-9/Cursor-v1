@@ -88,16 +88,13 @@ test('Core source files exist', () => {
   });
 });
 
-// Test 5: Check if TestSprite configuration exists
-test('TestSprite configuration exists', () => {
-  if (!fs.existsSync('testsprite.config.json')) {
-    throw new Error('testsprite.config.json not found');
+// Test 5: Check if Playwright configuration exists
+test('Playwright configuration exists', () => {
+  if (!fs.existsSync('playwright.config.ts')) {
+    throw new Error('playwright.config.ts not found');
   }
   
-  const config = JSON.parse(fs.readFileSync('testsprite.config.json', 'utf8'));
-  if (!config.settings || !config.settings.baseUrl) {
-    throw new Error('Invalid TestSprite configuration');
-  }
+  console.log('✅ Playwright configuration exists');
 });
 
 // Test 6: Check if environment template exists

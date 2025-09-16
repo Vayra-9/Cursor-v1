@@ -1,15 +1,15 @@
 /**
  * Run with:
  *   GOOGLE_APPLICATION_CREDENTIALS=/abs/path/to/serviceAccount.json \
- *   npm run claims:verify
+ *   node scripts/verifyClaims.js
  *
  * Verifies the claims for testuser@vayra.digital.
  */
-import { initializeApp } from 'firebase-admin/app';
-import { getAuth } from 'firebase-admin/auth';
+const { initializeApp } = require('firebase-admin/app');
+const { getAuth } = require('firebase-admin/auth');
 
 async function main() {
-  const email = 'test@vayra.digital';
+  const email = 'testuser@vayra.digital';
 
   initializeApp();
   const auth = getAuth();
@@ -22,3 +22,4 @@ main().catch((e) => {
   console.error('❌ Error verifying claims:', e);
   process.exit(1);
 });
+
