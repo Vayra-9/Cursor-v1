@@ -45,6 +45,33 @@ function parseVerifyOutput(output, email) {
   return { error: 'not-found' };
 }
 
+async function ensureUserExists(email) {
+  const admin = require('firebase-admin');
+  const auth = admin.auth();
+  try {
+    await auth.getUserByEmail(email);
+    console.log(`✅ User ${email} already exists`);
+  } catch (err) {
+    if (err.code === 'auth/user-not-found') {
+      console.log(`Creating user ${email}...`);
+      try {
+        await auth.createUser({
+          email: email,
+          password: 'TempP@ss!234',
+          emailVerified: false
+        });
+        console.log(`✅ Created user ${email} with temporary password`);
+      } catch (createErr) {
+        console.error(`❌ Failed to create user ${email}:`, createErr.message);
+        throw createErr;
+      }
+    } else {
+      console.error(`❌ Error checking user ${email}:`, err.message);
+      throw err;
+    }
+  }
+}
+
 async function main() {
   const raw = process.argv[2];
   if (!raw) {
@@ -52,7 +79,28 @@ async function main() {
     process.exit(1);
   }
   const emails = raw.split(',').map(s => s.trim()).filter(Boolean);
-  // First, try to set claims (best-effort)
+  
+  // Initialize Firebase Admin
+  const admin = require('firebase-admin');
+  if (!admin.apps.length) {
+    try {
+      admin.initializeApp();
+    } catch (e) {
+      // ignore if already initialized
+    }
+  }
+  
+  // First, ensure all users exist
+  console.log('Ensuring users exist:', emails.join(','));
+  for (const email of emails) {
+    try {
+      await ensureUserExists(email);
+    } catch (err) {
+      console.error(`Failed to ensure user ${email} exists, continuing...`);
+    }
+  }
+  
+  // Then try to set claims (best-effort)
   console.log('Attempting one-time setClaims for:', emails.join(','));
   await runCmd(`node scripts/setClaims.cjs "${emails.join(',')}"`).catch(()=>{});
 

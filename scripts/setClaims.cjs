@@ -24,7 +24,23 @@ function initAdmin() {
 async function setClaimsForEmail(email) {
   const auth = admin.auth();
   try {
-    const user = await auth.getUserByEmail(email);
+    let user;
+    try {
+      user = await auth.getUserByEmail(email);
+    } catch (getUserErr) {
+      if (getUserErr.code === 'auth/user-not-found') {
+        console.log(`Creating user ${email}...`);
+        user = await auth.createUser({
+          email: email,
+          password: 'TempP@ss!234',
+          emailVerified: false
+        });
+        console.log(`✅ Created user ${email} with temporary password`);
+      } else {
+        throw getUserErr;
+      }
+    }
+    
     const claims = { role: 'admin', plans: ['free','starter','pro','premium'], full_access: true };
     await auth.setCustomUserClaims(user.uid, claims);
     console.log(`✅ Set claims for ${email}:`, claims);

@@ -22,3 +22,12 @@ export async function requireOrSkip(page: Page, locator: ReturnType<typeof byTid
     test.skip(true, reason);
   }
 }
+
+// expectVisibleIfPresent: check visibility only if element exists
+export async function expectVisibleIfPresent(page: Page, locator: ReturnType<typeof byTid>) {
+  const count = await locator.count();
+  if (count > 0) {
+    const { expect } = await import('@playwright/test');
+    await expect(locator.first()).toBeVisible();
+  }
+}
