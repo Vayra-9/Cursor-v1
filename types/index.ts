@@ -8,16 +8,6 @@ export interface DebtData {
 
 export interface FinancialMetrics {
     totalDebt: number;
-export interface DebtData {
-    id: string;
-    name: string;
-    balance: number;
-    interestRate: number;
-    minimumPayment: number;
-}
-
-export interface FinancialMetrics {
-    totalDebt: number;
     monthlyPayment: number;
     debtFreeDate: Date | null;
     interestSaved: number;

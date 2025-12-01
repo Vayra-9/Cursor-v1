@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
                     // Only create if doesn't exist
                     if (!profile) {
-                        profile = await createUserDocument(firebaseUser);
+                        profile = (await createUserDocument(firebaseUser)) || null;
                     }
 
                     setUserProfile(profile || null);
