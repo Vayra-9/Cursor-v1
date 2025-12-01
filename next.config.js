@@ -13,6 +13,17 @@ const nextConfig = {
     domains: ['lh3.googleusercontent.com'],
   },
   transpilePackages: ['undici', 'firebase', 'firebase-admin'],
+  async redirects() {
+    return [
+      {
+        source: '/signin',
+        destination: '/login',
+        permanent: true,
+      },
+    ];
+  },
 };
 
-module.exports = withPWA(nextConfig);
+// PWA disabled for debugging
+// module.exports = withPWA(nextConfig);
+module.exports = nextConfig;
