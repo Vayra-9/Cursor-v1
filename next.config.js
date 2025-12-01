@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+// Force Vercel redeploy
 const withPWA = require("next-pwa")({
   dest: "public",
   register: true,
