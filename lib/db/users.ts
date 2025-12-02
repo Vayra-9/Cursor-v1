@@ -19,6 +19,8 @@ export const createUserDocument = async (user: User, additionalData?: Partial<Us
             displayName: displayName || null,
             photoURL: photoURL || null,
             plan: 'starter',
+            role: 'user',
+            isAdmin: false,
             grandfathered: false,
             planVersion: 'v2_standard',
             createdAt,
