@@ -25,7 +25,7 @@ export default function Home() {
             {/* Hero Content */}
             <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-to-br before:from-transparent before:to-blue-700 before:opacity-10 before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-to-t after:from-sky-900 after:via-[#0141ff] after:opacity-40 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1] mt-20 mb-20">
                 <div className="text-center">
-                    <h1 className="text-6xl font-bold text-center tracking-tight">VAYRA</h1>
+                    <h1 className="text-6xl font-bold text-center tracking-tight">VAYRA DEBUG MODE</h1>
                     <p className="mt-4 text-xl text-muted-foreground max-w-lg mx-auto">
                         Your journey to financial freedom starts here. Calculate your debt-free date and take control of your finances.
                     </p>
