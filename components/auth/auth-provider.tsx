@@ -28,8 +28,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             setUser(firebaseUser);
 
             if (firebaseUser) {
-                // Fetch existing user profile first
                 try {
+                    // Force refresh token to get latest claims
+                    await firebaseUser.getIdToken(true);
+                    const token = await firebaseUser.getIdTokenResult();
+                    const claims = token.claims;
+
+                    // Fetch existing user profile
                     let profile = await getUserProfile(firebaseUser.uid);
 
                     // Only create if doesn't exist
@@ -37,9 +42,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                         profile = (await createUserDocument(firebaseUser)) || null;
                     }
 
+                    // Merge claims into profile (claims are source of truth for access)
+                    if (profile) {
+                        profile = {
+                            ...profile,
+                            plan: (claims.plan as any) || profile.plan || 'starter',
+                            role: (claims.role as any) || profile.role || 'user',
+                            isAdmin: (claims.isAdmin as boolean) || profile.isAdmin || false,
+                        };
+                    }
+
                     setUserProfile(profile || null);
                 } catch (error) {
-                    console.error("Failed to fetch user profile", error);
+                    console.error("Failed to fetch user profile or claims", error);
                 }
             } else {
                 setUserProfile(null);
