@@ -8,8 +8,11 @@ import SpendingChart from "@/components/analytics/spending-chart";
 import YearlyOverview from "@/components/analytics/yearly-overview";
 import { Button } from "@/components/ui/button";
 import { generateFinancialReport } from "@/lib/pdf-generator";
+import { useAuth } from "@/components/auth/auth-provider";
 
 export default function DashboardPage() {
+    const { userProfile } = useAuth();
+
     const handleExportReport = () => {
         const reportData = {
             userName: "Demo User",
@@ -27,6 +30,11 @@ export default function DashboardPage() {
 
     return (
         <div className="p-8 space-y-8">
+            <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
+                <p className="font-bold">DEBUG MODE V4</p>
+                <p>Plan: {userProfile?.plan || 'undefined'}</p>
+                <p>Role: {userProfile?.role || 'undefined'}</p>
+            </div>
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold">Financial Dashboard</h1>
                 <Button onClick={handleExportReport}>Export PDF Report</Button>
