@@ -19,8 +19,8 @@ export interface UserProfile {
     displayName: string | null;
     photoURL: string | null;
     plan: 'starter' | 'pro' | 'premium';
-    role?: 'user' | 'admin';
-    isAdmin?: boolean;
+    role: 'user' | 'admin';
+    isAdmin: boolean;
     grandfathered: boolean;
     planVersion: 'v1_early' | 'v2_standard';
     createdAt: number;
