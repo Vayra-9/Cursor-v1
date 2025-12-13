@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import DebtCalculatorForm from "@/components/calculators/debt-calculator-form";
 import PaymentTrackerList from "@/components/dashboard/payment-tracker-list";
-import { useAuth } from "@/components/auth/auth-provider";
+import { useAuth } from "@/context/AuthContext";
 
 export default function DashboardHome() {
     const { userProfile } = useAuth();

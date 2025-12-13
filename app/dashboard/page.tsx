@@ -8,20 +8,20 @@ import SpendingChart from "@/components/analytics/spending-chart";
 import YearlyOverview from "@/components/analytics/yearly-overview";
 import { Button } from "@/components/ui/button";
 import { generateFinancialReport } from "@/lib/pdf-generator";
-import { useAuth } from "@/components/auth/auth-provider";
+import { useAuth } from "@/context/AuthContext";
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function DashboardPage() {
-    const { user, userProfile, loading } = useAuth();
+    const { user, userProfile, isLoading } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
-        if (!loading && !user) {
+        if (!isLoading && !user) {
             router.push("/signin");
         }
-    }, [user, loading, router]);
+    }, [user, isLoading, router]);
 
     const handleExportReport = () => {
         const reportData = {

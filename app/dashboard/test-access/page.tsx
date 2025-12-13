@@ -1,11 +1,11 @@
 "use client";
 
-import { useAuth } from "@/components/auth/auth-provider";
+import { useAuth } from "@/context/AuthContext";
 
 export default function TestAccessPage() {
-    const { user, userProfile, loading } = useAuth();
+    const { user, userProfile, isLoading } = useAuth();
 
-    if (loading) return <div>Loading...</div>;
+    if (isLoading) return <div>Loading...</div>;
     if (!user) return <div>Not logged in</div>;
 
     return (
