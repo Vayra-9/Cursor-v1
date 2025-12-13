@@ -10,8 +10,18 @@ import { Button } from "@/components/ui/button";
 import { generateFinancialReport } from "@/lib/pdf-generator";
 import { useAuth } from "@/components/auth/auth-provider";
 
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 export default function DashboardPage() {
-    const { userProfile } = useAuth();
+    const { user, userProfile, loading } = useAuth();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!loading && !user) {
+            router.push("/signin");
+        }
+    }, [user, loading, router]);
 
     const handleExportReport = () => {
         const reportData = {

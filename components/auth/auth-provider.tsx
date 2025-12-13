@@ -24,7 +24,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        // Failsafe: force loading to false after 4 seconds if Firebase hangs
+        const timer = setTimeout(() => setLoading(false), 4000);
+
         const unsubscribe = onAuthStateChange(async (firebaseUser) => {
+            clearTimeout(timer);
             setUser(firebaseUser);
 
             if (firebaseUser) {
