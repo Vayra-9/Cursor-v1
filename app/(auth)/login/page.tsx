@@ -26,14 +26,8 @@ export default function LoginPage() {
             router.push("/dashboard");
         } catch (err: any) {
             console.error("Login error:", err);
-            // Simplify error message for user
-            let message = "Failed to log in. Please check your credentials.";
-            if (err.code === "auth/invalid-credential" || err.code === "auth/user-not-found" || err.code === "auth/wrong-password") {
-                message = "Invalid email or password.";
-            } else if (err.code === "auth/too-many-requests") {
-                message = "Too many attempts. Please try again later.";
-            }
-            setError(message);
+            // DEBUG: Show exact error to user
+            setError(`Error: ${err.code} - ${err.message}`);
         } finally {
             setIsLoading(false);
         }
