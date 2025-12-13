@@ -1,58 +1,86 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
+
+// Context
+import { useAuth } from "@/context/AuthContext";
+
+// Components
 import DashboardHome from "@/components/dashboard/dashboard-home";
+import DebtCalculator from "@/components/dashboard/DebtCalculator";
+import DebtEntryForm from "@/components/debt/DebtEntryForm";
 import MonthlyPlanner from "@/components/budget/monthly-planner";
 import ExpenseSheet from "@/components/expenses/expense-sheet";
 import IncomeTracker from "@/components/income/income-tracker";
 import SpendingChart from "@/components/analytics/spending-chart";
 import YearlyOverview from "@/components/analytics/yearly-overview";
-import { Button } from "@/components/ui/button";
-import { generateFinancialReport } from "@/lib/pdf-generator";
-import { useAuth } from "@/context/AuthContext";
 
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+// Types
+import { Debt } from "@/types";
 
 export default function DashboardPage() {
-    const { user, userProfile, isLoading } = useAuth();
+    const { user, isLoading } = useAuth();
     const router = useRouter();
+    const [debts, setDebts] = useState<Debt[]>([]);
+
+    const fetchDebts = async () => {
+        if (!user) return;
+        try {
+            const token = await user.getIdToken();
+            const res = await fetch('/api/debt/get', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const data = await res.json();
+            if (data.success) {
+                setDebts(data.debts);
+            }
+        } catch (error) {
+            console.error("Failed to fetch debts", error);
+        }
+    };
 
     useEffect(() => {
         if (!isLoading && !user) {
             router.push("/signin");
+        } else if (user) {
+            fetchDebts();
         }
     }, [user, isLoading, router]);
 
-    const handleExportReport = () => {
-        const reportData = {
-            userName: "Demo User",
-            month: new Date().toISOString().slice(0, 7),
-            totalIncome: 5000,
-            totalExpenses: 3500,
-            totalSaved: 1500,
-            expenses: [
-                { date: "2025-12-01", category: "Food", amount: 50, note: "Groceries" },
-                { date: "2025-11-30", category: "Transport", amount: 120, note: "Gas" },
-            ]
-        };
-        generateFinancialReport(reportData);
-    };
+    // Removed handleExportReport as it's not used in the new structure
+
+    if (isLoading) {
+        return (
+            <div className="flex min-h-screen w-full items-center justify-center bg-[#1A1A2E]">
+                <Loader2 className="h-10 w-10 animate-spin text-indigo-500" />
+            </div>
+        );
+    }
+
+    if (!user) return null;
 
     return (
         <div className="p-8 space-y-8">
-            <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
-                <p className="font-bold">DEBUG MODE V4</p>
-                <p>Plan: {userProfile?.plan || 'undefined'}</p>
-                <p>Role: {userProfile?.role || 'undefined'}</p>
-            </div>
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold">Financial Dashboard</h1>
-                <Button onClick={handleExportReport}>Export PDF Report</Button>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
-                <YearlyOverview />
-                <SpendingChart />
+                {/* Core Debt Assessment Module */}
+                <section className="grid gap-8 lg:grid-cols-3 col-span-2">
+                    <div className="lg:col-span-2">
+                        <DebtCalculator initialDebts={debts} />
+                    </div>
+                    <div>
+                        <DebtEntryForm onSuccess={fetchDebts} />
+                    </div>
+                </section>
+                <div className="grid gap-6 md:grid-cols-2">
+                    <YearlyOverview />
+                    <SpendingChart />
+                </div>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -63,6 +91,6 @@ export default function DashboardPage() {
             <ExpenseSheet />
 
             <DashboardHome />
-        </div>
+        </div >
     );
 }
