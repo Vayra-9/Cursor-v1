@@ -3,7 +3,7 @@
 import AdminGuard from "@/components/guards/AdminGuard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, FileText, Settings, Activity } from "lucide-react";
+import { Users, FileText, Settings, Activity, ShieldAlert, Lock } from "lucide-react";
 
 export default function AdminPage() {
     return (
